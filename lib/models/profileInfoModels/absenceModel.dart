@@ -1,5 +1,5 @@
 class AbsenceModel {
-  final String? month;
-  final int? days;
+  final String month;
+  final int days;
   AbsenceModel({this.days,this.month});
 }
