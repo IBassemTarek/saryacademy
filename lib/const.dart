@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 const Color kHeaderColor = Color(0xF7AA30);
 const Color kbackgroundColor = Color(0x041056);
+const Color kbackgroundColor2 = Color(0x00B2FF);
 const Color kGradColor1 = Color(0x671D89);
 const Color kGradColor2 = Color(0x101856);
 const Color kText1Color = Color(0x1C9CD8);
