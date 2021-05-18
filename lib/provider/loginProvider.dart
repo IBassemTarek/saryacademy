@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saryacademy/models/loginModel.dart';
 
-class ProfileProvider with ChangeNotifier {
+class LoginProvider with ChangeNotifier {
    
   LoginModel _loginData;
 
@@ -11,7 +11,10 @@ class ProfileProvider with ChangeNotifier {
   }
 
   bool isLogged () {
-    return _loginData.login;
+    // if (_loginData.login == null)
+    //   return false;
+    // else
+      return _loginData.login;
   }
 
   void login (){

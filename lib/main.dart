@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:saryacademy/screens/landingScreen.dart';
+import 'package:saryacademy/const.dart';
 void main() {
   runApp(MyApp());
 }
@@ -10,59 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sary Academy',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Sary Academy'),
+      theme: textData(),
+      home: LandingScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  final String title;
-  MyHomePage({@required this.title});
-
-
-
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Push this button many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), 
-    );
-  }
-}

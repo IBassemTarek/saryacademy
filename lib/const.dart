@@ -19,16 +19,13 @@ const Color kNotApplicableColor = Color(0xCC0000);
 
   ThemeData textData() {
     return ThemeData(
-        primaryColor: kbackgroundColor,
-        accentColor: kHeaderColor,
         textTheme: 
           TextTheme(
-            headline1: GoogleFonts.almarai(
-            textStyle:TextStyle(              
+            headline1: TextStyle(
+              fontFamily: "arialRounded",
               fontSize: 24,
-              color: kText2Color,
-              fontWeight: FontWeight.bold)
-            ,),
+              color: kText1Color,
+            ),
             subtitle1: TextStyle(
               fontFamily: "arialBold",
               fontSize: 17,
@@ -36,14 +33,15 @@ const Color kNotApplicableColor = Color(0xCC0000);
             ),
             bodyText1: TextStyle(
               fontFamily: "arial",
-              fontSize: 20,
+              fontSize: 18,
               color: kText1Color,
             ),
-            subtitle2: TextStyle(
-              fontFamily: "arialRounded",
-              fontSize: 20,
-              color: kText1Color,
-            ),
+            subtitle2: GoogleFonts.almarai(
+            textStyle:TextStyle(              
+              fontSize: 24,
+              color: kText2Color,
+              fontWeight: FontWeight.bold)
+            ,),
           ),
         backgroundColor: Colors.white
     );
