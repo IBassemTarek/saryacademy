@@ -35,6 +35,9 @@ flutter:
     - assets/images/landingScreen/
     - assets/images/profile/
     - assets/images/home/
+    - assets/images/gallery/
+    - assets/images/PR/
+    - assets/images/events/
 
   fonts:
     - family: arialBold

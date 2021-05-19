@@ -2,7 +2,7 @@ class PRM1model {
      String  childName;
      String  date;
      bool  presence;
-     int  mood;  // 1) :)             2) :(                    3)  :|
+     int  mood;  // 0) :)             1) :(                    2)  :|
      List<String>  naps;
      bool  mealsBreakfast;
      bool  mealslunch;   

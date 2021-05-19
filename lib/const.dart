@@ -17,6 +17,60 @@ const Color kGoodColor = Color(0x49C929);
 const Color kWorkingColor = Color(0x0083CC);
 const Color kNotApplicableColor = Color(0xCC0000);
 
+const int mood =0;
+
+const List<String> napsList = [
+  "10:30 Am",
+  "........  Am"
+];
+
+const List<String> activitiesList = [
+  "bla bla bla bla bla bla bla bla bla",
+  "bla bla bla bla bla bla bla bla bla"
+];
+
+const List<String> mealsList = [
+  "Breakfast",
+  "Lunch"
+];
+
+const List<String> fluidList = [
+  "Liquid",
+  "Bottle"
+];
+
+const List<bool> napsCheck = [
+  true,
+  false
+];
+
+ const List<IconData> moods =[
+      Icons.sentiment_satisfied_alt,
+      Icons.sentiment_dissatisfied,
+      Icons.sentiment_neutral,
+    ];
+
+const List<String> restroom = [
+  "Potty",
+  "Toilet"
+]; 
+
+  BoxDecoration roundedContainer({double radius,Color color}) {
+  return BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(radius) ),
+                    color: color,
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 2,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  );
+  }
+
+
   ThemeData textData() {
     return ThemeData(
         textTheme: 

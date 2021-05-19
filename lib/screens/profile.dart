@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/screens/home/home.dart';
+import 'package:saryacademy/shared/backArrowBotton.dart';
 import 'package:saryacademy/shared/infoTable.dart';
-import 'package:saryacademy/shared/pageRouteAnimation.dart';
 import 'package:saryacademy/shared/profilePhoto.dart';
 import 'package:saryacademy/shared/statusInfo.dart';
 import '../const.dart';
@@ -34,18 +33,7 @@ class Profile extends StatelessWidget {
                               SizedBox (
                                 width: _width*0.05314,
                               ),
-                              InkWell(
-                                child:Icon(Icons.arrow_back_ios,size: 26,color: kText1Color.withOpacity(1)),
-                                onTap: (){
-          Navigator.pushAndRemoveUntil(
-          context,
-          OnBoardingPageRoute(
-          duration: 1000,
-          widget: HomePage(),
-          myAnimation: Curves.elasticInOut),
-      (route) => false);
-                                },
-                              ),
+                              BackArrowBotton(),
                             SizedBox(
                               width:0.2374396*_width,
                             ),
@@ -108,11 +96,10 @@ TitleCard(title: "Child Info",),],
                   height:0.066964*_height,
                 ),
                   ],
-
-                  
                 ),
               ),
       ),
     );
   }
 }
+
