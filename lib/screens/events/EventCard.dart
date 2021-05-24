@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:saryacademy/models/eventModel.dart';
-import 'package:saryacademy/shared/profilePhoto.dart';
+import 'package:saryacademy/screens/events/eventphoto.dart';
 
 import '../../const.dart';
 class EventCardWidget extends StatelessWidget {
-  int index;
+  final int index;
   EventCardWidget({this.index});
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final _events = Provider.of<List<EventCard>>(context);
     return Center(
                 child: Stack(
                   children: [
@@ -39,13 +41,13 @@ class EventCardWidget extends StatelessWidget {
                 children: [
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(eventCardTest[index].title,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 16))),
+                  child: Text(_events[index].title,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 16))),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(eventCardTest[index].text,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
+                  child: Text(_events[index].text,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
                 Align(
                 alignment: Alignment.centerRight,
-                child: Text(eventCardTest[index].date,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
+                child: Text(_events[index].date,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
                 ],
               ),
             ),
@@ -56,7 +58,7 @@ class EventCardWidget extends StatelessWidget {
                       ],
                     ),
                               Positioned(
-                                child: ProfilePhoto(photoUrl:eventCardTest[index].imageURL,sizedRatio: 0.14955357,),
+                                child: EventPhoto(photourl:_events[index].imageURL,sizedRatio: 0.14955357,),
                               ),
                   ],
                 ),

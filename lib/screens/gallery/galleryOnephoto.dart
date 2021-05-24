@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GalleryOnePhoto extends StatelessWidget {
-  String imageURL;
-  String eventTitle;
+  final String imageURL;
+  final String eventTitle;
   GalleryOnePhoto({this.imageURL,this.eventTitle});
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
 
-class ProfilePhoto extends StatelessWidget {
+class EventPhoto extends StatelessWidget {
   final double sizedRatio;
-  ProfilePhoto({this.sizedRatio});
+  final String photourl;
+  EventPhoto({this.sizedRatio,this.photourl});
   
   @override
   Widget build(context) {
@@ -24,11 +23,9 @@ class ProfilePhoto extends StatelessWidget {
     child:CircleAvatar(
     radius: 18,
     child: ClipOval(
-        child:
-Consumer<ChildInfoModel>(
-  builder: (_,childInfo,__) =>   CachedNetworkImage(
+        child: CachedNetworkImage(
     placeholder: (context, url) => CircularProgressIndicator(),
-    imageUrl: childInfo.photourl,
+    imageUrl: photourl,
     errorWidget: (___, _, __) {
                 return  Container(
                         width: _height*sizedRatio,
@@ -39,7 +36,6 @@ Consumer<ChildInfoModel>(
                 );
               },
   ),
-)
     ),
 ),
     );

@@ -1,19 +1,30 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:saryacademy/provider/modalprogrsshub.dart';
+import 'package:saryacademy/services/auth.dart';
+import 'package:saryacademy/wrapper.dart';
+import 'models/user.dart';
 
-import 'package:saryacademy/screens/landingScreen.dart';
-import 'package:saryacademy/const.dart';
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Sary Academy',
-      theme: textData(),
-      home: LandingScreen(),
+    return MultiProvider(
+      providers: [
+ChangeNotifierProvider<ModelHub>(
+        create: (context)=>ModelHub(),),
+StreamProvider<UserModel>.value(
+      value: AuthService().user,
+       initialData: null, 
+       ),  
+      ],
+          child: Wrapper(),
     );
   }
 }

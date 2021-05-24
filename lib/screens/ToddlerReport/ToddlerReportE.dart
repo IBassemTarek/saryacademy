@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/shared/backArrowBotton.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:saryacademy/shared/backArrowBotton.dart';
 import '../../const.dart';
 import 'checkIcon.dart';
 import 'infoCard.dart';
@@ -19,7 +20,7 @@ class ToddlerReportE extends StatelessWidget {
         titleSpacing: 0,
         elevation:0,
         backgroundColor: Colors.transparent,
-        title: Text("Progress Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 36)),
+        title: Text("Progress Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 30)),
       ),
       body: Stack(
           alignment: Alignment.center,
@@ -60,8 +61,7 @@ class ToddlerReportE extends StatelessWidget {
                     ],
                   )
                 ],
-              ),
-              // SizedBox(height:0.01*_height),
+              ), 
               Row(
                 children: [
                     SvgPicture.asset('assets/images/PR/calendar.svg',height:0.0279*_height),
@@ -81,7 +81,6 @@ class ToddlerReportE extends StatelessWidget {
                     ),
                 ],
               ),
-              //  SizedBox(height: 0.011161*_height,),
                 Container(
                       height: 0.19642857*_height,
                       width: 0.835748793*_width,
@@ -98,7 +97,6 @@ class ToddlerReportE extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  
                                   Text("Mood",style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
                                   Container(
                                     height: 0.032366*_height,
@@ -130,7 +128,6 @@ class ToddlerReportE extends StatelessWidget {
                                 ],
                               )
                           ],),
-                          // SizedBox(height:0.0167411 ,),
                           Container(
                             width: 0.5386473*_width,
                             child: Divider(
@@ -148,10 +145,7 @@ class ToddlerReportE extends StatelessWidget {
                         )
                         ],
                       ),
-
-                 ),
-
-                //  SizedBox(height: 0.0167411*_height,),
+                 ), 
                  Row(
                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
@@ -168,10 +162,6 @@ class ToddlerReportE extends StatelessWidget {
                        child: InfoCard(iconUrl:"assets/images/PR/Diaper.svg",title:"Diaper",description:napsList,done:napsCheck)),
                    ],
                  ),
-
-
-
-                //  SizedBox(height: 0.0167411*_height,),
                  Row(
                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
@@ -188,13 +178,7 @@ class ToddlerReportE extends StatelessWidget {
                        child: InfoCard(iconUrl:"assets/images/PR/Clothes.svg",title:"Clothes",description:napsList,done:napsCheck)),
                    ],
                  ),
-
-                //  SizedBox(height: 0.0167411*_height,),
-
                  NotesAndActivities(cardIcon: "assets/images/PR/Activities.svg",content:activitiesList, title: "Activities",),
-
-                //  SizedBox(height: 0.0167411*_height,),
-
                  NotesAndActivities(cardIcon: "assets/images/PR/Notes.svg",content:activitiesList, title: "Notes",),
             ],
           ),

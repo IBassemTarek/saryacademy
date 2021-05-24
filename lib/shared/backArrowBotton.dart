@@ -10,13 +10,12 @@ class BackArrowBotton extends StatelessWidget {
     return InkWell(
       child:Icon(Icons.arrow_back_ios,size: 26,color: kText1Color.withOpacity(1)),
       onTap: (){
-          Navigator.pushAndRemoveUntil(
+          Navigator.pop(
           context,
           OnBoardingPageRoute(
-          duration: 1000,
+          duration: 600,
           widget: HomePage(),
-          myAnimation: Curves.elasticInOut),
-      (route) => false);
+          myAnimation: Curves.easeInOut),);
       },
     );
   }

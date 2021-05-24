@@ -5,9 +5,9 @@ import '../../const.dart';
 
 
 class NotesAndActivities extends StatelessWidget {
-  String title;
-  String cardIcon;
-  List<String> content;
+  final String title;
+  final String cardIcon;
+  final List<String> content;
 
   NotesAndActivities({this.cardIcon,this.content,this.title});
 

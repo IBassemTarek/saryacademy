@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/models/profileInfoModels/profileInfoModel.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
 import 'package:saryacademy/models/profileInfoModels/parentInfoModel.dart';
 import 'package:saryacademy/models/profileInfoModels/medicalHistoryModel.dart';
@@ -8,20 +7,40 @@ import 'package:saryacademy/models/profileInfoModels/absenceModel.dart';
 
 class ProfileProvider with ChangeNotifier {
    
-  ProfileInfo _profileData;
+   ChildInfoModel _ourChildInfo;
+   ParentInfoModel _ourParentInfo;
+   MedicalModel _ourMedicalHistory;
+   VaccinationModel _ourVaccination;
+   AbsenceModel _ourAbsence;
 
   //getter
-  ProfileInfo get childInfo {
-    return _profileData;
+  ChildInfoModel get childInfo {
+    return _ourChildInfo;
+  }
+
+  ParentInfoModel get parentInfo {
+    return _ourParentInfo;
+  }
+
+  MedicalModel get medicalHistoryInfo {
+    return _ourMedicalHistory;
+  }
+
+  VaccinationModel get ourVaccination {
+    return _ourVaccination;
+  }
+
+  AbsenceModel get ourAbsence {
+    return _ourAbsence;
   }
 
   //setter
   void setProfileData ({ChildInfoModel childInfoRx,ParentInfoModel parentInfoRx,MedicalModel medicalHistoryRx,VaccinationModel vaccinationRx,AbsenceModel absenceRx }) {
-    _profileData.ourAbsence=absenceRx;
-    _profileData.ourChildInfo=childInfoRx;
-    _profileData.ourMedicalHistory=medicalHistoryRx;
-    _profileData.ourParentInfo=parentInfoRx;
-    _profileData.ourVaccination=vaccinationRx;
+    _ourAbsence=absenceRx;
+    _ourChildInfo=childInfoRx;
+    _ourMedicalHistory=medicalHistoryRx;
+    _ourParentInfo=parentInfoRx;
+    _ourVaccination=vaccinationRx;
     notifyListeners();
   }
 

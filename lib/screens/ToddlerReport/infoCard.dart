@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../const.dart';
 import 'checkIcon.dart';
 class InfoCard extends StatelessWidget {
-  String iconUrl;
-  String title;
-  List<String> description;
-  List<bool> done;
+  final String iconUrl;
+  final String title;
+  final List<String> description;
+  final List<bool> done;
   
   InfoCard({this.iconUrl,this.title,this.description,this.done});
   @override

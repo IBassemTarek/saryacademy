@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../const.dart';
 
 class GalleryCard extends StatelessWidget {
-  String imageURL2;
-  String imageURL1;
-  String imageURL3;
+  final String imageURL2;
+  final String imageURL1;
+  final String imageURL3;
   GalleryCard({this.imageURL2,this.imageURL1,this.imageURL3});
   @override
   Widget build(BuildContext context) {
