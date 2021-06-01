@@ -8,7 +8,7 @@ class PRInfo extends StatelessWidget {
   final String title;
   final bool english;
   final List<String> dataNotes;
-  final List<int> dataNotesAnswersMonth1,dataNotesAnswersMonth2,dataNotesAnswersMonth3;
+  final List dataNotesAnswersMonth1,dataNotesAnswersMonth2,dataNotesAnswersMonth3;
   PRInfo({this.title,this.dataNotes,this.english,this.dataNotesAnswersMonth1,this.dataNotesAnswersMonth2,this.dataNotesAnswersMonth3,this.dividerHeight});
   @override
   Widget build(BuildContext context) {

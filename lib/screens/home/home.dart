@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:saryacademy/const.dart';
-import 'package:saryacademy/screens/PRS1/PRS1A.dart';
+import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
 import 'package:saryacademy/screens/PRS1/PRS1E.dart';
-import 'package:saryacademy/screens/PRS2/PRS2A.dart';
 import 'package:saryacademy/screens/PRS2/PRS2E.dart';
 import 'package:saryacademy/screens/ToddlerReport/ToddlerReportE.dart';
 import 'package:saryacademy/screens/events/event.dart';
 import 'package:saryacademy/screens/gallery/gallery.dart';
 import 'package:saryacademy/screens/home/profileCard.dart';
 import 'package:saryacademy/screens/home/progressReportCard.dart';
+import 'package:saryacademy/shared/loading.dart';
 import 'package:saryacademy/shared/pageRouteAnimation.dart';
 import '../profile.dart';
 import 'eventsCard.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+// childInfo.reportType
 
        return Scaffold(
         floatingActionButton: InkWell(
@@ -84,34 +86,65 @@ class HomePage extends StatelessWidget {
       },
     ),
     SizedBox(height: 0.0391*_height,),
-    InkWell(
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      child: PRCard(),
-      onTap: (){ 
-      Navigator.push(
-      context,
-      OnBoardingPageRoute(
-      duration: 600,
-      // widget: ToddlerReportE(),
-      widget: ToddlerReportE(),
-      myAnimation: Curves.easeInOut),
-      );
-      },
-      ),
+    Consumer<ChildInfoModel>(
+          builder: (context,childInfo,widget) 
+        {
+        if (childInfo.reportType == null )
+            return Container(
+            decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10) ),
+            color: Colors.white,
+            ),
+            height: 0.13392857*_height,
+            width: 0.90338*_width,
+            child: Loading(),
+            );
+        else
+        return InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        child: PRCard(),
+        onTap: (){
+          if (childInfo.reportType == 1 )
+        Navigator.push(
+        context,
+        OnBoardingPageRoute(
+        duration: 600,
+        widget: ToddlerReportE(),
+        myAnimation: Curves.easeInOut),
+        );
+        else if (childInfo.reportType == 2)
+        Navigator.push(
+        context,
+        OnBoardingPageRoute(
+        duration: 600,
+        widget: PRS1E(),
+        myAnimation: Curves.easeInOut),
+        );
+        else if (childInfo.reportType == 3)
+        Navigator.push(
+        context,
+        OnBoardingPageRoute(
+        duration: 600,
+        widget: PRS2E(),
+        myAnimation: Curves.easeInOut),
+        );
+        },
+        );}
+    ),
     SizedBox(height: 0.050732*_height,),
     InkWell(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       child: GalleryCard(imageURL1: 'assets/images/home/home31.png',imageURL2: 'assets/images/home/home32.png',imageURL3: 'assets/images/home/home33.png',),
       onTap: (){
-      // Navigator.push(
-      // context,
-      // OnBoardingPageRoute(
-      // duration: 600,
-      // widget: Gallery(),
-      // myAnimation: Curves.easeInOut),
-      // );
+      Navigator.push(
+      context,
+      OnBoardingPageRoute(
+      duration: 600,
+      widget: Gallery(),
+      myAnimation: Curves.easeInOut),
+      );
       },
       ),
     SizedBox(height: 0.03542857*_height,),

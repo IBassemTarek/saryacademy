@@ -18,25 +18,21 @@ class EventPhoto extends StatelessWidget {
           color: Color(0xffBCBCBC),
         ),
         shape: BoxShape.circle,
-        color: Colors.black,
+        // color: Colors.black,
     ),
     child:CircleAvatar(
     radius: 18,
-    child: ClipOval(
-        child: CachedNetworkImage(
+    child: CachedNetworkImage(
     placeholder: (context, url) => CircularProgressIndicator(),
     imageUrl: photourl,
     errorWidget: (___, _, __) {
-                return  Container(
-                        width: _height*sizedRatio,
-                        height: _height*sizedRatio,
-                        child: Image.asset(
-                          'assets/images/No-Image.png',
-                          fit: BoxFit.cover),
-                );
-              },
+            return  Image.asset(
+              'assets/images/No-Image.png',
+              height: _height*sizedRatio,
+              width: _height*sizedRatio,
+              fit: BoxFit.cover);
+          },
   ),
-    ),
 ),
     );
   }

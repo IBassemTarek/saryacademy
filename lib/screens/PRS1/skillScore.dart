@@ -8,7 +8,7 @@ class SkillScore extends StatelessWidget {
     @required this.dataNotesAnswers,
   });
 
-  final List<int> dataNotesAnswers;
+  final List dataNotesAnswers;
 
   @override
   Widget build(BuildContext context) {

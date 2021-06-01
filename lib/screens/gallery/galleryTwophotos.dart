@@ -4,7 +4,7 @@ import 'horizonalScroll.dart';
 
 
 class GalleryTwoPhotos extends StatelessWidget {
-  final List<String> imagesURL;
+  final List imagesURL;
   final String eventName;
   GalleryTwoPhotos({this.imagesURL,this.eventName});
   @override

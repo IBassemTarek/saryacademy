@@ -17,23 +17,6 @@ const Color kNotApplicableColor = Color(0xCC0000);
 
 const int mood =0;
 
-const List<String> napsList = [
-  "10:30 Am",
-  "........  Am"
-];
-
-const List<String> napsListA = [
-  "10:30Am",
-  "Am ........"
-];
-
-
-
-const List<String> activitiesList = [
-  "bla bla bla bla bla bla bla bla bla",
-  "bla bla bla bla bla bla bla bla bla"
-];
-
 const List<String> mealsList = [
   "Breakfast",
   "Lunch"
@@ -53,11 +36,6 @@ const List<String> fluidList = [
 const List<String> fluidListA = [
   "سائل",
   "ببرونة"
-];
-
-const List<bool> napsCheck = [
-  true,
-  false
 ];
 
  const List<IconData> moods =[
@@ -220,6 +198,27 @@ const List<String> restroomA = [
   "يظهر التوازن",
   "يظهر جزئيا إلى اليسار ، اليمين",
 ];
+
+
+  const List<String> adminAllStudentNames  = [
+  "Jana Tarek",
+  "Ahmed Ibrahim",
+  "Hassan Ibrahim",
+  "Mona Ahmed",
+  "Jana Tarek",
+  "Ahmed Ibrahim",
+  "Hassan Ibrahim",
+  "Mona Ahmed",
+  "Jana Tarek",
+  "Ahmed Ibrahim",
+  "Hassan Ibrahim",
+  "Mona Ahmed",
+  "Jana Tarek",
+  "Ahmed Ibrahim",
+  "Hassan Ibrahim",
+  "Mona Ahmed",
+];
+
 
   BoxDecoration roundedContainer({double radius,Color color}) {
   return BoxDecoration(

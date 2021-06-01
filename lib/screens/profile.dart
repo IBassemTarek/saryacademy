@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
 import 'package:saryacademy/models/profileInfoModels/parentInfoModel.dart';
-import 'package:saryacademy/screens/signIn/signin.dart';
 import 'package:saryacademy/shared/backArrowBotton.dart';
+import 'package:saryacademy/shared/bottombar.dart';
 import 'package:saryacademy/shared/infoTable.dart';
 import 'package:saryacademy/shared/loading.dart';
-import 'package:saryacademy/shared/pageRouteAnimation.dart';
 import 'package:saryacademy/shared/profilePhoto.dart';
+import 'package:saryacademy/shared/signOut.dart';
 import 'package:saryacademy/shared/statusInfo.dart';
 import '../const.dart';
 import '../shared/titleCard.dart';
-import '../services/auth.dart';
 class Profile extends StatelessWidget {
-  final _auth=AuthService();
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
@@ -48,6 +46,7 @@ class Profile extends StatelessWidget {
             else 
             return Scaffold(
             backgroundColor: kbackgroundColor.withOpacity(1),
+            bottomNavigationBar: BottomBar(widgetName: "Profile",),
             body: SafeArea(
               child: SingleChildScrollView(
               child: Column(
@@ -76,25 +75,7 @@ class Profile extends StatelessWidget {
                             SizedBox(
                               width:0.1374396*_width,
                             ),
-                            Container(
-                              padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10) ),
-                    color:  kText1Color.withOpacity(1)
-                    ),
-                              child: InkWell(
-                                onTap: () async {
-                                  await _auth.signOut();
-                                  Navigator.pushAndRemoveUntil(
-                                  context,
-                                  OnBoardingPageRoute(
-                                  duration: 1000,
-                                  widget: SignIn(),
-                                  myAnimation: Curves.elasticInOut),
-                                    (route) => false);
-                                },
-                                child: Text('sign out',style:Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 14))),
-                              ),
+                            SignOut(),
                               
                             ],),
                             SizedBox(
@@ -169,4 +150,6 @@ TitleCard(title: "Child Info",),],
           );
   }
 }
+
+
 

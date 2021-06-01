@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/profileInfoModels/medicalHistoryModel.dart';
+import '../models/profileInfoModels/medicalHistoryModel.dart';
 import '../const.dart';
-import 'package:saryacademy/shared/cardOfInfo.dart';
+import '../shared/cardOfInfo.dart';
 import '../models/profileInfoModels/absenceModel.dart';
 import '../models/profileInfoModels/vaccinationModel.dart';
 import 'loading.dart';

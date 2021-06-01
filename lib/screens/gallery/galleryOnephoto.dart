@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GalleryOnePhoto extends StatelessWidget {
-  final String imageURL;
+  final dynamic imageURL;
   final String eventTitle;
   GalleryOnePhoto({this.imageURL,this.eventTitle});
   @override
@@ -28,7 +28,7 @@ class GalleryOnePhoto extends StatelessWidget {
             width: 0.816425*_width,
                 decoration: BoxDecoration(
                  borderRadius: BorderRadius.all(Radius.circular(15) ),),
-          child:Image.asset(imageURL),
+          child:Image.network(imageURL),
           ),
           ],
           

@@ -1,19 +1,34 @@
 class PRM1model {
      String  childName;
-     String  date;
+     String  dateE;
+     String dateA;
      bool  presence;
      int  mood;  // 0) :)             1) :(                    2)  :|
-     List<String>  naps;
-     bool  mealsBreakfast;
-     bool  mealslunch;   
-     bool  fluidLiquid;
-     bool  fluidBottle;
-     List<String>  diaper;
-     bool  restroomPotty;
-     bool restroomToilet;
-     List<bool>  clothes;
-     List<String> activities;
-     List<String>  notes;
+     List naps;
+     List meals; //0- Breakfast 1-lunch   
+     List fluid; // 0- Liquid 1- fluidBottle 
+     List diaper;
+     List restroom; // 0- Potty  1- Toilet
+     List clothes;
+     List activities;
+     List notes;
 
-  PRM1model({this.activities,this.date,this.childName,this.clothes,this.diaper,this.fluidBottle,this.fluidLiquid,this.mealsBreakfast,this.mealslunch,this.mood,this.naps,this.notes,this.presence,this.restroomPotty,this.restroomToilet});
+  PRM1model({this.activities,this.dateE,this.dateA,this.childName,this.clothes,this.diaper,this.fluid,this.meals,this.mood,this.naps,this.notes,this.presence,this.restroom});
 }
+
+PRM1model prm1modeltest = PRM1model(
+activities: ["bla bla bla bla bla bla","bla bla bla bla bla bla"],
+notes: ["bla bla bla bla bla bla","bla bla bla bla bla bla"],
+clothes: ["10:30 AM", ".....AM"],
+diaper: ["10:30 AM", ".....AM"],
+meals: [true,false],
+fluid: [true,false],
+restroom: [true,false],
+naps: ["10:30 AM", ".....AM"],
+mood: 0,
+presence: true,
+dateE: "24 May 2021",
+dateA: "24 مايو 2021",
+childName: "Jana",
+
+);

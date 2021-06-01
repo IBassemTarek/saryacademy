@@ -58,7 +58,9 @@ class EventCardWidget extends StatelessWidget {
                       ],
                     ),
                               Positioned(
-                                child: EventPhoto(photourl:_events[index].imageURL,sizedRatio: 0.14955357,),
+                                top: 0.00993*_height,
+                                left: 0.024155*_width,
+                                child: EventPhoto(photourl:_events[index].imageURL,sizedRatio: 0.12955357,),
                               ),
                   ],
                 ),

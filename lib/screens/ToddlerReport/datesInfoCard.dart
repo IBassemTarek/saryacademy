@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../const.dart';
 import 'checkIcon.dart';
-class InfoCard extends StatelessWidget {
+class DatesInfoCard extends StatelessWidget {
   final String iconUrl;
   final String title;
-  final List<String> description;
-  final List<dynamic> done;
+  final List<dynamic> description;
   
-  InfoCard({this.iconUrl,this.title,this.description,this.done});
+  DatesInfoCard({this.iconUrl,this.title,this.description});
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
@@ -35,7 +34,7 @@ class InfoCard extends StatelessWidget {
                                         itemBuilder: (context,i) {
 
                                             return Row(children: [
-                                                CheckIcon(checked: done[i],),
+                                                CheckIcon(checked: true,),
                                                 SizedBox(width: 10,),
                                                 Text(description[i],style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
                                             ],); 

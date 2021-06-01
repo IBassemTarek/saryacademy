@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:saryacademy/models/progressReportModel2.dart';
 import 'package:saryacademy/shared/backArrowBotton.dart';
+import 'package:saryacademy/shared/bottombar.dart';
+import 'package:saryacademy/shared/loading.dart';
 
 import '../../const.dart';
+import 'PRS1E.dart';
 import 'gradeLable.dart';
 import 'infoOfPR.dart';
 import 'langAndPdf.dart';
@@ -12,8 +16,29 @@ class PRS1A extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final prm2ModelData = Provider.of<PRM2Listmodel>(context);
+    final prMounth1Data = Provider.of<PRM2Mounth1>(context);
+    final prMounth2Data = Provider.of<PRM2Mounth2>(context);
+    final prMounth3Data = Provider.of<PRM2Mounth3>(context);
+    if (prm2ModelData == null || prm2ModelData.month1A == null|| prm2ModelData.month1E == null || 
+    prm2ModelData.month2A == null || prm2ModelData.month2E == null || prm2ModelData.month3A == null || prm2ModelData.month3E == null ||
+    prm2ModelData.studentNameA == null || prm2ModelData.studentNameE == null || prMounth1Data.personalDevelopment == null ||
+    prMounth1Data.socialSkills == null || prMounth1Data.physicalDevelopment == null || prMounth2Data.personalDevelopment == null ||
+    prMounth2Data.socialSkills == null || prMounth2Data.physicalDevelopment == null || prMounth3Data.personalDevelopment == null ||
+    prMounth3Data.socialSkills == null || prMounth3Data.physicalDevelopment == null )
+    return Container(
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(10) ),
+    color: Colors.white,
+    ),
+    height: 0.13392857*_height,
+    width: 0.90338*_width,
+    child: Loading(),
+    );
+    else
     return Scaffold(
       backgroundColor: kbackgroundColor.withOpacity(1),
+      bottomNavigationBar: BottomBar(widgetName: 'PRS1A',),
       appBar: AppBar(
         leading: BackArrowBotton(),
         centerTitle: false,
@@ -43,7 +68,7 @@ class PRS1A extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                               child: Row(
                   children: [
-                    Text("تقرير ${prM2modeltest.studentNameA}",style: Theme.of(context).textTheme.subtitle2.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
+                    Text("تقرير ${prm2ModelData.studentNameA}",style: Theme.of(context).textTheme.subtitle2.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
                     Spacer(),
                     Column(
                       children: [
@@ -67,7 +92,7 @@ class PRS1A extends StatelessWidget {
                                 children: [
                                   Container(
                                     width:0.3*_width,
-                                    child: LangAndPdf(lang: 'English')),
+                                    child: LangAndPdf(lang: 'English',page: PRS1E(),)),
                                   SizedBox(height:0.0169*_width),
                      Container(
                        height: 0.02232*_height,
@@ -92,9 +117,9 @@ class PRS1A extends StatelessWidget {
                                    child: Row(
                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                      children: [
-                                       Text(prM2modeltest.month1A,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
-                                       Text(prM2modeltest.month2A,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
-                                       Text(prM2modeltest.month3A,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))
+                                       Text(prm2ModelData.month1A,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
+                                       Text(prm2ModelData.month2A,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
+                                       Text(prm2ModelData.month3A,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))
                                      ],
                          ),
                                  ),
@@ -113,9 +138,9 @@ class PRS1A extends StatelessWidget {
                         child:PRInfo(title:"مهارات اجتماعية",
                         dataNotes: prS1ASocialSkills,
                         english: false,
-                        dataNotesAnswersMonth1: prM2modeltest.allMonthsReports[0].socialSkills,
-                        dataNotesAnswersMonth2: prM2modeltest.allMonthsReports[1].socialSkills,
-                        dataNotesAnswersMonth3: prM2modeltest.allMonthsReports[2].socialSkills,
+                        dataNotesAnswersMonth1: prMounth1.socialSkills,
+                        dataNotesAnswersMonth2: prMounth2.socialSkills,
+                        dataNotesAnswersMonth3: prMounth3.socialSkills,
                         dividerHeight: 0.169045*_height,
                         )
                       ),
@@ -133,9 +158,9 @@ class PRS1A extends StatelessWidget {
                         child:PRInfo(title:"تطوير الذات",
                         dataNotes: prS1APersonalDevelopment,
                         english: false,
-                        dataNotesAnswersMonth1: prM2modeltest.allMonthsReports[0].personalDevelopment,
-                        dataNotesAnswersMonth2: prM2modeltest.allMonthsReports[1].personalDevelopment,
-                        dataNotesAnswersMonth3: prM2modeltest.allMonthsReports[2].personalDevelopment,
+                        dataNotesAnswersMonth1: prMounth1.personalDevelopment,
+                        dataNotesAnswersMonth2: prMounth2.personalDevelopment,
+                        dataNotesAnswersMonth3: prMounth3.personalDevelopment,
                         dividerHeight: 0.067*_height,
                         )
                       ),
@@ -153,9 +178,9 @@ class PRS1A extends StatelessWidget {
                         child:PRInfo(title:"المھارات الجسدية",
                         dataNotes: prS1APhysicalDevelopment,
                         english: false,
-                        dataNotesAnswersMonth1: prM2modeltest.allMonthsReports[0].physicalDevelopment,
-                        dataNotesAnswersMonth2: prM2modeltest.allMonthsReports[1].physicalDevelopment,
-                        dataNotesAnswersMonth3: prM2modeltest.allMonthsReports[2].physicalDevelopment,
+                        dataNotesAnswersMonth1: prMounth1.physicalDevelopment,
+                        dataNotesAnswersMonth2: prMounth2.physicalDevelopment,
+                        dataNotesAnswersMonth3: prMounth3.physicalDevelopment,
                         dividerHeight: 0.2449375*_height,
                         )
                       ),

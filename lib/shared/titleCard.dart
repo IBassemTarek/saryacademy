@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/models/profileInfoModels/absenceModel.dart';
-import 'package:saryacademy/models/profileInfoModels/parentInfoModel.dart';
 import '../const.dart';
-import 'package:provider/provider.dart';
 class TitleCard extends StatelessWidget {
   final String title;
   TitleCard({this.title}):assert(title!=null);

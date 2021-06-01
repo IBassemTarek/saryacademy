@@ -41,6 +41,7 @@ final String uid;
 
   ChildInfoModel _childDataFromSnapshot(DocumentSnapshot snapshot) {
     return ChildInfoModel(
+      uid: snapshot.get("uid"),
         age: snapshot.get("age"),
         birthday: snapshot.get("birthday"),
         email: snapshot.get("email"),
@@ -48,6 +49,7 @@ final String uid;
         nationality: snapshot.get("nationality"),
         photourl:snapshot.get("photourl"),
         gender: snapshot.get("gender"),
+        reportType: snapshot.get("reportType"),
     );
   }
 

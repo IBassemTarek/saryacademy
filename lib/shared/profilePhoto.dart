@@ -22,6 +22,7 @@ class ProfilePhoto extends StatelessWidget {
         color: Colors.black,
     ),
     child:CircleAvatar(
+      backgroundColor: Color(0xffEEEEEE),
     radius: 18,
     child: ClipOval(
         child:

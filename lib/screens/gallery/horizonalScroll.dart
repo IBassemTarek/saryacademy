@@ -12,7 +12,7 @@ class HorizonalScroll extends StatelessWidget {
   final double _width;
   final String eventName;
   final double _height;
-  final List<String> imagesURL;
+  final List imagesURL;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class HorizonalScroll extends StatelessWidget {
               height: 0.1484375*_height,
                   decoration: BoxDecoration(
                    borderRadius: BorderRadius.all(Radius.circular(10) ),),
-            child:Image.asset(imagesURL[i]),
+            child:Image.network(imagesURL[i]),
                 );
               }
           ),

@@ -1,5 +1,5 @@
 class GalleryModel {
-  final List<String> imagesURL;
+  final List imagesURL;
   final String eventName;
   GalleryModel({this.eventName,this.imagesURL});
 }

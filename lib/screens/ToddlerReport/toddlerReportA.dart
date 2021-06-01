@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:saryacademy/models/progressReportModel1.dart';
 
 import 'package:saryacademy/shared/backArrowBotton.dart';
+import 'package:saryacademy/shared/bottombar.dart';
+import 'package:saryacademy/shared/loading.dart';
+import 'package:saryacademy/shared/pageRouteAnimation.dart';
 import '../../const.dart';
+import 'ToddlerReportE.dart';
 import 'checkIcon.dart';
+import 'datesInfoCard.dart';
 import 'infoCard.dart';
 import 'notesAndActivities.dart';
 
@@ -12,7 +19,23 @@ class ToddlerReportA extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final prm1ModelData = Provider.of<PRM1model>(context);
+    if (prm1ModelData == null || prm1ModelData.activities == null || prm1ModelData.childName == null|| prm1ModelData.clothes == null || 
+    prm1ModelData.dateA == null || prm1ModelData.dateE == null || prm1ModelData.diaper == null || prm1ModelData.fluid == null ||
+    prm1ModelData.meals == null || prm1ModelData.mood == null || prm1ModelData.naps == null || prm1ModelData.notes == null ||
+     prm1ModelData.presence == null || prm1ModelData.restroom == null )
+    return Container(
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(10) ),
+    color: Colors.white,
+    ),
+    height: 0.13392857*_height,
+    width: 0.90338*_width,
+    child: Loading(),
+    );
+    else
     return Scaffold(
+      bottomNavigationBar: BottomBar(widgetName: "ToddlerReportA",),
       backgroundColor: kbackgroundColor.withOpacity(1),
       appBar: AppBar(
         leading: BackArrowBotton(),
@@ -42,14 +65,24 @@ class ToddlerReportA extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text("Jana`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
+                  Text("${prm1ModelData.childName}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
                   Spacer(),
                   Row(
                     children: [
                       Container(
                         padding: EdgeInsets.all(0.00558*_height),
                         decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                        child: Text("Arabic",style: Theme.of(context).textTheme.headline1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
+                        child: InkWell(
+                              onTap: (){
+                              Navigator.pushReplacement(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: ToddlerReportE(),
+                              myAnimation: Curves.easeInOut),
+                                  );
+                          },
+                          child: Text("English",style: Theme.of(context).textTheme.headline1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))),
                       ),
                       SizedBox(width: 0.036232*_width,),
                         Container(
@@ -70,15 +103,15 @@ class ToddlerReportA extends StatelessWidget {
                       SizedBox(width: 0.038647*_width,),
                       Row(
                         children: [
-                           CheckIcon(checked: true,),
+                           CheckIcon(checked: prm1ModelData.presence,),
                            SizedBox(width: 0.03*_width,),
                            Text("حضور",style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
                            SizedBox(width: 0.02898551*_width,),
-                           CheckIcon(checked: false,),
+                           CheckIcon(checked: !prm1ModelData.presence,),
                            SizedBox(width: 0.03*_width,),
                            Text("غياب",style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
                            SizedBox(width: 0.193237*_width,),
-                           Text("24 مايو 2021",style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
+                           Text(prm1ModelData.dateA,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
                         ],
                       ),
                   ],
@@ -111,7 +144,7 @@ class ToddlerReportA extends StatelessWidget {
                                         scrollDirection: Axis.horizontal,
                                         shrinkWrap:true,
                                         itemBuilder: (context,i) {
-                                          if (mood == i)
+                                          if (prm1ModelData.mood == i)
                                           {
                                             return Row(children: [
                                                 CheckIcon(checked: true,),
@@ -146,9 +179,9 @@ class ToddlerReportA extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [//,this.,this.description,this.
                               SizedBox(width:0.02898551*_width),
-                              InfoCard(iconUrl:"assets/images/PR/nap.svg",title:"قيلولة",description:napsListA,done:napsCheck),
+                              DatesInfoCard(iconUrl:"assets/images/PR/nap.svg",title:"قيلولة",description:prm1ModelData.naps),
                               Container(color:kGreyColor.withOpacity(1),height: 0.0747767857*_height,width: 1,),
-                              InfoCard(iconUrl:"assets/images/PR/Meals.svg",title:"الوجبات",description:mealsListA,done:napsCheck),
+                              InfoCard(iconUrl:"assets/images/PR/Meals.svg",title:"الوجبات",description:mealsListA,done:prm1ModelData.meals),
                             ],
                           ),
                         ),
@@ -164,13 +197,13 @@ class ToddlerReportA extends StatelessWidget {
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: InfoCard(iconUrl:"assets/images/PR/Fluid.svg",title:"السوائل",description:fluidListA,done:napsCheck)),
+                         child: InfoCard(iconUrl:"assets/images/PR/Fluid.svg",title:"السوائل",description:fluidListA,done:prm1ModelData.fluid)),
                          Spacer(),
                          Container(
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: InfoCard(iconUrl:"assets/images/PR/Diaper.svg",title:"الحفاضة",description:napsListA,done:napsCheck)),
+                         child: DatesInfoCard(iconUrl:"assets/images/PR/Diaper.svg",title:"الحفاضة",description:prm1ModelData.diaper)),
                      ],
                    ),
                  ),
@@ -183,18 +216,18 @@ class ToddlerReportA extends StatelessWidget {
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: InfoCard(iconUrl:"assets/images/PR/Restroom.svg",title:"دورة المياه",description:restroomA,done:napsCheck)),
+                         child: InfoCard(iconUrl:"assets/images/PR/Restroom.svg",title:"دورة المياه",description:restroomA,done:prm1ModelData.restroom)),
                          Spacer(),
                          Container(
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: InfoCard(iconUrl:"assets/images/PR/Clothes.svg",title:"ملابس",description:napsListA,done:napsCheck)),
+                         child: DatesInfoCard(iconUrl:"assets/images/PR/Clothes.svg",title:"ملابس",description:prm1ModelData.clothes)),
                      ],
                    ),
                  ),
-                 Directionality( textDirection: TextDirection.rtl,child: NotesAndActivities(cardIcon: "assets/images/PR/Activities.svg",content:activitiesList, title: "الأنشطة",)),
-                 Directionality(textDirection: TextDirection.rtl,child: NotesAndActivities(cardIcon: "assets/images/PR/Notes.svg",content:activitiesList, title: "ملاحظات",)),
+                 Directionality( textDirection: TextDirection.rtl,child: NotesAndActivities(cardIcon: "assets/images/PR/Activities.svg",content:prm1ModelData.activities, title: "الأنشطة",)),
+                 Directionality(textDirection: TextDirection.rtl,child: NotesAndActivities(cardIcon: "assets/images/PR/Notes.svg",content:prm1ModelData.notes, title: "ملاحظات",)),
             ],
           ),
         ),
