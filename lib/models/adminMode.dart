@@ -6,4 +6,8 @@ class AdminMode extends ChangeNotifier{
     isAdmin =! isAdmin;
     notifyListeners();
   }
+  changeIsAdminValue(bool admin) {
+    isAdmin = admin;
+    notifyListeners();
+  }
 }

@@ -31,6 +31,15 @@ final String uid;
     return absenceCard.doc(uid).collection("ListOfAbsenceCard").snapshots().map(_absenceCardListSnapShot);
   }
 
+  Future addNewAbsenceData({String days, String month} ) async {
+    // var id = medicalHistoryCard.doc(uid).collection("ListOfEventCard").doc().id;
+    return await absenceCard.doc(uid).collection("ListOfAbsenceCard").add(  
+      {'days': days,
+       'month': month,
+        }).then((value) => print("User Updated"))
+    .catchError((error) => print("Failed to update user: $error"));
+  }
+
 
 
 
@@ -52,6 +61,19 @@ final String uid;
         reportType: snapshot.get("reportType"),
     );
   }
+  Future updateUserData({String name, String age, String photourl,String gender,String  birthday,String  email,String  nationality,int  reportType ,String uid }) async {
+    await childInfo.doc(uid).set(
+      {"name": name,
+       "age": age,
+        "birthday":birthday,
+       "email":email,
+       "nationality":nationality,
+        "photourl":photourl,
+        "gender":gender,
+        "reportType":reportType,
+        "uid":uid
+        });
+  }
 
 
 
@@ -70,6 +92,14 @@ final String uid;
        return vaccinationCard.doc(uid).collection("ListOfVaccinationCard").snapshots().map(_vaccinationCardFromSnapShot);
   }
 
+  Future addNewVaccinationData({String date, String vaccination} ) async {
+    // var id = medicalHistoryCard.doc(uid).collection("ListOfEventCard").doc().id;
+    return await vaccinationCard.doc(uid).collection("ListOfVaccinationCard").add(  
+      {'date': date,
+       'vaccination': vaccination,
+        }).then((value) => print("User Updated"))
+    .catchError((error) => print("Failed to update user: $error"));
+  }
 
 
 
@@ -89,6 +119,16 @@ final String uid;
   }
 
 
+  Future addNewMedicalData({String symptom, String note} ) async {
+    // var id = medicalHistoryCard.doc(uid).collection("ListOfEventCard").doc().id;
+    return await medicalHistoryCard.doc(uid).collection("ListOfmedicalHistoryCard").add(  
+      {'symptom': symptom,
+       'note': note,
+        }).then((value) => print("User Updated"))
+    .catchError((error) => print("Failed to update user: $error"));
+  }
+
+
   Stream<ParentInfoModel> get parentData {
     return parentInfo.doc(uid).snapshots().map(_parentDataFromSnapshot);
   }
@@ -102,11 +142,13 @@ final String uid;
     );
   }
 
-  // Future updateUserData(String name, int age, String field) async {
-  //   return await profileInfo.doc(uid).set(
-  //     {'name': name,
-  //      'age': age,
-  //       'field': field
-  //       });
-  // }
+  Future updateParentData({String fatherOcc, String matherOcc, String address,String phone}) async {
+  return await parentInfo.doc(uid).update(
+      {"father's occupation": fatherOcc,
+       "Mather's occupation": matherOcc,
+        "address":address,
+       "phone":phone,
+        }).then((value) => print("User Updated"))
+    .catchError((error) => print("Failed to update user: $error"));
+  }
   }

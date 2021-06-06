@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'models/adminMode.dart';
 import 'models/childUID.dart';
 import 'models/profileInfoModels/parentInfoModel.dart';
 import 'screens/adminScreens/adminHomePage/adminHomePage.dart';
 import 'services/PRM2Database.dart';
 import 'services/PRM3Database.dart';
+import 'services/adminServices/childName.dart';
 import 'services/adminServices/profilesDatabases.dart';
 import 'services/galleryDatabase.dart';
 import 'services/profileDatabase.dart';
@@ -29,19 +31,48 @@ import 'services/eventsDatabase.dart';
 
 //import 'package:prefirebase/screens/home/home.dart';
 
-class Wrapper extends StatelessWidget {
+class Wrapper extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
+
+  @override
+  _WrapperState createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
+  @override
+  void initState()   {
+    super.initState();
+    getData();
+  }
+
+    getData () async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool("isAdmin")!=null)
+    {
+        bool temp = prefs.getBool("isAdmin");
+        Provider.of<AdminMode>(context,listen: false).changeIsAdminValue(temp);
+    }
+    if (prefs.getBool("isAdmin") ==null)
+    {
+      print("hello");
+     Provider.of<AdminMode>(context,listen: false).changeIsAdminValue(false);
+    }
+
+  }
+
+
   @override
   // ignore: missing_return
   Widget build(BuildContext context) {
 
     final user = Provider.of<UserModel>(context);
     final isAdmin = Provider.of<AdminMode>(context);
+    final childUser = Provider.of<ChildModel>(context);
     print(isAdmin.isAdmin);
     // return home or auth depend on state of auth now
     if ((user == null || isAdmin == null )) {
       return MaterialApp(
-        navigatorKey: navigatorKey,
+        navigatorKey: Wrapper.navigatorKey,
     debugShowCheckedModeBanner: false,
     title: 'Sary Academy',
     theme: textData(),
@@ -134,12 +165,29 @@ StreamProvider<ParentInfoModel>.value(
     else if (isAdmin.isAdmin){
     return MultiProvider(
               providers: [
+StreamProvider<List<AbsenceCard>>.value(
+      value: ProfileDataBaseServices(uid: childUser.uid).absenceCardsData,
+       initialData: [], 
+       ),
+
+StreamProvider<List<VaccinationCard>>.value(
+      value: ProfileDataBaseServices(uid: childUser.uid).vaccinationCardData,
+       initialData: [], 
+       ),
+StreamProvider<List<MedicalHistoryCard>>.value(
+      value: ProfileDataBaseServices(uid: childUser.uid).medicalHistoryCardData,
+       initialData: [], 
+       ),
+StreamProvider<List<EventCard>>.value(
+      value: EventDataBaseServices(uid: childUser.uid).eventCardsData,
+       initialData: [], 
+       ),
 StreamProvider<ChildInfoModel>.value(
-      value: ProfileDataBaseServices(uid: Provider.of<ChildModel>(context).uid).childData,
+      value: ProfileDataBaseServices(uid:childUser.uid ).childData,
        initialData: ChildInfoModel(),
        ),
-StreamProvider<List<ChildInfoModel>>.value(
-      value: ProfilesDataBaseServices().kidsData,
+StreamProvider<List<ChildIndex>>.value(
+      value: ProfilesIndexBaseServices().kidsIndex,
        initialData: [], 
        ),
       ],

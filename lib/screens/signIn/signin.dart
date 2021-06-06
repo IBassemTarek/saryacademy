@@ -5,6 +5,7 @@ import 'package:saryacademy/models/adminMode.dart';
 import 'package:saryacademy/models/user.dart';
 import 'package:saryacademy/models/modalprogrsshub.dart';
 import 'package:saryacademy/screens/adminScreens/adminHomePage/adminHomePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../shared/pageRouteAnimation.dart';
 import '../home/home.dart';
 import 'customTextField.dart';
@@ -177,6 +178,7 @@ class SignIn extends StatelessWidget {
   }
 
   void _validate(BuildContext context) async {
+     SharedPreferences prefs = await SharedPreferences.getInstance();
     final modelhud = Provider.of<ModelHub>(context,listen:false);
     modelhud.changeIsLoading(true);
     if (_globalKey.currentState.validate()) {
@@ -189,6 +191,7 @@ class SignIn extends StatelessWidget {
               modelhud.changeIsLoading(false);
               UserModel user = _auth.userFromFirebaseUser(userData);
               print(user.id);
+              prefs.setBool("isAdmin",true);
             }
             Navigator.push(
               context,
@@ -213,6 +216,7 @@ class SignIn extends StatelessWidget {
         try {
           if (_password != adminPassword)
           {
+          prefs.setBool("isAdmin",false);
           dynamic userData = await _auth.signIn(_email, _password);
           if (userData != null) {
             modelhud.changeIsLoading(false);

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/childUID.dart';
+import 'package:saryacademy/services/adminServices/childName.dart';
+import 'package:saryacademy/shared/backArrowAdmin.dart';
 import '../../../screens/adminScreens/childHome/childHome.dart';
 import '../../../shared/pageRouteAnimation.dart';
 
-import '../../../models/profileInfoModels/childInfoModel.dart';
-import '../../../shared/backArrowBotton.dart';
 import '../../../shared/signOut.dart';
 import '../../../const.dart';
 
@@ -16,7 +16,7 @@ class AdminHomePage extends StatelessWidget {
     final _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        leading: BackArrowBotton(),
+        leading: BackArrowBottonAdmin(),
         actions: [
           Container(
               alignment: Alignment.center,
@@ -59,7 +59,7 @@ class AdminHomePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 0.01657 * _height),
-            Consumer<List<ChildInfoModel>>(
+            Consumer<List<ChildIndex>>(
               builder: (context, profiles, _) => ListView.separated(
                 shrinkWrap: true,
                 itemBuilder: (context, i) {

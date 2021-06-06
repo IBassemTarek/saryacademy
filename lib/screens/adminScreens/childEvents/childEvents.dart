@@ -2,27 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/eventModel.dart';
 import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/bottombar.dart';
 import 'package:saryacademy/shared/loading.dart';
-import '../../const.dart';
-import 'EventCard.dart';
-import 'nextEventCard.dart';
+import '../../../const.dart';
+import 'addNewEvent.dart';
+import 'adminEventCard.dart';
 
-class EventsPage extends StatelessWidget {
+class ChildEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      bottomNavigationBar: BottomBar(widgetName: "EventsPage",),
+      // bottomNavigationBar: BottomBar(widgetName: "EventsPage",),
       backgroundColor: kbackgroundColor.withOpacity(1),
       appBar: AppBar(
         leading: BackArrowBotton(),
-        centerTitle: false,
+        centerTitle: true,
         titleSpacing: 0,
         elevation:0,
         backgroundColor: Colors.transparent,
-        title: Text("Upcoming events",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 30)),
+        title: Text("events",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 30)),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 0.0483092*_width , vertical:0.03*_width ),
@@ -37,9 +36,17 @@ class EventsPage extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(top: 0.018*_height),
             child: 
-                Container(
-                  width: 0.83575*_width,
-                  child:ListOfEvents()
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      AddNewEvent(),
+                      SizedBox(height:0.03*_height),
+                      Container(
+                        width: 0.83575*_width,
+                        child:ListOfEvents()
+                      ),
+                    ],
+                  ),
                 ),
           ),),),
     );
@@ -52,7 +59,6 @@ class ListOfEvents extends StatelessWidget {
     final _events = Provider.of<List<EventCard>>(context);
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width; 
-    
     if (_events.isEmpty)
      return Container(
       decoration: BoxDecoration(
@@ -63,22 +69,18 @@ class ListOfEvents extends StatelessWidget {
        width: 0.90338*_width,
       child: Loading(),
       );
-    else {
+    else
     _events.sort((a, b) => b.date.compareTo(a.date));    
     return ListView.separated(
+                        physics: NeverScrollableScrollPhysics(),  
                         shrinkWrap:true,
                         itemBuilder: (context,i) {
-                        if (i==0)
-                        return NextEventCard(index: i,);
-                        else
-                        return EventCardWidget(index: i,); 
+                        return AdminEventCardWidget(index: i,); 
                         }, 
                         itemCount: _events.length, 
                         separatorBuilder: (BuildContext context, int index) {
                           return SizedBox(height:0.03*_height);
                           },
                         );
-    }
-
   }
 }

@@ -20,19 +20,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-ChangeNotifierProvider<AdminMode>(
-        create: (context)=>AdminMode(),),
-ChangeNotifierProvider<ModelHub>(
-        create: (context)=>ModelHub(),),
-StreamProvider<UserModel>.value(
-      value: AuthService().user,
-       initialData: null, 
-       ),  
-ChangeNotifierProvider<ChildModel>(
-        create: (context)=>ChildModel(),),
+        ChangeNotifierProvider<AdminMode>(
+          create: (context) => AdminMode(),
+        ),
+        ChangeNotifierProvider<ModelHub>(
+          create: (context) => ModelHub(),
+        ),
+        StreamProvider<UserModel>.value(
+          value: AuthService().user,
+          initialData: null,
+        ),
+        ChangeNotifierProvider<ChildModel>(
+          create: (context) => ChildModel(),
+        ),
       ],
-          child: Wrapper(),
+      child: Wrapper(),
     );
   }
 }
-

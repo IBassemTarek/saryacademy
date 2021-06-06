@@ -1,7 +1,8 @@
 class GalleryModel {
   final List imagesURL;
   final String eventName;
-  GalleryModel({this.eventName,this.imagesURL});
+  final String id;
+  GalleryModel({this.eventName,this.imagesURL,this.id});
 }
 
 final List<GalleryModel> galleryCardTest = [

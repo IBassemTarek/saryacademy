@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
+import 'package:saryacademy/screens/adminScreens/childEvents/childEvents.dart';
+import 'package:saryacademy/screens/adminScreens/childprofile/childProfile.dart';
 import 'package:saryacademy/shared/loading.dart';
+import 'package:saryacademy/shared/pageRouteAnimation.dart';
 
 
 import '../../../const.dart';
@@ -12,8 +14,7 @@ class AdminHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
-    final uid = Provider.of<ChildModel>(context).uid;
-    print(uid);
+
     return Scaffold(
       backgroundColor: kbackgroundColor.withOpacity(1),
       body: SafeArea(
@@ -21,11 +22,20 @@ class AdminHome extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-                          CatDataCard(cardName: "Profile",ontap: (){}),
+                          CatDataCard(cardName: "Profile",ontap: (){
+                              Navigator.push(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: ChildProfile(),
+                              myAnimation: Curves.easeInOut),
+                                );
+                            
+                          }),
                            Consumer<ChildInfoModel>(
-                             // ignore: missing_return
                              builder: (context,childInfo,_) {
                               if (childInfo.reportType == 1 )
+                              {
                                return CatDataCard(cardName: "Toddler Report",
                                 ontap: (){
                               // Navigator.push(
@@ -36,10 +46,10 @@ class AdminHome extends StatelessWidget {
                               // myAnimation: Curves.easeInOut),
                               //   );
                                 }
-                                );
+                                );}
 
 
-                              else if (childInfo.reportType == 2)
+                              else if (childInfo.reportType == 2){
                                return CatDataCard(cardName: "Preschool S1",
                                 ontap: (){
                               // Navigator.push(
@@ -50,9 +60,9 @@ class AdminHome extends StatelessWidget {
                               // myAnimation: Curves.easeInOut),
                               //   );
                                 }
-                                );
+                                );}
 
-                              else if (childInfo.reportType == 3)
+                              else if (childInfo.reportType == 3){
                                return CatDataCard(cardName: "Preschool S2",
                                 ontap: (){
                               // Navigator.push(
@@ -63,9 +73,9 @@ class AdminHome extends StatelessWidget {
                               // myAnimation: Curves.easeInOut),
                               //   );
                               }   
-                               );
+                               );}
                               else 
-                              Container(
+                              return Container(
                                 height: 0.0948*_height,
                                 width: 0.9034*_width,
                                 decoration: BoxDecoration(
@@ -75,7 +85,15 @@ class AdminHome extends StatelessWidget {
                                 );
                              }
                             ),
-                            CatDataCard(cardName: "Events",ontap: (){}),
+                            CatDataCard(cardName: "Events",ontap: (){
+                              Navigator.push(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: ChildEvents(),
+                              myAnimation: Curves.easeInOut),
+                                );
+                            }),
                              CatDataCard(cardName: "Gallery",ontap: (){}),
                              CatDataCard(cardName: "Alerts",ontap: (){}),
           ],

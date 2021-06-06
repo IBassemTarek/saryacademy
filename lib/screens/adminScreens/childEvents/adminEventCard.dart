@@ -4,13 +4,13 @@ import 'package:saryacademy/models/eventModel.dart';
 import 'package:saryacademy/screens/events/eventphoto.dart';
 import 'package:intl/intl.dart';
 
-import '../../const.dart';
-class EventCardWidget extends StatelessWidget {
+import '../../../const.dart';
+
+class AdminEventCardWidget extends StatelessWidget {
   final int index;
-  EventCardWidget({this.index});
+  AdminEventCardWidget({this.index});
   String dateConvert(int date) {
     return DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(date));
-    // DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(_events[0].datea.millisecondsSinceEpoch));
   }
   @override
   Widget build(BuildContext context) {
@@ -44,15 +44,31 @@ class EventCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(_events[index].title,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 16))),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(_events[index].text,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
+                
                 Align(
                 alignment: Alignment.centerRight,
-                child: Text(dateConvert(_events[index].date.millisecondsSinceEpoch),style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.edit,color:kText2Color.withOpacity(1),size: 16,),
+                        SizedBox(
+                          width: _width*0.02,
+                        ),
+                        Icon(Icons.delete_forever,color:kText2Color.withOpacity(1),size: 16,),
+                      ],
+                    ),
+                    Text(dateConvert(_events[index].date.millisecondsSinceEpoch),style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14)),
+                  ],
+                )),
                 ],
               ),
             ),

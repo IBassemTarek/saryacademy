@@ -2,11 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/eventModel.dart';
+import 'package:intl/intl.dart';
 
 import '../../const.dart';
 class NextEventCard extends StatelessWidget {
   final int index;
   NextEventCard({this.index});
+  String dateConvert(int date) {
+    return DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(date));
+    // DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(_events[0].datea.millisecondsSinceEpoch));
+  }
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
@@ -53,7 +58,7 @@ class NextEventCard extends StatelessWidget {
                   child: Text(_events[index].text,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Text(_events[index].date,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
+                  child: Text(dateConvert(_events[index].date.millisecondsSinceEpoch),style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
               ],
             ),
           ),

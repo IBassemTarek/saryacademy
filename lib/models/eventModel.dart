@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class EventCard {
   final String  imageURL;
+  final String  id;
   final String  title;
   final String  text;
-  final String  date;
-  final bool  nextEvent;
-  final int order;
-  EventCard({this.order,this.date,this.imageURL,this.text,this.title,this.nextEvent});
+  final Timestamp  date;
+  EventCard({this.date,this.imageURL,this.text,this.title, this.id});
 }
 
 class EventModel {

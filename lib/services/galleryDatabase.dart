@@ -16,6 +16,7 @@ final String uid;
       return GalleryModel(
         eventName: doc.get("eventName"),
         imagesURL: doc.get("imagesURL"),
+        id: doc.get("id"),
         ); 
     }).toList();
   }
