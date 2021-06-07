@@ -39,7 +39,7 @@ class ChildEvents extends StatelessWidget {
                 SingleChildScrollView(
                   child: Column(
                     children: [
-                      AddNewEvent(),
+                      AddNewEvent(newEvent: true,),
                       SizedBox(height:0.03*_height),
                       Container(
                         width: 0.83575*_width,

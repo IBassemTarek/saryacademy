@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
 import 'package:saryacademy/screens/adminScreens/childEvents/childEvents.dart';
+import 'package:saryacademy/screens/adminScreens/childGallery/childGallery.dart';
 import 'package:saryacademy/screens/adminScreens/childprofile/childProfile.dart';
 import 'package:saryacademy/shared/loading.dart';
 import 'package:saryacademy/shared/pageRouteAnimation.dart';
@@ -94,7 +95,15 @@ class AdminHome extends StatelessWidget {
                               myAnimation: Curves.easeInOut),
                                 );
                             }),
-                             CatDataCard(cardName: "Gallery",ontap: (){}),
+                             CatDataCard(cardName: "Gallery",ontap: (){
+                               Navigator.push(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: ChildGalleries(),
+                              myAnimation: Curves.easeInOut),
+                                );
+                             }),
                              CatDataCard(cardName: "Alerts",ontap: (){}),
           ],
         ),

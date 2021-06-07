@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:saryacademy/models/dateProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models/adminMode.dart';
 import 'models/childUID.dart';
@@ -190,6 +191,15 @@ StreamProvider<List<ChildIndex>>.value(
       value: ProfilesIndexBaseServices().kidsIndex,
        initialData: [], 
        ),
+StreamProvider<List<GalleryModel>>.value(
+      value: GalleryDataBaseServices(uid: childUser.uid).galleryCardsData,
+       initialData: [], 
+       ),
+        ChangeNotifierProvider<DateProvider>(
+          create: (context) => DateProvider(),
+        ),
+
+        
       ],
       child: MaterialApp(
       debugShowCheckedModeBanner: false,

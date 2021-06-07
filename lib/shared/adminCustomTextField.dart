@@ -8,13 +8,13 @@ class AdminTextField extends StatelessWidget {
   final String lableText;
   final Function onClick;
   final int maxLines;
-
-  AdminTextField({@required this.onClick,@required this.lableText,this.maxLines});
+  final initialData;
+  AdminTextField({@required this.onClick,@required this.lableText,this.maxLines,this.initialData});
   
   @override
   Widget build(BuildContext context) {
     return TextField(
- 
+    controller: (initialData!=null)?(TextEditingController()..text = initialData):(TextEditingController()..text = ""),
       keyboardType: lableText=="report type"?TextInputType.number:TextInputType.multiline,
       onChanged: onClick,
   maxLines: maxLines==null?1:maxLines,

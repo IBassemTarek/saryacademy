@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:saryacademy/models/eventModel.dart';
 
 class EventDataBaseServices {
@@ -27,23 +28,37 @@ final String uid;
   }
 
 
-  Future updateEventData({String date, String text, String  title,  String  imageURL,String id} ) async {
+  Future updateEventData({Timestamp date, String text, String  title,  String  imageURL,String id, BuildContext context} ) async {
     return await eventCard.doc(uid).collection("ListOfEventCard").doc(id).update(
       {'imageURL': imageURL,
        'title': title,
         'text': text,
        'date': date,
        'id' : id, 
-        });
+        }).then((value) {
+            print("event added");
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text("event updated"),
+                                   ));
+        }).catchError((error) => print("Failed to add event: $error"));
   }
 
   Future addNewEventrData({Timestamp date, String text,String  title,  String  imageURL}) async {
-    return await eventCard.doc(uid).collection("ListOfEventCard").add(
+    return await eventCard.doc(uid).collection("ListOfEventCard").doc(title).set(
       {'imageURL': imageURL,
        'title': title,
         'text': text,
        'date': date, 
+       'id': title,
         }).then((value) => print("event added"))
-    .catchError((error) => print("Failed to update user: $error"));
+    .catchError((error) => print("Failed to add event: $error"));
   }
+
+Future<void> deleteEvent(String id) {
+  return eventCard.doc(uid).collection("ListOfEventCard")
+    .doc(id)
+    .delete()
+    .then((value) => print("Event Deleted"))
+    .catchError((error) => print("Failed to delete event: $error"));
+}
   }
