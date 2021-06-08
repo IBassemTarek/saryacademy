@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
 import 'package:saryacademy/screens/adminScreens/childEvents/childEvents.dart';
@@ -9,6 +10,7 @@ import 'package:saryacademy/shared/pageRouteAnimation.dart';
 
 
 import '../../../const.dart';
+import '../../../main.dart';
 
 class AdminHome extends StatelessWidget {
   @override
@@ -104,13 +106,50 @@ class AdminHome extends StatelessWidget {
                               myAnimation: Curves.easeInOut),
                                 );
                              }),
-                             CatDataCard(cardName: "Alerts",ontap: (){}),
+                             CatDataCard(cardName: "Alerts",ontap: (){
+                              scheduleAlarm();
+                             }),
           ],
         ),
       ),
       
     );
   }
+
+ void scheduleAlarm( ) async {
+    // var scheduledNotificationDateTime = DateTime.now().add(Duration(seconds: 1));
+    var scheduledNotificationDateTime = DateTime.now();
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      "alert_notif",
+      "alert_notif",
+      "Channel for alert notification",
+      icon:'ic_launcher',
+      sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
+      largeIcon: DrawableResourceAndroidBitmap('ic_launcher')
+    );
+
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails(
+      sound: 'a_long_cold_sting.wav',
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,);
+
+    var platformChannelSpecifics =  NotificationDetails(
+       android: androidPlatformChannelSpecifics,iOS: iOSPlatformChannelSpecifics,);
+
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      0,
+      'Office',
+      'good morning! Time for Office',
+      scheduledNotificationDateTime,
+      platformChannelSpecifics,
+       androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime
+      ); 
+  }
+
+
+
 }
 
 class CatDataCard extends StatelessWidget {
