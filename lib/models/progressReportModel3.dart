@@ -33,7 +33,8 @@ class PRM3Listmodel {
       String month1A;
       String month2A;
       String month3A;
-  PRM3Listmodel({this.month1E,this.month2E,this.month3E,this.studentNameA,this.studentNameE,this.month1A,this.month2A,this.month3A});
+      String pdf;
+  PRM3Listmodel({this.month1E,this.month2E,this.month3E,this.studentNameA,this.studentNameE,this.month1A,this.month2A,this.month3A,this.pdf});
 }
 
 

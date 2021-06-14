@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
+import 'package:saryacademy/screens/adminScreens/PRS1/adminPRS1.dart';
+import 'package:saryacademy/screens/adminScreens/PRS2/adminPRS2.dart';
+import 'package:saryacademy/screens/adminScreens/adminToddlerReport/adminToddlerReport.dart';
+import 'package:saryacademy/screens/adminScreens/alertAdmin/alertAdmin.dart';
 import 'package:saryacademy/screens/adminScreens/childEvents/childEvents.dart';
 import 'package:saryacademy/screens/adminScreens/childGallery/childGallery.dart';
 import 'package:saryacademy/screens/adminScreens/childprofile/childProfile.dart';
+import 'package:saryacademy/shared/alertchecker.dart';
 import 'package:saryacademy/shared/loading.dart';
 import 'package:saryacademy/shared/pageRouteAnimation.dart';
 
 
 import '../../../const.dart';
-import '../../../main.dart';
 
 class AdminHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
-
+    alertcheck(context:context);
     return Scaffold(
       backgroundColor: kbackgroundColor.withOpacity(1),
       body: SafeArea(
@@ -41,13 +44,13 @@ class AdminHome extends StatelessWidget {
                               {
                                return CatDataCard(cardName: "Toddler Report",
                                 ontap: (){
-                              // Navigator.push(
-                              // context,
-                              // OnBoardingPageRoute(
-                              // duration: 600,
-                              // widget: ToddlerReportE(),
-                              // myAnimation: Curves.easeInOut),
-                              //   );
+                              Navigator.push(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: AdminToddlerReport(),
+                              myAnimation: Curves.easeInOut),
+                                );
                                 }
                                 );}
 
@@ -55,26 +58,26 @@ class AdminHome extends StatelessWidget {
                               else if (childInfo.reportType == 2){
                                return CatDataCard(cardName: "Preschool S1",
                                 ontap: (){
-                              // Navigator.push(
-                              // context,
-                              // OnBoardingPageRoute(
-                              // duration: 600,
-                              // widget: PRS1E(),
-                              // myAnimation: Curves.easeInOut),
-                              //   );
+                              Navigator.push(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: AdminPRS1(),
+                              myAnimation: Curves.easeInOut),
+                                );
                                 }
                                 );}
 
                               else if (childInfo.reportType == 3){
                                return CatDataCard(cardName: "Preschool S2",
                                 ontap: (){
-                              // Navigator.push(
-                              // context,
-                              // OnBoardingPageRoute(
-                              // duration: 600,
-                              // widget: PRS2E(),
-                              // myAnimation: Curves.easeInOut),
-                              //   );
+                              Navigator.push(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: AdminPRS2(),
+                              myAnimation: Curves.easeInOut),
+                                );
                               }   
                                );}
                               else 
@@ -107,46 +110,21 @@ class AdminHome extends StatelessWidget {
                                 );
                              }),
                              CatDataCard(cardName: "Alerts",ontap: (){
-                              scheduleAlarm();
+                               Navigator.push(
+                              context,
+                              OnBoardingPageRoute(
+                              duration: 600,
+                              widget: AlertAdmin(),
+                              myAnimation: Curves.easeInOut),
+                                );
+                                 
                              }),
           ],
         ),
       ),
       
     );
-  }
-
- void scheduleAlarm( ) async {
-    // var scheduledNotificationDateTime = DateTime.now().add(Duration(seconds: 1));
-    var scheduledNotificationDateTime = DateTime.now();
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      "alert_notif",
-      "alert_notif",
-      "Channel for alert notification",
-      icon:'ic_launcher',
-      sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
-      largeIcon: DrawableResourceAndroidBitmap('ic_launcher')
-    );
-
-    var iOSPlatformChannelSpecifics = IOSNotificationDetails(
-      sound: 'a_long_cold_sting.wav',
-      presentAlert: true,
-      presentBadge: true,
-      presentSound: true,);
-
-    var platformChannelSpecifics =  NotificationDetails(
-       android: androidPlatformChannelSpecifics,iOS: iOSPlatformChannelSpecifics,);
-
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      0,
-      'Office',
-      'good morning! Time for Office',
-      scheduledNotificationDateTime,
-      platformChannelSpecifics,
-       androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime
-      ); 
-  }
+  } 
 
 
 

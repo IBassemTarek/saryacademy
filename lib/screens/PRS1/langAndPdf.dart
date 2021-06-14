@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:saryacademy/shared/pageRouteAnimation.dart';
 
-import '../../const.dart';
+import '../../../const.dart';
 
 class LangAndPdf extends StatelessWidget {
   final String lang;

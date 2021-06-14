@@ -13,6 +13,15 @@ class ProfileDataBaseServices {
   final CollectionReference parentInfo = FirebaseFirestore.instance.collection('parentInfo');
 
 
+ void initProfile() async {
+    await absenceCard.doc(uid).collection("ListOfAbsenceCard").get();
+    await medicalHistoryCard.doc(uid).collection("ListOfmedicalHistoryCard").get();
+    await vaccinationCard.doc(uid).collection("ListOfVaccinationCard").get();
+    await childInfo.doc(uid).get();
+    await parentInfo.doc(uid).get();
+  }
+
+
 final String uid;
   ProfileDataBaseServices({this.uid});
 

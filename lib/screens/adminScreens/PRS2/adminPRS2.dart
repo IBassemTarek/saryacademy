@@ -1,31 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/progressReportModel2.dart';
-import 'package:saryacademy/screens/PRS1/PRS1A.dart'; 
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/bottombar.dart';
-import 'package:saryacademy/shared/loading.dart';
+import 'package:saryacademy/services/PRM3Database.dart';
+import 'package:saryacademy/shared/alertchecker.dart';
 
-import '../../const.dart';
-import 'gradeLable.dart';
-import 'infoOfPR.dart';
-import 'langAndPdf.dart'; 
+import '../../../models/progressReportModel3.dart';
+import '../../../screens/PRS1/mounthAlert.dart';
+import '../../../screens/PRS1/nameAlert.dart';
+import '../../../models/childUID.dart';
+import '../../../screens/PRS1/gradeLable.dart';
+import '../../../screens/PRS1/infoOfPR.dart'; 
+import '../../../screens/adminScreens/adminToddlerReport/smallTextField.dart'; 
+import '../../../shared/backArrowBotton.dart'; 
+import '../../../shared/loading.dart';
+import '../../../const.dart'; 
 
-class PRS1E extends StatelessWidget {
+class AdminPRS2  extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
-    final prm2ModelData = Provider.of<PRM2Listmodel>(context);
-    final prMounth1Data = Provider.of<PRM2Mounth1>(context);
-    final prMounth2Data = Provider.of<PRM2Mounth2>(context);
-    final prMounth3Data = Provider.of<PRM2Mounth3>(context);
-    if (prm2ModelData == null || prm2ModelData.month1A == null|| prm2ModelData.month1E == null || 
-    prm2ModelData.month2A == null || prm2ModelData.month2E == null || prm2ModelData.month3A == null || prm2ModelData.month3E == null ||
-    prm2ModelData.studentNameA == null || prm2ModelData.studentNameE == null || prMounth1Data.personalDevelopment == null ||
+    final prm3ModelData = Provider.of<PRM3Listmodel>(context);
+    final prMounth1Data = Provider.of<PRM3Mounth1>(context);
+    final prMounth2Data = Provider.of<PRM3Mounth2>(context);
+    final prMounth3Data = Provider.of<PRM3Mounth3>(context); 
+    final uid = Provider.of<ChildModel>(context).uid; 
+    alertcheck(context:context);
+    if (prm3ModelData == null ||prm3ModelData.pdf == null || prm3ModelData.month1A == null|| prm3ModelData.month1E == null || 
+    prm3ModelData.month2A == null || prm3ModelData.month2E == null || prm3ModelData.month3A == null || prm3ModelData.month3E == null ||
+    prm3ModelData.studentNameA == null || prm3ModelData.studentNameE == null || prMounth1Data.personalDevelopment == null ||
     prMounth1Data.socialSkills == null || prMounth1Data.physicalDevelopment == null || prMounth2Data.personalDevelopment == null ||
     prMounth2Data.socialSkills == null || prMounth2Data.physicalDevelopment == null || prMounth3Data.personalDevelopment == null ||
     prMounth3Data.socialSkills == null || prMounth3Data.physicalDevelopment == null )
+
     return Container(
     decoration: BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10) ),
@@ -36,8 +45,7 @@ class PRS1E extends StatelessWidget {
     child: Loading(),
     );
     else
-    return Scaffold(
-      bottomNavigationBar: BottomBar(widgetName: 'PRS1A',),
+    return Scaffold( 
       backgroundColor: kbackgroundColor.withOpacity(1),
       appBar: AppBar(
         leading: BackArrowBotton(),
@@ -66,7 +74,22 @@ class PRS1E extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text("${prm2ModelData.studentNameE}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${prm3ModelData.studentNameE}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
+                      SizedBox(width: 5,),
+                      InkWell(
+                        onTap: (){
+                          showDialog(
+                          context: context,
+                          builder: (BuildContext context) => NameAlert(),
+                          );
+                        },
+                        child: Icon(Icons.edit,size: 15,color: kbackgroundColor.withOpacity(1),)),
+                    ],
+                  ),
+                  
                   Spacer(),
                   Column(
                     children: [
@@ -88,8 +111,17 @@ class PRS1E extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Container(
-                                    width:0.3*_width,
-                                    child: LangAndPdf(lang: 'Arabic',page: PRS1A(),)),
+                          height:0.04*_height,width: 110,
+                          child: SmallTextField( 
+                                    lableText: "pdf", 
+                                    onClick: (value){
+                                      PRM3DataBaseServices(uid: uid).updatepdf(
+                                        pdf: value
+                                      );
+                                    },
+                                    maxLines: 1, 
+                                  ),
+                                              ),
                                   SizedBox(height:0.0169*_width),
                      Container(
                        height: 0.02232*_height,
@@ -97,6 +129,7 @@ class PRS1E extends StatelessWidget {
                        decoration: roundedContainer(color: kIconColor.withOpacity(1),radius: 20.0).copyWith(boxShadow: []),
                        child: Center(child: Text("Preschool Stage 1",style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 12))),
                        ),
+                       
 
                                 ],
                               ),
@@ -106,15 +139,41 @@ class PRS1E extends StatelessWidget {
                            Row(
                              mainAxisAlignment: MainAxisAlignment.end,
                              children: [
+                               Padding(
+                                 padding:   EdgeInsets.only(left:0.06415*_width),
+                                 child: Text("Month number",style: Theme.of(context).textTheme.subtitle2.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
+                               ),
+                               Spacer(),
                                Container(
                                  margin: EdgeInsets.only(right:0.06*_width),
                                  width: 0.239130435*_width,
                                  child: Row(
                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                    children: [
-                                     Text(prm2ModelData.month1E,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
-                                     Text(prm2ModelData.month2E,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
-                                     Text(prm2ModelData.month3E,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))
+                                     InkWell(
+                                       onTap: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) => MounthAlert(mounthNo: 1,),
+                                          );
+                                       },
+                                       child: Text(prm3ModelData.month1E,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))),
+                                     InkWell(
+                                       onTap: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) => MounthAlert(mounthNo: 2,),
+                                          );
+                                       },
+                                       child: Text(prm3ModelData.month2E,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))),
+                                     InkWell(
+                                       onTap: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) => MounthAlert(mounthNo: 3,),
+                                          );
+                                       },
+                                       child: Text(prm3ModelData.month3E,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)))
                                    ],
                          ),
                                ),
@@ -124,16 +183,17 @@ class PRS1E extends StatelessWidget {
                   Center(
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 0.0111607*_width, horizontal: 0.02*_height),
-                      height:0.222893*_height,
+                      height:0.37878*_height,
                       width:0.763285*_width,
                       decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                      child:PRInfo(title:"Social skills",
-                      dataNotes: prS1ESocialSkills,
+                      child:PRInfo(
+                      title:"Social skills",
+                      dataNotes: prS2ESocialSkills,
                       english: true,
                       dataNotesAnswersMonth1: prMounth1Data.socialSkills,
                       dataNotesAnswersMonth2: prMounth2Data.socialSkills,
                       dataNotesAnswersMonth3: prMounth3Data.socialSkills,
-                      dividerHeight: 0.169045*_height,
+                      dividerHeight:0.325*_height,
                       )
                     ),
                   ),   
@@ -141,16 +201,16 @@ class PRS1E extends StatelessWidget {
                   Center(
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 0.0111607*_width, horizontal: 0.02*_height),
-                      height:0.12014*_height,
+                      height:0.1717*_height,
                       width:0.763285*_width,
                       decoration: roundedContainer(color: Colors.white,radius: 20.0),
                       child:PRInfo(title:"Personal development",
-                      dataNotes: prS1EPersonalDevelopment,
+                      dataNotes: prS2EPersonalDevelopment,
                       english: true,
                       dataNotesAnswersMonth1: prMounth1Data.personalDevelopment,
                       dataNotesAnswersMonth2: prMounth2Data.personalDevelopment,
                       dataNotesAnswersMonth3: prMounth3Data.personalDevelopment,
-                      dividerHeight: 0.067*_height,
+                      dividerHeight: 0.120*_height,
                       )
                     ),
                   ),   
@@ -163,7 +223,7 @@ class PRS1E extends StatelessWidget {
                       decoration: roundedContainer(color: Colors.white,radius: 20.0),
                       child:PRInfo(title:"Physical development",
                       english: true,
-                      dataNotes: prS1EPhysicalDevelopment,
+                      dataNotes: prS2EPhysicalDevelopment,
                       dataNotesAnswersMonth1: prMounth1Data.physicalDevelopment,
                       dataNotesAnswersMonth2: prMounth2Data.physicalDevelopment,
                       dataNotesAnswersMonth3: prMounth3Data.physicalDevelopment,

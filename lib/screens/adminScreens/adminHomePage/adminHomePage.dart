@@ -1,8 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/childUID.dart';
 import 'package:saryacademy/services/adminServices/childName.dart';
+import 'package:saryacademy/shared/alertchecker.dart';
 import 'package:saryacademy/shared/backArrowAdmin.dart';
+
 import '../../../screens/adminScreens/childHome/childHome.dart';
 import '../../../shared/pageRouteAnimation.dart';
 
@@ -10,10 +13,12 @@ import '../../../shared/signOut.dart';
 import '../../../const.dart';
 
 class AdminHomePage extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    alertcheck(context:context);
     return Scaffold(
       appBar: AppBar(
         leading: BackArrowBottonAdmin(),

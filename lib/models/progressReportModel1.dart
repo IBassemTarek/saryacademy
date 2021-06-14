@@ -4,7 +4,8 @@ class PRM1model {
      String dateA;
      bool  presence;
      int  mood;  // 0) :)             1) :(                    2)  :|
-     List naps;
+     String pdf;
+     List naps; /////////////////////////////
      List meals; //0- Breakfast 1-lunch   
      List fluid; // 0- Liquid 1- fluidBottle 
      List diaper;
@@ -12,8 +13,9 @@ class PRM1model {
      List clothes;
      List activities;
      List notes;
-
-  PRM1model({this.activities,this.dateE,this.dateA,this.childName,this.clothes,this.diaper,this.fluid,this.meals,this.mood,this.naps,this.notes,this.presence,this.restroom});
+// pdf url 
+// activities & notes A & E
+  PRM1model({this.activities,this.dateE,this.dateA,this.childName,this.clothes,this.diaper,this.fluid,this.meals,this.mood,this.naps,this.notes,this.presence,this.restroom,this.pdf});
 }
 
 PRM1model prm1modeltest = PRM1model(

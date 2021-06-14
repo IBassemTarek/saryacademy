@@ -1,29 +1,55 @@
 import 'package:flutter/material.dart';
-
-import '../../const.dart';
+import 'package:provider/provider.dart';
+import '../../models/adminMode.dart';
+import 'gradeAlert.dart';
+import 'gradeCircle.dart';
 
 class GradeIcon extends StatelessWidget {
   GradeIcon({
     @required this.gradeTitle,
     @required this.gradeColor,
+    @required this.index,
+    @required this.title,
+    @required this.mounthNo,
   });
-
+  final String title;
+  final int mounthNo;
   final String gradeTitle;
   final Color gradeColor;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final isAdmin = Provider.of<AdminMode>(context);
     final _width = MediaQuery.of(context).size.width;
-    return Container(
-      height:  0.02*_width ,
-      width: 0.02*_width,
-      decoration: (gradeTitle!="غير مقاس" && gradeTitle!="Unmeasured")
-      ?roundedContainer(radius: 0.02*_width , color:gradeColor.withOpacity(1)).copyWith(boxShadow:[])
-      :BoxDecoration(
-        border: Border.all(width: 0.00151*_width, color: gradeColor.withOpacity(1)),
-        borderRadius: BorderRadius.all(Radius.circular(0.01691*_width ) ),
-        // color: Colors.black,/
-      ),
-    );
+
+    if (isAdmin.isAdmin)
+      return InkWell(
+        onTap: () {
+          print(index);
+          if (index != -1) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => GradeAlert(
+                context: context,
+                index: index,
+                title: title,
+                mounthNo: mounthNo,
+              ),
+            );
+          }
+        },
+        child: GradeCircle(
+          gradeTitle: gradeTitle,
+          gradeColor: gradeColor,
+          size: 0.02 * _width,
+        ),
+      );
+    else
+      return GradeCircle(
+        gradeTitle: gradeTitle,
+        gradeColor: gradeColor,
+        size: 0.02 * _width,
+      );
   }
 }

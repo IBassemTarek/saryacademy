@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:saryacademy/models/childUID.dart';
+import 'package:saryacademy/services/toddlerPRDatabase.dart';
 import '../../const.dart';
 import 'checkIcon.dart';
 class InfoCard extends StatelessWidget {
@@ -13,6 +16,7 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final uid = Provider.of<ChildModel>(context).uid;
     return  Container(
       child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -34,11 +38,35 @@ class InfoCard extends StatelessWidget {
                                         shrinkWrap:true,
                                         itemBuilder: (context,i) {
 
-                                            return Row(children: [
-                                                CheckIcon(checked: done[i],),
-                                                SizedBox(width: 10,),
-                                                Text(description[i],style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
-                                            ],); 
+                                            return InkWell(
+                                              onTap: (){
+                                                if (done[i])
+                                                {
+                                                  done[i]=false;
+                                                  ToddlerPRDataBaseServices().updateListToggled(
+                                                    list: done,
+                                                    uid: uid,
+                                                    title: title
+                                                    );
+                                                }
+                                                  
+                                                else 
+                                                {
+                                                  done[i]=true;
+                                                  ToddlerPRDataBaseServices().updateListToggled(
+                                                    list: done,
+                                                    uid: uid,
+                                                    title: title
+                                                    );
+                                                }
+                                                    
+                                              },
+                                              child: Row(children: [
+                                                  CheckIcon(checked: done[i],),
+                                                  SizedBox(width: 10,),
+                                                  Text(description[i],style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
+                                              ],),
+                                            ); 
                                         }, 
                                         separatorBuilder:  (context,i)=>  SizedBox(height:0.005*_height,), 
                                         itemCount:  description.length),

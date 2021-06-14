@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/dateProvider.dart';
+import 'package:saryacademy/services/adminServices/adminAlertDatbase.dart'; 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models/adminMode.dart';
+import 'models/alertModel.dart';
 import 'models/childUID.dart';
 import 'models/profileInfoModels/parentInfoModel.dart';
 import 'screens/adminScreens/adminHomePage/adminHomePage.dart';
@@ -26,11 +28,7 @@ import 'models/progressReportModel3.dart';
 import 'models/user.dart';
 import 'screens/home/home.dart';
 import 'screens/signIn/signin.dart';
-import 'services/eventsDatabase.dart';
-
-
-
-//import 'package:prefirebase/screens/home/home.dart';
+import 'services/eventsDatabase.dart'; 
 
 class Wrapper extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
@@ -40,23 +38,23 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+Future myFuture;
   @override
-  void initState()   {
+  void initState() {
     super.initState();
-    getData();
+    myFuture = getData();
   }
 
-    getData () async {
+    Future <bool> getData () async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool("isAdmin")!=null)
+    if (prefs.getBool("isAdmin")!=null )
     {
         bool temp = prefs.getBool("isAdmin");
-        Provider.of<AdminMode>(context,listen: false).changeIsAdminValue(temp);
+        return Provider.of<AdminMode>(context,listen: false).changeIsAdminValue(admin: temp);
     }
-    if (prefs.getBool("isAdmin") ==null)
+    else
     {
-      print("hello");
-     Provider.of<AdminMode>(context,listen: false).changeIsAdminValue(false);
+      return Provider.of<AdminMode>(context,listen: false).changeIsAdminValue(admin: false);
     }
 
   }
@@ -71,12 +69,17 @@ class _WrapperState extends State<Wrapper> {
     final childUser = Provider.of<ChildModel>(context);
     print(isAdmin.isAdmin);
     // return home or auth depend on state of auth now
+    return FutureBuilder(
+      future: myFuture,
+      // ignore: missing_return
+      builder: (_,__){
     if ((user == null || isAdmin == null )) {
       return MaterialApp(
         navigatorKey: Wrapper.navigatorKey,
     debugShowCheckedModeBanner: false,
     title: 'Sary Academy',
     theme: textData(),
+    
     home: SignIn());
     } else if (!isAdmin.isAdmin) {
       return MultiProvider(
@@ -85,7 +88,6 @@ StreamProvider<List<GalleryModel>>.value(
       value: GalleryDataBaseServices(uid: user.id).galleryCardsData,
        initialData: [], 
        ),
-
 StreamProvider<PRM1model>.value(
       value: ToddlerPRDataBaseServices(uid: user.id).toddlerPRCardData,
        initialData: PRM1model(), 
@@ -102,7 +104,6 @@ StreamProvider<PRM2Mounth3>.value(
       value: PRM2DataBaseServices(uid: user.id).prMounth3sData,
        initialData: PRM2Mounth3(), 
        ),
-
 StreamProvider<PRM3Listmodel>.value(
       value: PRM3DataBaseServices(uid: user.id).prm3sData,
        initialData: PRM3Listmodel(), 
@@ -119,8 +120,6 @@ StreamProvider<PRM3Mounth3>.value(
       value: PRM3DataBaseServices(uid: user.id).pr3Mounth3sData,
        initialData: PRM3Mounth3(), 
        ),
-
-
 StreamProvider<PRM2Listmodel>.value(
       value: PRM2DataBaseServices(uid: user.id).prm2sData,
        initialData: PRM2Listmodel(), 
@@ -170,7 +169,26 @@ StreamProvider<List<AbsenceCard>>.value(
       value: ProfileDataBaseServices(uid: childUser.uid).absenceCardsData,
        initialData: [], 
        ),
-
+StreamProvider<PRM2Mounth1>.value(
+      value: PRM2DataBaseServices(uid: childUser.uid).prMounth1sData,
+       initialData: PRM2Mounth1(), 
+       ),
+StreamProvider<PRM2Mounth2>.value(
+      value: PRM2DataBaseServices(uid: childUser.uid).prMounth2sData,
+       initialData: PRM2Mounth2(), 
+       ),
+StreamProvider<PRM2Mounth3>.value(
+      value: PRM2DataBaseServices(uid: childUser.uid).prMounth3sData,
+       initialData: PRM2Mounth3(), 
+       ),
+StreamProvider<PRM1model>.value(
+      value: ToddlerPRDataBaseServices(uid:childUser.uid).toddlerPRCardData,
+       initialData: PRM1model(), 
+       ),
+StreamProvider<PRM2Listmodel>.value(
+      value: PRM2DataBaseServices(uid: childUser.uid).prm2sData,
+       initialData: PRM2Listmodel(), 
+       ),
 StreamProvider<List<VaccinationCard>>.value(
       value: ProfileDataBaseServices(uid: childUser.uid).vaccinationCardData,
        initialData: [], 
@@ -198,6 +216,27 @@ StreamProvider<List<GalleryModel>>.value(
         ChangeNotifierProvider<DateProvider>(
           create: (context) => DateProvider(),
         ),
+StreamProvider<List<AlertModel>>.value(
+      value: AdminAlertDataBaseServices().alertsCardsData,
+       initialData: [], 
+       ),
+StreamProvider<PRM3Listmodel>.value(
+      value: PRM3DataBaseServices(uid: childUser.uid).prm3sData,
+       initialData: PRM3Listmodel(), 
+       ),
+StreamProvider<PRM3Mounth1>.value(
+      value: PRM3DataBaseServices(uid: childUser.uid).pr3Mounth1sData,
+       initialData: PRM3Mounth1(), 
+       ),
+StreamProvider<PRM3Mounth2>.value(
+      value: PRM3DataBaseServices(uid: childUser.uid).pr3Mounth2sData,
+       initialData: PRM3Mounth2(), 
+       ),
+StreamProvider<PRM3Mounth3>.value(
+      value: PRM3DataBaseServices(uid: childUser.uid).pr3Mounth3sData,
+       initialData: PRM3Mounth3(), 
+       ),
+ 
 
         
       ],
@@ -208,5 +247,9 @@ StreamProvider<List<GalleryModel>>.value(
       home: AdminHomePage()),
     );
     }
+      },
+    );
+
+
   }
 }

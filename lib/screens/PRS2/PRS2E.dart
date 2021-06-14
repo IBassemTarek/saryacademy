@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:saryacademy/models/progressReportModel3.dart';
 import 'package:saryacademy/screens/PRS1/gradeLable.dart';
 import 'package:saryacademy/screens/PRS1/infoOfPR.dart';
-import 'package:saryacademy/screens/PRS1/langAndPdf.dart';
+import 'package:saryacademy/screens/PRS1/langAndPdf.dart'; 
 import 'package:saryacademy/shared/backArrowBotton.dart';
 import 'package:saryacademy/shared/bottombar.dart';
 import 'package:saryacademy/shared/loading.dart';
@@ -70,10 +70,10 @@ class PRS2E extends StatelessWidget {
                   Spacer(),
                   Column(
                     children: [
-                      GradeLable(gradeColor: kGoodColor,gradeTitle:"Good Progress" ,),
-                      GradeLable(gradeColor: kWorkingColor,gradeTitle:"Working on Skill" ,),
-                      GradeLable(gradeColor: kNotApplicableColor,gradeTitle:"Not Applicable" ,),
-                      GradeLable(gradeColor: kWorkingColor,gradeTitle:"Unmeasured" ,)
+                      GradeLable(gradeColor: kGoodColor,gradeTitle:"Good Progress" ,fontSize:8),
+                      GradeLable(gradeColor: kWorkingColor,gradeTitle:"Working on Skill" ,fontSize:8),
+                      GradeLable(gradeColor: kNotApplicableColor,gradeTitle:"Not Applicable" ,fontSize:8),
+                      GradeLable(gradeColor: kWorkingColor,gradeTitle:"Unmeasured" ,fontSize:8)
                     ],
                   ),
 

@@ -39,7 +39,9 @@ final String uid;
                                    ));
         }).catchError((error) => print("Failed to add Gallery: $error"));
   }
-
+  void initGallery() async {
+    await galleryCard.doc(uid).collection("ListOfGalleryCard").get();
+  }
   Future addNewGalleryData({String eventName, List  imagesURL}) async {
     return await galleryCard.doc(uid).collection("ListOfGalleryCard").doc(eventName).set(
       {'imagesURL': imagesURL,

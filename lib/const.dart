@@ -23,6 +23,37 @@ const List<String> mealsList = [
 ];
 
 
+const List<String> dateA = [
+  "يناير",
+  "فبراير",
+    "مارس",
+  "ابريل",
+    "مايو",
+  "يونيو",
+    "يوليو",
+  "أغسطس",
+    "سبتمبر",
+  "أكتوبر",
+    "نوفمبر",
+  "ديسمبر",
+];
+
+const List<String> dateE = [
+  "January",
+  "February",
+    "March",
+  "April",
+    "May",
+  "June",
+    "July",
+  "August",
+    "September",
+  "October",
+    "November",
+  "December",
+];
+
+
 const List<String> mealsListA = [
   "الإفطار",
   "الغداء"

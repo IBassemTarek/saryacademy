@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:saryacademy/models/childUID.dart';
+import 'package:saryacademy/services/toddlerPRDatabase.dart';
 import '../../const.dart';
 import 'checkIcon.dart';
 class DatesInfoCard extends StatelessWidget {
   final String iconUrl;
   final String title;
-  final List<dynamic> description;
+  final List description;
   
   DatesInfoCard({this.iconUrl,this.title,this.description});
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final uid = Provider.of<ChildModel>(context).uid;
     return  Container(
       child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -36,8 +40,25 @@ class DatesInfoCard extends StatelessWidget {
                                             return Row(children: [
                                                 CheckIcon(checked: true,),
                                                 SizedBox(width: 10,),
-                                                Text(description[i],style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
-                                            ],); 
+                                                Container(
+                                                  height: 12,
+                                                  width: 55,
+                                                  child: TextField(
+                                                    maxLines:1,
+                                                    style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.blue[300], fontSize: 12 ),
+                                                    controller: (description[i]!=null)?(TextEditingController()..text = description[i]):(TextEditingController()..text = ""), 
+                                                    onChanged: (value){
+                                                     print(value);
+                                                     description[i]= value;
+                                                     ToddlerPRDataBaseServices().updateListText(
+                                                       list: description,
+                                                       title: title,
+                                                       uid: uid,
+                                                     ); 
+                                                    }
+                                                    ),
+                                                )
+                                                ],); 
                                         }, 
                                         separatorBuilder:  (context,i)=>  SizedBox(height:0.005*_height,), 
                                         itemCount:  description.length),

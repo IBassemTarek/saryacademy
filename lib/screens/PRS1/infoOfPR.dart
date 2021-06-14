@@ -39,20 +39,20 @@ class PRInfo extends StatelessWidget {
                       child: FittedBox(fit: BoxFit.scaleDown,child: Text(dataNotes[i],style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 11))))
                   ),
               ),
-              SkillScore( dataNotesAnswers: dataNotesAnswersMonth1),
+              SkillScore( dataNotesAnswers: dataNotesAnswersMonth1,title: title,mounthNo: 1,),
               Container(
                 height: dividerHeight,
                 width: 1,
                 color: kGreyColor.withOpacity(1),
               ),
-              SkillScore( dataNotesAnswers: dataNotesAnswersMonth2),
+              SkillScore( dataNotesAnswers: dataNotesAnswersMonth2,title: title,mounthNo: 2,),
               
               Container(
                 height: dividerHeight,
                 width: 1,
                 color: kGreyColor.withOpacity(1),
               ),
-              SkillScore( dataNotesAnswers: dataNotesAnswersMonth3),
+              SkillScore( dataNotesAnswers: dataNotesAnswersMonth3,title: title,mounthNo: 3,),
 
             ],
           )

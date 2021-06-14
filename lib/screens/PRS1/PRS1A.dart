@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/progressReportModel2.dart';
+import 'package:saryacademy/models/progressReportModel2.dart'; 
 import 'package:saryacademy/shared/backArrowBotton.dart';
 import 'package:saryacademy/shared/bottombar.dart';
 import 'package:saryacademy/shared/loading.dart';
@@ -72,10 +72,10 @@ class PRS1A extends StatelessWidget {
                     Spacer(),
                     Column(
                       children: [
-                        GradeLable(gradeColor: kGoodColor,gradeTitle:"تقدم جيد" ,),
-                        GradeLable(gradeColor: kWorkingColor,gradeTitle:"جاري العمل عليها" ,),
-                        GradeLable(gradeColor: kNotApplicableColor,gradeTitle:"غير مطابق" ,),
-                        GradeLable(gradeColor: kWorkingColor,gradeTitle:"غير مقاس" ,)
+                        GradeLable(gradeColor: kGoodColor,gradeTitle:"تقدم جيد" ,fontSize:8),
+                        GradeLable(gradeColor: kWorkingColor,gradeTitle:"جاري العمل عليها" ,fontSize:8),
+                        GradeLable(gradeColor: kNotApplicableColor,gradeTitle:"غير مطابق" ,fontSize:8),
+                        GradeLable(gradeColor: kWorkingColor,gradeTitle:"غير مقاس" ,fontSize:8)
                       ],
                     ),
 

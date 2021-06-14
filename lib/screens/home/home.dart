@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/const.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
+import 'package:saryacademy/models/user.dart';
 import 'package:saryacademy/screens/PRS1/PRS1E.dart';
 import 'package:saryacademy/screens/PRS2/PRS2E.dart';
 import 'package:saryacademy/screens/ToddlerReport/ToddlerReportE.dart';
@@ -9,32 +11,91 @@ import 'package:saryacademy/screens/events/event.dart';
 import 'package:saryacademy/screens/gallery/gallery.dart';
 import 'package:saryacademy/screens/home/profileCard.dart';
 import 'package:saryacademy/screens/home/progressReportCard.dart';
+import 'package:saryacademy/services/adminServices/adminAlertDatbase.dart';
 import 'package:saryacademy/shared/loading.dart';
 import 'package:saryacademy/shared/pageRouteAnimation.dart';
 import '../profile.dart';
 import 'eventsCard.dart';
 import 'gallerycard.dart';
-
 class HomePage extends StatelessWidget {
+Widget _buildPopupDialog(BuildContext context) {
+  return new AlertDialog(
+    title: const Text('Alert',textAlign: TextAlign.center,style:TextStyle(
+              fontFamily: "arialRounded",
+              fontSize: 34,
+              color: Color(0xff041056),
+            ),),
+    content: new Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Align(
+          alignment: Alignment.center,
+          child: Text("Would you like your child's current supervisor to contact you?",textAlign: TextAlign.center,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 15))),
+      ],
+    ),
+    actions: <Widget>[
+      new InkWell(
+        onTap: () {
+          AdminAlertDataBaseServices().updateAlertData(
+            dateTime: Timestamp.fromDate(DateTime.now()),
+            day: DateTime.now().day,
+            month: DateTime.now().month,
+            name: Provider.of<ChildInfoModel>(context,listen: false).name,
+            showed: false,
+            uid: Provider.of<UserModel>(context,listen: false).id,
+            year: DateTime.now().year,
+          );
+          Navigator.of(context).pop();
+        },
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: const Text('Yes',style: TextStyle(
+              fontFamily: "arialRounded",
+              fontSize: 16,
+              color: Color(0xff1C9CD8),
+            ),)),
+      ),
+      new InkWell(
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: const Text('May be later',style: TextStyle(
+              fontFamily: "arialRounded",
+              fontSize: 16,
+              color: Color(0xff1C9CD8),
+            ))),
+      ),
+    ],
+  );
+}
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
-// childInfo.reportType
-
        return Scaffold(
         floatingActionButton: InkWell(
         child: Stack(
           alignment: Alignment.bottomRight,
         children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 0.0039*_height),
-            padding: EdgeInsets.only(right: 0.033482*_height,top: 0.0121*_width,bottom: 0.0121*_width,left: 0.063482*_height),
-            decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(30) ),
-            color: Colors.white,
-            ),
-              child:Text("Alert",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 36)),
+            InkWell(
+              onTap: (){
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildPopupDialog(context),
+            );
+              },
+              child: Container(
+                margin: EdgeInsets.only(bottom: 0.0039*_height),
+              padding: EdgeInsets.only(right: 0.033482*_height,top: 0.0121*_width,bottom: 0.0121*_width,left: 0.063482*_height),
+              decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(30) ),
+              color: Colors.white,
+              ),
+                child:Text("Alert",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 36)),
+              ),
             ),
             // SizedBox(height: 0.927*_height),
             Row(

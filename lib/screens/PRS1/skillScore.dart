@@ -6,8 +6,11 @@ import 'gradeIcon.dart';
 class SkillScore extends StatelessWidget {
   SkillScore({
     @required this.dataNotesAnswers,
+    @required this.title,
+    @required this.mounthNo,
   });
-
+  final String title;
+  final int mounthNo;
   final List dataNotesAnswers;
 
   @override
@@ -27,19 +30,19 @@ class SkillScore extends StatelessWidget {
               if (dataNotesAnswers[i]==0)
               return Container(
                 height:0.0212*_width,
-                child: GradeIcon(gradeColor: kWorkingColor,gradeTitle: "Unmeasured",));
+                child: GradeIcon(gradeColor: kWorkingColor,gradeTitle: "Unmeasured",index: i,title: title,mounthNo: mounthNo,));
               else if (dataNotesAnswers[i]==3)
               return Container(
                 height:0.0212*_width,
-                child: GradeIcon(gradeColor: kNotApplicableColor,gradeTitle: "Not Applicable",));
+                child: GradeIcon(gradeColor: kNotApplicableColor,gradeTitle: "Not Applicable",index: i,title: title,mounthNo: mounthNo,));
               else if (dataNotesAnswers[i]==2)
               return Container(
                 height:0.0212*_width,
-                child: GradeIcon(gradeColor: kWorkingColor,gradeTitle: "Working on Skill",));
+                child: GradeIcon(gradeColor: kWorkingColor,gradeTitle: "Working on Skill",index: i,title: title,mounthNo: mounthNo,));
               else 
               return Container(
                 height:0.0212*_width,
-                child: GradeIcon(gradeColor: kGoodColor,gradeTitle: "Good Progress",));
+                child: GradeIcon(gradeColor: kGoodColor,gradeTitle: "Good Progress",index: i,title: title,mounthNo: mounthNo,));
             }
           ),
       ),

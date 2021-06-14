@@ -27,6 +27,9 @@ final String uid;
     return eventCard.doc(uid).collection("ListOfEventCard").snapshots().map(_eventCardListSnapShot);
   }
 
+  void initEvents() async {
+    await eventCard.doc(uid).collection("ListOfEventCard").get();
+  }
 
   Future updateEventData({Timestamp date, String text, String  title,  String  imageURL,String id, BuildContext context} ) async {
     return await eventCard.doc(uid).collection("ListOfEventCard").doc(id).update(

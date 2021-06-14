@@ -4,6 +4,7 @@ import 'package:saryacademy/models/childUID.dart';
 import 'package:saryacademy/screens/adminScreens/childprofile/statusInfoSection.dart';
 import 'package:saryacademy/services/profileDatabase.dart';
 import 'package:saryacademy/shared/addImpDataSection.dart';
+import 'package:saryacademy/shared/alertchecker.dart';
 import 'package:saryacademy/shared/reportTitleCard.dart';
 import '../../../const.dart';
 import 'InfoSection.dart';
@@ -30,6 +31,7 @@ class ChildProfile extends StatelessWidget {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
     final uid = Provider.of<ChildModel>(context).uid;
+    alertcheck(context:context);
     return Scaffold(
       backgroundColor: kbackgroundColor.withOpacity(1),
       body: SafeArea(

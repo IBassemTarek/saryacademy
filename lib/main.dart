@@ -9,34 +9,38 @@ import 'models/modalprogrsshub.dart';
 import 'services/auth.dart';
 import 'wrapper.dart';
 import 'models/user.dart';
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+import 'package:flutter/services.dart';
+FlutterLocalNotificationsPlugin notification;
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
-  var initializationSettingsAndroid =
-      AndroidInitializationSettings('ic_launcher');
-  var initializationSettingsIOS = IOSInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
-      onDidReceiveLocalNotification:
-          (int id, String title, String body, String payload) async {});
-  var initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,iOS: initializationSettingsIOS);
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: (String payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: ' + payload);
-    }
-  });
+    const androidInitlize =  AndroidInitializationSettings(
+      "ic_launcher"
+    );
+    const iOSInitlize =  IOSInitializationSettings();
+    const initilizationsSettings = InitializationSettings(
+      android: androidInitlize,
+      iOS: iOSInitlize
+    );
+    notification = FlutterLocalNotificationsPlugin();
+    notification.initialize(initilizationsSettings,
+    onSelectNotification: notificationSelected
+    );
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
+    Future notificationSelected(String payload) async {
+
+    } 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AdminMode>(

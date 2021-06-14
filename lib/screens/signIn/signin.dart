@@ -157,8 +157,21 @@ class SignIn extends StatelessWidget {
                 Center(
                     child: Consumer<AdminMode>(
                         builder: (context, adminMode, _) => InkWell(
-                            onTap: () {
-                              adminMode.changeIsAdmin();
+                            onTap: ()async  {
+                              if (adminMode.isAdmin)
+                              {
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                                prefs.setBool("isAdmin",false);
+                                adminMode.changeIsAdminValue(admin: false);
+                              }
+                              
+                              else
+                              {
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                                prefs.setBool("isAdmin",true);
+                                adminMode.changeIsAdminValue(admin: true);
+                              }
+                              
                             },
                             child: Text(
                               adminMode.isAdmin

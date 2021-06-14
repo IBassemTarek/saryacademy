@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/eventModel.dart';
+import 'package:saryacademy/shared/alertchecker.dart';
 import 'package:saryacademy/shared/backArrowBotton.dart';
 import 'package:saryacademy/shared/loading.dart';
 import '../../../const.dart';
@@ -12,6 +13,7 @@ class ChildEvents extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    alertcheck(context:context);
     return Scaffold(
       // bottomNavigationBar: BottomBar(widgetName: "EventsPage",),
       backgroundColor: kbackgroundColor.withOpacity(1),
