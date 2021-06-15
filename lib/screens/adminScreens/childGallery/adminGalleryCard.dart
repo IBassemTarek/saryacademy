@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +8,7 @@ import '../../../models/childUID.dart';
 import '../../../const.dart';
 import '../../../models/galleryModel.dart';
 import 'addNewGallery.dart';
-import 'galleryItemsList.dart';
+import '../../../models/galleryItemsList.dart';
 // import 'addNewEvent.dart';
 
 class AdminGalleryCard extends StatefulWidget {
@@ -86,7 +87,57 @@ class _AdminGalleryCardState extends State<AdminGalleryCard> {
               width: 0.212*_width,
                   decoration: BoxDecoration(
                    borderRadius: BorderRadius.all(Radius.circular(10) ),),
-            child:Image.network(_gallery[widget.index].imagesURL[i]),
+            child:
+Container(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  ),
+  child:   CachedNetworkImage(
+  
+      placeholder: (context, url) => Center(
+  
+        child: SizedBox(
+  
+          width: 25,
+  
+          height: 25,
+  
+          child: CircularProgressIndicator(
+  
+          )),
+  
+      ),
+  
+      imageUrl: _gallery[widget.index].imagesURL[i],
+  
+      
+  
+      errorWidget: (___, _, __) {
+  
+                  return  Container(
+                      decoration: BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  ),
+                          width:  0.252232*_height,
+  
+                          height: 0.816425*_width,
+  
+                          child: Image.asset(
+  
+                            'assets/images/No-Image.png',
+  
+                            // fit: BoxFit.cover
+  
+                            ),
+  
+                  );
+  
+                },
+  
+    ),
+), 
+            
+            // Image.network(_gallery[widget.index].imagesURL[i]),
                 );
               }
           ),

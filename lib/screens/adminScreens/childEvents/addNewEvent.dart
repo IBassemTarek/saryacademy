@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart'; 
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart'; 
+import 'package:intl/intl.dart';
+import 'package:saryacademy/models/EditEvent.dart'; 
 
 import '../../../models/childUID.dart';
 import '../../../models/dateProvider.dart';
@@ -13,9 +14,6 @@ import '../../../const.dart';
 import 'addButtom.dart';
 // ignore: must_be_immutable
 class AddNewEvent extends StatelessWidget {
-  String title;
-  String descreption;
-  String imageURL;
   final bool newEvent;
   final String eventID;
   AddNewEvent({this.eventID,this.newEvent});
@@ -25,6 +23,7 @@ class AddNewEvent extends StatelessWidget {
     final _width = MediaQuery.of(context).size.width;
     final uid = Provider.of<ChildModel>(context).uid;
     final format = DateFormat("yyyy-MM-dd HH:mm");
+    final editEvent = Provider.of<EditEvent>(context);
     return Container(
       width: 0.90338 * _width,
       height: 0.25 * _height,
@@ -51,7 +50,7 @@ class AddNewEvent extends StatelessWidget {
                 child: TitleTextField(
                   lableText: "Title",
                   onClick: (value) {
-                    title = value;
+                    editEvent.changeTitle(value); 
                   },
                 ),
               ),
@@ -95,20 +94,7 @@ class AddNewEvent extends StatelessWidget {
             return currentValue;
           }
         }, 
-        ),
-// TextButton(
-//     onPressed: () {
-//         DatePicker.showDatePicker(context,
-//                               showTitleActions: true,
-//                           onConfirm: (value) {
-//                             print(value.runtimeType);
-//                             Provider.of<DateProvider>(context,listen: false).changeDate(Timestamp.fromDate(value));
-//                           }, currentTime: DateTime.now(), locale: LocaleType.en);
-//     },
-//     child: Text(
-//         'Select Date',
-//         style: TextStyle(color: Colors.blue),
-//     )
+        ), 
 
       ),
             ],
@@ -121,7 +107,7 @@ class AddNewEvent extends StatelessWidget {
               maxLines: 2,
               lableText: "Description",
               onClick: (value) {
-                descreption = value;
+                editEvent.changeText(value);
               },
             ),
           ),
@@ -138,7 +124,7 @@ class AddNewEvent extends StatelessWidget {
               maxLines: 1,
               lableText: "Image URL",
               onClick: (value) {
-                imageURL = value;
+                editEvent.changeImageURL(value);
               },
             ),),
               AddBotton( 
@@ -147,21 +133,21 @@ class AddNewEvent extends StatelessWidget {
                   onTap: () {
                     if(newEvent)
                     {
-                    if (descreption != null && title != null && imageURL!= null && Provider.of<DateProvider>(context,listen: false).date!=null) 
+                    if (editEvent.text != null && editEvent.title != null && editEvent.imageURL!= null && Provider.of<DateProvider>(context,listen: false).date!=null) 
                     // print("done");
                         EventDataBaseServices(uid: uid)
                             .addNewEventrData(
                               date: Provider.of<DateProvider>(context,listen: false).date, 
-                              imageURL: imageURL,
-                              text: descreption,
-                              title: title,
+                              imageURL: editEvent.imageURL,
+                              text: editEvent.text,
+                              title: editEvent.title,
                             );
                         else 
                         {
                         print('dw');
-                        print(descreption);
-                        print(title);
-                        print(imageURL);
+                        print(editEvent.text);
+                        print(editEvent.title);
+                        print(editEvent.imageURL);
                         print(Provider.of<DateProvider>(context,listen: false).date);
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text("enter you Info again"),
@@ -170,22 +156,27 @@ class AddNewEvent extends StatelessWidget {
                     }
                     else {
                       print ("dd");
-                    if (descreption != null && title != null && imageURL!= null && Provider.of<DateProvider>(context,listen: false).date!=null) 
+                    if (editEvent.text != null && editEvent.title != null && editEvent.imageURL!= null && Provider.of<DateProvider>(context,listen: false).date!=null) 
+                    {
                     EventDataBaseServices(uid: uid)
                             .updateEventData(
                               date: Provider.of<DateProvider>(context,listen: false).date, 
-                              imageURL: imageURL,
-                              text: descreption,
-                              title: title,
+                              imageURL: editEvent.imageURL,
+                              text: editEvent.text,
+                              title: editEvent.title,
                               id:eventID,
                               context: context,
                             );
+                            
+                    }
+                    
+
                         else 
                         {
                         print('dw');
-                        print(descreption);
-                        print(title);
-                        print(imageURL);
+                        print(editEvent.text);
+                        print(editEvent.title);
+                        print(editEvent.imageURL);
                         print(Provider.of<DateProvider>(context,listen: false).date);
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text("enter you Info again"),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class HorizonalScroll extends StatelessWidget {
@@ -35,10 +36,32 @@ class HorizonalScroll extends StatelessWidget {
               separatorBuilder: (context,i)=>  SizedBox(width:0.036232*_width,),
               itemBuilder:  (context,i) {
                 return Container(
+                  
               height: 0.1484375*_height,
                   decoration: BoxDecoration(
                    borderRadius: BorderRadius.all(Radius.circular(10) ),),
-            child:Image.network(imagesURL[i]),
+            child:
+CachedNetworkImage(
+    placeholder: (context, url) => Center(
+      child: SizedBox(
+        width: 30,
+        height: 30,
+        child: CircularProgressIndicator(
+        )),
+    ),
+    imageUrl: imagesURL[i] ,
+    
+    errorWidget: (___, _, __) {
+                return  Container(
+                        width:  0.252232*_height,
+                        height: 0.816425*_width,
+                        child: Image.asset(
+                          'assets/images/No-Image.png',
+                          // fit: BoxFit.cover
+                          ),
+                );
+              },
+  ),  
                 );
               }
           ),

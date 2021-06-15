@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/alertModel.dart';
-import 'package:saryacademy/services/adminServices/childName.dart';
-import '../../../shared/alertchecker.dart';
-import '../../../shared/backArrowAdmin.dart';
+import 'package:saryacademy/shared/backArrowBotton.dart';
+import '../../../shared/alertchecker.dart'; 
 
 import '../../../const.dart';
 
@@ -23,7 +22,7 @@ class AlertAdmin extends StatelessWidget {
     alertcheck(context:context);
     return Scaffold(
       appBar: AppBar(
-        leading: BackArrowBottonAdmin(),
+        leading: BackArrowBotton(),
         centerTitle: true,
         titleSpacing: 0,
         elevation: 0,

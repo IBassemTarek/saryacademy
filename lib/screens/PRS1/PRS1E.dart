@@ -20,7 +20,7 @@ class PRS1E extends StatelessWidget {
     final prMounth1Data = Provider.of<PRM2Mounth1>(context);
     final prMounth2Data = Provider.of<PRM2Mounth2>(context);
     final prMounth3Data = Provider.of<PRM2Mounth3>(context);
-    if (prm2ModelData == null || prm2ModelData.month1A == null|| prm2ModelData.month1E == null || 
+    if (prm2ModelData == null ||prm2ModelData.pdf == null || prm2ModelData.month1A == null|| prm2ModelData.month1E == null || 
     prm2ModelData.month2A == null || prm2ModelData.month2E == null || prm2ModelData.month3A == null || prm2ModelData.month3E == null ||
     prm2ModelData.studentNameA == null || prm2ModelData.studentNameE == null || prMounth1Data.personalDevelopment == null ||
     prMounth1Data.socialSkills == null || prMounth1Data.physicalDevelopment == null || prMounth2Data.personalDevelopment == null ||
@@ -89,7 +89,10 @@ class PRS1E extends StatelessWidget {
                                 children: [
                                   Container(
                                     width:0.3*_width,
-                                    child: LangAndPdf(lang: 'Arabic',page: PRS1A(),)),
+                                    child: LangAndPdf(lang: 'Arabic',page: PRS1A(),
+                                    pdfURL: prm2ModelData.pdf,
+                                    pr1: true,
+                                    )),
                                   SizedBox(height:0.0169*_width),
                      Container(
                        height: 0.02232*_height,

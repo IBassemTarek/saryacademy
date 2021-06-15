@@ -6,7 +6,7 @@ import '../../../shared/adminCustomTextField.dart';
 import '../../../shared/titleTextField.dart';
 import '../../../const.dart';
 import 'addButtom.dart';
-import 'galleryItemsList.dart';
+import '../../../models/galleryItemsList.dart';
 // ignore: must_be_immutable
 class AddNewGallery extends StatelessWidget {
   String title;
@@ -46,19 +46,7 @@ class AddNewGallery extends StatelessWidget {
           SizedBox(
             height: _height * 0.01,
           ),
-          ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),  
-                        shrinkWrap:true,
-                        itemBuilder: (context,i) {
-                        return AddedImageURLCard(imageURL: Provider.of<GalleryItemsList>(context).imageURL[i],); 
-                        }, 
-                        itemCount: Provider.of<GalleryItemsList>(context).imageURL.length, 
-                        separatorBuilder: (BuildContext context, int index) {
-                          return  SizedBox(
-                                            height: _height * 0.01,
-                                       );
-                          },
-          ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -83,17 +71,36 @@ class AddNewGallery extends StatelessWidget {
           SizedBox(
             height: _height * 0.01,
           ),
+          ListView.separated(
+                        physics: NeverScrollableScrollPhysics(),  
+                        shrinkWrap:true,
+                        itemBuilder: (context,i) {
+                        return AddedImageURLCard(imageURL: Provider.of<GalleryItemsList>(context).imageURL[i],); 
+                        }, 
+                        itemCount: Provider.of<GalleryItemsList>(context).imageURL.length, 
+                        separatorBuilder: (BuildContext context, int index) {
+                          return  SizedBox(
+                                            height: _height * 0.01,
+                                       );
+                          },
+          ),
           AddBotton( 
                   text: newEvent?"add":"update",
                   onTap: () {
                     if(newEvent)
                     {
                     if ( title != null &&  Provider.of<GalleryItemsList>(context,listen: false).imageURL!=[]) 
+                    {
                         GalleryDataBaseServices(uid: uid)
                             .addNewGalleryData( 
                               eventName: title,
                               imagesURL: Provider.of<GalleryItemsList>(context,listen: false).imageURL,
                             );
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text("added success"),
+                                   ));
+                    }
+
                         else 
                         {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -103,6 +110,7 @@ class AddNewGallery extends StatelessWidget {
                     }
                     else {
                     if ( title != null && Provider.of<GalleryItemsList>(context,listen: false).imageURL!=[] ) 
+                    {
                     GalleryDataBaseServices(uid: uid)
                             .updateGalleryData(
                               eventName: title,
@@ -110,6 +118,11 @@ class AddNewGallery extends StatelessWidget {
                               id:galleryID,
                               context: context,
                             );
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text("updating success"),
+                                   ));
+                    }
+
                         else 
                         {
                                 print(title);

@@ -7,6 +7,7 @@ import 'package:saryacademy/shared/backArrowBotton.dart';
 import 'package:saryacademy/shared/bottombar.dart';
 import 'package:saryacademy/shared/loading.dart';
 import 'package:saryacademy/shared/pageRouteAnimation.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../const.dart';
 import 'ToddlerReportE.dart';
 import 'checkIcon.dart';
@@ -85,11 +86,17 @@ class ToddlerReportA extends StatelessWidget {
                           child: Text("English",style: Theme.of(context).textTheme.headline1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))),
                       ),
                       SizedBox(width: 0.036232*_width,),
-                        Container(
-                        padding: EdgeInsets.all(0.00558*_height),
-                        decoration: roundedContainer(color: Colors.white,radius: 5.0),
-                        child: SvgPicture.asset('assets/images/PR/pdf.svg',height:0.017161*_height),
-                      ),
+                        InkWell(
+                          onTap: ()async{
+                            String _url = prm1ModelData.pdf; 
+                            await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+                          },
+                          child: Container(
+                          padding: EdgeInsets.all(0.00558*_height),
+                          decoration: roundedContainer(color: Colors.white,radius: 5.0),
+                          child: SvgPicture.asset('assets/images/PR/pdf.svg',height:0.017161*_height),
+                                              ),
+                        ),
                       SizedBox(width:0.05*_width),
                     ],
                   )
@@ -111,7 +118,11 @@ class ToddlerReportA extends StatelessWidget {
                            SizedBox(width: 0.03*_width,),
                            Text("غياب",style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 12)),
                            SizedBox(width: 0.193237*_width,),
-                           Text(prm1ModelData.dateA,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)),
+                           Container(
+                             width: 80,
+                             child: FittedBox(
+                               fit: BoxFit.scaleDown,
+                               child: Text(prm1ModelData.dateA,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12)))),
                         ],
                       ),
                   ],

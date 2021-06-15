@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:saryacademy/models/childUID.dart';
+import 'package:saryacademy/services/toddlerPRDatabase.dart';
 
-import '../../const.dart';
+import '../../../const.dart';
 
 
-class NotesAndActivities extends StatelessWidget {
+class AdminNotesAndActivities extends StatelessWidget {
   final String title;
   final String cardIcon;
   final List<dynamic> content;
 
-  NotesAndActivities({this.cardIcon,this.content,this.title});
+  AdminNotesAndActivities({this.cardIcon,this.content,this.title});
 
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final uid = Provider.of<ChildModel>(context).uid;
     return Container(
          height: 0.100446*_height,
          width: 0.835748793*_width,
@@ -43,12 +47,29 @@ class NotesAndActivities extends StatelessWidget {
                          itemBuilder: (context,i) {
                              return Row(children: [
                                  Icon(Icons.done_all,color: kText4Color.withOpacity(1),size: 0.015*_height,),
-                                 SizedBox(width: 10,),
-                                 Text(content[i],style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText4Color.withOpacity(1),fontSize: 11)),
+                                 SizedBox(width: 10,), 
+                                                Container( 
+                                                  height: 18,
+                                                  width: 200,
+                                                  child: TextField(
+                                                    maxLines:1,
+                                                    style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.blue[300], fontSize: 12 ),
+                                                    controller: (content[i]!=null)?(TextEditingController()..text = content[i]):(TextEditingController()..text = ""), 
+                                                    onChanged: (value){
+                                                     print(value);
+                                                     content[i]= value;
+                                                     ToddlerPRDataBaseServices().updateNotesAndActivities(
+                                                       list: content,
+                                                       title: title,
+                                                       uid: uid,
+                                                     ); 
+                                                    }
+                                                    ),
+                                                )
                              ],); 
 
                          }, 
-                         separatorBuilder:  (context,i)=>  SizedBox(width:0.0531401*_width,), 
+                         separatorBuilder:  (context,i)=>  SizedBox(height:0.00531401*_height,), 
                          itemCount:  content.length),
                      )
                    ],

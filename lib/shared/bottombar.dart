@@ -11,6 +11,7 @@ import 'package:saryacademy/screens/profile.dart';
 import 'package:saryacademy/shared/pageRouteAnimation.dart';
 
 import '../const.dart';
+import 'customerAlert.dart';
 
 class BottomBar extends StatelessWidget {
   final String widgetName;
@@ -29,7 +30,12 @@ class BottomBar extends StatelessWidget {
           children: [
             IconBotton(
               icon: Icons.phone_in_talk,
-              ontap: (){},
+              ontap: (){
+              showDialog(
+              context: context,
+              builder: (BuildContext context) => buildPopupDialog(context),
+            );
+              },
               ),
             IconBotton(
               icon: Icons.summarize, 

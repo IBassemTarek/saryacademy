@@ -1,16 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:saryacademy/models/galleryModel.dart';
+import 'package:saryacademy/models/isEmpty.dart';
 
 
 class GalleryDataBaseServices {
   final CollectionReference galleryCard = FirebaseFirestore.instance.collection('GalleryCard');
 
+ 
 
 final String uid;
   GalleryDataBaseServices({this.uid});
 
+  Future checkIfEmpty({BuildContext context}) async {
+    final isEmpty = Provider.of<IsEmptyModel>(context);
+    final snapshot =  galleryCard.doc(uid).collection("ListOfGalleryCard").snapshots();
+    bool x = await snapshot.isEmpty;
+    if ( x ) {
+        isEmpty.changeGallerystate(true); 
+        return true;
+    }
+    else 
+    {
+      isEmpty.changeGallerystate(false);
  
+      return false;
+      
+    }
+    
+
+  }
     //convert snapshot to list
   List<GalleryModel> _galleryModelListSnapShot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {

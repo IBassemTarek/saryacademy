@@ -40,7 +40,13 @@ class NextEventCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10) ),
                   ),
                   child:CachedNetworkImage(
-                    placeholder: (context, url) => CircularProgressIndicator(),
+                        placeholder: (context, url) => Center(
+      child: SizedBox(
+        width: 30,
+        height: 30,
+        child: CircularProgressIndicator(
+        )),
+    ),
                     imageUrl: _events[index].imageURL,
                     errorWidget: (___, _, __) {
                 return  Container(

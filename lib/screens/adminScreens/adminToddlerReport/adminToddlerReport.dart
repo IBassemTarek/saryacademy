@@ -5,10 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/childUID.dart'; 
 import 'package:saryacademy/models/progressReportModel1.dart';
+import 'package:saryacademy/screens/adminScreens/adminToddlerReport/AdminActivitiesAndNotes.dart';
+import 'package:saryacademy/screens/adminScreens/adminToddlerReport/adminDatesInfoCard.dart';
+import 'package:saryacademy/screens/ToddlerReport/adminInfoCard.dart';
 import 'package:saryacademy/screens/ToddlerReport/checkIcon.dart';
-import 'package:saryacademy/screens/ToddlerReport/datesInfoCard.dart';
-import 'package:saryacademy/screens/ToddlerReport/infoCard.dart';
-import 'package:saryacademy/screens/ToddlerReport/notesAndActivities.dart';
 import 'package:saryacademy/services/toddlerPRDatabase.dart';  
 import 'package:saryacademy/shared/alertchecker.dart';
 import 'package:saryacademy/shared/backArrowBotton.dart'; 
@@ -217,9 +217,9 @@ class AdminToddlerReport extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [//,this.,this.description,this.
                               SizedBox(width:0.02898551*_width),//
-                              DatesInfoCard(iconUrl:"assets/images/PR/nap.svg",title:"Nap",description:List.from(prm1ModelData.naps)),
+                              AdminDatesInfoCard(iconUrl:"assets/images/PR/nap.svg",title:"Nap",description:List.from(prm1ModelData.naps)),
                               Container(color:kGreyColor.withOpacity(1),height: 0.0747767857*_height,width: 1,),
-                              InfoCard(iconUrl:"assets/images/PR/Meals.svg",title:"Meals",description:mealsList,done:List.from(prm1ModelData.meals)),
+                              AdminInfoCard(iconUrl:"assets/images/PR/Meals.svg",title:"Meals",description:mealsList,done:List.from(prm1ModelData.meals)),
                             ],
                           )
                           ],
@@ -232,13 +232,13 @@ class AdminToddlerReport extends StatelessWidget {
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: InfoCard(iconUrl:"assets/images/PR/Fluid.svg",title:"Fluid",description:fluidList,done:List.from(prm1ModelData.fluid))),
+                         child: AdminInfoCard(iconUrl:"assets/images/PR/Fluid.svg",title:"Fluid",description:fluidList,done:List.from(prm1ModelData.fluid))),
                          Spacer(),
                          Container(
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: DatesInfoCard(iconUrl:"assets/images/PR/Diaper.svg",title:"Diaper",description:prm1ModelData.diaper)),
+                         child: AdminDatesInfoCard(iconUrl:"assets/images/PR/Diaper.svg",title:"Diaper",description:prm1ModelData.diaper)),
                      ],
                    ),
                    Row(
@@ -248,18 +248,18 @@ class AdminToddlerReport extends StatelessWidget {
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: InfoCard(iconUrl:"assets/images/PR/Restroom.svg",title:"Restroom",description:restroom,done:prm1ModelData.restroom)),
+                         child: AdminInfoCard(iconUrl:"assets/images/PR/Restroom.svg",title:"Restroom",description:restroom,done:prm1ModelData.restroom)),
                          Spacer(),
                          Container(
                            
                          height: 0.1015625*_height,
                          width:0.38405797*_width ,
                          decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                         child: DatesInfoCard(iconUrl:"assets/images/PR/Clothes.svg",title:"Clothes",description:prm1ModelData.clothes)),
+                         child: AdminDatesInfoCard(iconUrl:"assets/images/PR/Clothes.svg",title:"Clothes",description:prm1ModelData.clothes)),
                      ],
                    ),
-                   NotesAndActivities(cardIcon: "assets/images/PR/Activities.svg",content:prm1ModelData.activities, title: "Activities",),
-                   NotesAndActivities(cardIcon: "assets/images/PR/Notes.svg",content:prm1ModelData.notes, title: "Notes",),
+                   AdminNotesAndActivities(cardIcon: "assets/images/PR/Activities.svg",content:prm1ModelData.activities, title: "Activities",),
+                   AdminNotesAndActivities(cardIcon: "assets/images/PR/Notes.svg",content:prm1ModelData.notes, title: "Notes",),
               ],
             ),
           ),

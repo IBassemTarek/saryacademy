@@ -92,7 +92,10 @@ class PRS1A extends StatelessWidget {
                                 children: [
                                   Container(
                                     width:0.3*_width,
-                                    child: LangAndPdf(lang: 'English',page: PRS1E(),)),
+                                    child: LangAndPdf(lang: 'English',page: PRS1E(),
+                                    pdfURL: prm2ModelData.pdf,
+                                    pr1: true,
+                                    )),
                                   SizedBox(height:0.0169*_width),
                      Container(
                        height: 0.02232*_height,

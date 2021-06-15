@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class GalleryOnePhoto extends StatelessWidget {
@@ -28,7 +29,28 @@ class GalleryOnePhoto extends StatelessWidget {
             width: 0.816425*_width,
                 decoration: BoxDecoration(
                  borderRadius: BorderRadius.all(Radius.circular(15) ),),
-          child:Image.network(imageURL),
+          child:
+CachedNetworkImage(
+        placeholder: (context, url) => Center(
+      child: SizedBox(
+        width: 30,
+        height: 30,
+        child: CircularProgressIndicator(
+        )),
+    ),
+    imageUrl:  imageURL ,
+    
+    errorWidget: (___, _, __) {
+                return  Container(
+                        width:  0.252232*_height,
+                        height: 0.816425*_width,
+                        child: Image.asset(
+                          'assets/images/No-Image.png',
+                          // fit: BoxFit.cover
+                          ),
+                );
+              },
+  ), 
           ),
           ],
           

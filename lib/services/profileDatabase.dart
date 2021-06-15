@@ -56,9 +56,8 @@ final String uid;
   Stream<ChildInfoModel> get childData {
     return childInfo.doc(uid).snapshots().map(_childDataFromSnapshot);
   }
-
-  ChildInfoModel _childDataFromSnapshot(DocumentSnapshot snapshot) {
-    return ChildInfoModel(
+ChildInfoModel _childDataFromSnapshot(DocumentSnapshot snapshot) {
+            return ChildInfoModel(
       uid: snapshot.get("uid"),
         age: snapshot.get("age"),
         birthday: snapshot.get("birthday"),
@@ -69,7 +68,8 @@ final String uid;
         gender: snapshot.get("gender"),
         reportType: snapshot.get("reportType"),
     );
-  }
+}
+ 
   Future updateUserData({String name, String age, String photourl,String gender,String  birthday,String  email,String  nationality,int  reportType ,String uid }) async {
     await childInfo.doc(uid).set(
       {"name": name,

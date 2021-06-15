@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:saryacademy/models/dateProvider.dart';
 import 'package:saryacademy/services/adminServices/adminAlertDatbase.dart'; 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'models/EditEvent.dart';
 import 'models/adminMode.dart';
 import 'models/alertModel.dart';
 import 'models/childUID.dart';
+import 'models/isEmpty.dart';
 import 'models/profileInfoModels/parentInfoModel.dart';
 import 'screens/adminScreens/adminHomePage/adminHomePage.dart';
 import 'services/PRM2Database.dart';
@@ -84,6 +86,9 @@ Future myFuture;
     } else if (!isAdmin.isAdmin) {
       return MultiProvider(
               providers: [
+        ChangeNotifierProvider<IsEmptyModel>(
+          create: (context) => IsEmptyModel(),
+        ),
 StreamProvider<List<GalleryModel>>.value(
       value: GalleryDataBaseServices(uid: user.id).galleryCardsData,
        initialData: [], 
@@ -216,6 +221,11 @@ StreamProvider<List<GalleryModel>>.value(
         ChangeNotifierProvider<DateProvider>(
           create: (context) => DateProvider(),
         ),
+
+        ChangeNotifierProvider<EditEvent>(
+          create: (context) => EditEvent(),
+        ),
+        
 StreamProvider<List<AlertModel>>.value(
       value: AdminAlertDataBaseServices().alertsCardsData,
        initialData: [], 

@@ -6,7 +6,7 @@ import '../../../shared/backArrowBotton.dart';
 import '../../../const.dart';
 import 'addNewGallery.dart';
 import 'adminGalleryCard.dart';
-import 'galleryItemsList.dart';
+import '../../../models/galleryItemsList.dart';
 
 class ChildGalleries extends StatelessWidget {
   @override

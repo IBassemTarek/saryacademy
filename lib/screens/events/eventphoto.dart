@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class EventPhoto extends StatelessWidget {
@@ -18,33 +19,39 @@ class EventPhoto extends StatelessWidget {
               width: 1.5,
               color: Color(0xffBCBCBC),
             ),
-            shape: BoxShape.circle,
-            image: DecorationImage(
-                image: NetworkImage(photourl), fit: BoxFit.fill)));
-    // return  Container(
-    //   width: _height*sizedRatio,
-    //   height: _height*sizedRatio,
-    //   decoration: new BoxDecoration(
-    //     // border: Border.all(
-    //     //   width: 1.5,
-    //     //   color: Color(0xffBCBCBC),
-    //     // ),
-    //     shape: BoxShape.circle,
-    //     // color: Colors.black,
-    // ),
-
-    //   child:CachedNetworkImage(
-    //     fit: BoxFit.fill,
-    //   placeholder: (context, url) => CircularProgressIndicator(),
-    //   imageUrl: photourl,
-    //   errorWidget: (___, _, __) {
-    //           return  Image.asset(
-    //             'assets/images/No-Image.png',
-    //             height: _height*sizedRatio,
-    //             width: _height*sizedRatio,
-    //             fit: BoxFit.fill,);
-    //         },
-    // ),
-    //   );
+            shape: BoxShape.circle, 
+                
+                ),
+                child: CircleAvatar(
+      backgroundColor: Color(0xffEEEEEE),
+    radius: 18,
+    child: ClipOval(
+        child: CachedNetworkImage(
+          fit: BoxFit.fill,
+                        placeholder: (context, url) => Center(
+      child: SizedBox(
+        width: 30,
+        height: 30,
+        child: CircularProgressIndicator(
+        )),
+    ),
+        width: _height * sizedRatio,
+        height: _height * sizedRatio,
+    imageUrl:  photourl,
+    errorWidget: (___, _, __) {
+                return  Container(
+                        width: _height*sizedRatio,
+                        height: _height*sizedRatio,
+                        child: Image.asset(
+                          'assets/images/No-Image.png',
+                          fit: BoxFit.cover),
+                );
+              },
+   
+)
+    ),
+)
+                ,);
   }
 }
+ 
