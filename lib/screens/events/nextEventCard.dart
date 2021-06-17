@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/eventModel.dart';
 import 'package:intl/intl.dart';
+
+
+import '../../../models/eventModel.dart';
+
 
 import '../../const.dart';
 class NextEventCard extends StatelessWidget {

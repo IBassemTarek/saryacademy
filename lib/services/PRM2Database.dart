@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:saryacademy/models/progressReportModel2.dart';
+
+
+import '../../../models/progressReportModel2.dart';
 
 
 class PRM2DataBaseServices {
@@ -7,9 +9,112 @@ class PRM2DataBaseServices {
   final CollectionReference prMounth1 = FirebaseFirestore.instance.collection('PRMounth1');
   final CollectionReference prMounth2 = FirebaseFirestore.instance.collection('PRMounth2');
   final CollectionReference prMounth3 = FirebaseFirestore.instance.collection('PRMounth3');
-
+  Future deleteprm2() {
+    return prm2.doc(uid).delete();
+  }
+  Future deleteprMounth1() {
+    return prMounth1.doc(uid).delete();
+  }
+  Future deleteprMounth2() {
+    return prMounth2.doc(uid).delete();
+  }
+  Future deleteprMounth3() {
+    return prMounth3.doc(uid).delete();
+  }
 final String uid;
-  PRM2DataBaseServices({this.uid});
+  PRM2DataBaseServices({this.uid}); 
+   void initprMounth1({List personalDevelopment, List physicalDevelopment, List socialSkills }) async { 
+    var a = await prMounth1.doc(uid).get(); 
+    if (a.exists) 
+    await prMounth1.doc(uid).update(
+      {"personalDevelopment": personalDevelopment,
+       "physicalDevelopment": physicalDevelopment,
+        "socialSkills":socialSkills, 
+        });
+else {
+      final DocumentReference documentReference = prMounth1.doc(uid);
+      return await documentReference.set({
+     "personalDevelopment": personalDevelopment,
+       "physicalDevelopment": physicalDevelopment,
+        "socialSkills":socialSkills,
+      });
+  }
+ 
+  }
+
+
+   void initprMounth2({List personalDevelopment, List physicalDevelopment, List socialSkills }) async { 
+    var a = await prMounth2.doc(uid).get(); 
+    if (a.exists) 
+    await prMounth2.doc(uid).update(
+      {"personalDevelopment": personalDevelopment,
+       "physicalDevelopment": physicalDevelopment,
+        "socialSkills":socialSkills, 
+        });
+else {
+      final DocumentReference documentReference = prMounth2.doc(uid);
+      return await documentReference.set({
+     "personalDevelopment": personalDevelopment,
+       "physicalDevelopment": physicalDevelopment,
+        "socialSkills":socialSkills,
+      });
+  }
+ 
+  }
+
+
+   void initprMounth3({List personalDevelopment, List physicalDevelopment, List socialSkills }) async { 
+    var a = await prMounth3.doc(uid).get(); 
+    if (a.exists) 
+    await prMounth3.doc(uid).update(
+      {"personalDevelopment": personalDevelopment,
+       "physicalDevelopment": physicalDevelopment,
+        "socialSkills":socialSkills, 
+        });
+else {
+      final DocumentReference documentReference = prMounth3.doc(uid);
+      return await documentReference.set({
+     "personalDevelopment": personalDevelopment,
+       "physicalDevelopment": physicalDevelopment,
+        "socialSkills":socialSkills,
+      });
+  }
+ 
+  }
+
+
+
+ void initprm2({String studentNameA, String studentNameE, String month1E,String month2E,String  month3E,String  month1A,String  month2A,
+ String  month3A ,String pdf  }) async { 
+    var a = await prm2.doc(uid).get();  
+    if (a.exists) 
+    await prm2.doc(uid).update(
+      {"studentNameA": studentNameA,
+       "studentNameE": studentNameE,
+        "month1E":month1E,
+       "month2E":month2E,
+       "month3E":month3E,
+        "month1A":month1A,
+        "month2A":month2A,
+        "month3A":month3A,
+        "pdf":pdf, 
+        });
+else {
+      final DocumentReference documentReference = prm2.doc(uid);
+      return await documentReference.set({
+     "studentNameA": studentNameA,
+       "studentNameE": studentNameE,
+        "month1E":month1E,
+       "month2E":month2E,
+       "month3E":month3E,
+        "month1A":month1A,
+        "month2A":month2A,
+        "month3A":month3A,
+        "pdf":pdf, 
+      });
+  }
+ 
+  }
 
    Future updatepdf ({String pdf}) async {
   return await prm2.doc(uid).update(

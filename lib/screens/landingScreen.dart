@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/const.dart';
-import 'package:saryacademy/shared/pageRouteAnimation.dart';
-// import 'package:saryacademy/screens/wrapper.dart';
-import 'package:saryacademy/screens/signIn/signin.dart';
+
+
+import '../../../const.dart';
+import '../../../shared/pageRouteAnimation.dart';
+// import '../../../screens/wrapper.dart';
+import '../../../screens/signIn/signin.dart';
 
 class LandingScreen extends StatelessWidget {
   @override

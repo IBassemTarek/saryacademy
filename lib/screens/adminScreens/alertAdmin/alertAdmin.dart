@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/alertModel.dart';
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import '../../../shared/alertchecker.dart'; 
 
+
+import '../../../models/alertModel.dart';
+import '../../../shared/backArrowBotton.dart';
+import '../../../shared/alertchecker.dart'; 
 import '../../../const.dart';
 
 class AlertAdmin extends StatelessWidget {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/services/PRM3Database.dart';
-import 'package:saryacademy/shared/alertchecker.dart';
 
+
+import '../../../services/PRM3Database.dart';
+import '../../../shared/alertchecker.dart';
 import '../../../models/progressReportModel3.dart';
 import '../../../screens/PRS1/mounthAlert.dart';
 import '../../../screens/PRS1/nameAlert.dart';
@@ -77,13 +78,16 @@ class AdminPRS2  extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${prm3ModelData.studentNameE}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
+      Container(
+        width: 80,
+        child: FittedBox(
+                          child: Text("${prm3ModelData.studentNameE}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)))),
                       SizedBox(width: 5,),
                       InkWell(
                         onTap: (){
                           showDialog(
                           context: context,
-                          builder: (BuildContext context) => NameAlert(),
+                          builder: (BuildContext context) => NameAlert(reportType: 3,),
                           );
                         },
                         child: Icon(Icons.edit,size: 15,color: kbackgroundColor.withOpacity(1),)),

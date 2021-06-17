@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
-import 'package:saryacademy/screens/adminScreens/adminToddlerReport/smallTextField.dart';
-import 'package:saryacademy/screens/adminScreens/childprofile/saveBotton.dart'; 
-import 'package:saryacademy/services/PRM3Database.dart';
+
+
+import '../../../models/childUID.dart';
+import '../../../screens/adminScreens/adminToddlerReport/smallTextField.dart';
+import '../../../screens/adminScreens/childprofile/saveBotton.dart'; 
+import '../../../services/PRM3Database.dart';
 
 // ignore: must_be_immutable
 class MounthAlert extends StatelessWidget { 

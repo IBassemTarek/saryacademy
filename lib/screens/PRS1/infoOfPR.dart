@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/screens/PRS1/skillScore.dart';
 
+
+import '../../../screens/PRS1/skillScore.dart';
 import '../../const.dart';
 
 class PRInfo extends StatelessWidget {

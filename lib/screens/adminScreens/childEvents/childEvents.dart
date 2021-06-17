@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/eventModel.dart';
-import 'package:saryacademy/shared/alertchecker.dart';
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/loading.dart';
+
+
+import '../../../models/eventModel.dart';
+import '../../../shared/alertchecker.dart';
+import '../../../shared/backArrowBotton.dart';
+import '../../../shared/loading.dart';
 import '../../../const.dart';
 import 'addNewEvent.dart';
 import 'adminEventCard.dart';

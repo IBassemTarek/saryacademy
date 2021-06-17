@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:saryacademy/shared/pageRouteAnimation.dart';
+
+
+import '../../../shared/pageRouteAnimation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../const.dart';

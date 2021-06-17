@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/screens/PRS1/mounthAlert.dart';
-import 'package:saryacademy/screens/PRS1/nameAlert.dart';
-import 'package:saryacademy/shared/alertchecker.dart';
 
 
+import '../../../screens/PRS1/mounthAlert.dart';
+import '../../../screens/PRS1/nameAlert.dart';
+import '../../../shared/alertchecker.dart';
 import '../../../models/childUID.dart';
 import '../../../models/progressReportModel2.dart'; 
 import '../../../screens/PRS1/gradeLable.dart';
@@ -84,7 +84,7 @@ class AdminPRS1  extends StatelessWidget {
                         onTap: (){
                           showDialog(
                           context: context,
-                          builder: (BuildContext context) => NameAlert(),
+                          builder: (BuildContext context) => NameAlert(reportType: 2,),
                           );
                         },
                         child: Icon(Icons.edit,size: 15,color: kbackgroundColor.withOpacity(1),)),

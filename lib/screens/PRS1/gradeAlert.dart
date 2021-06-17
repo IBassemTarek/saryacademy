@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/screens/PRS1/progressReportOption.dart';
 
+import '../../../screens/PRS1/progressReportOption.dart';
 import '../../const.dart';
 
 class GradeAlert extends StatelessWidget {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/progressReportModel1.dart';
-
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/bottombar.dart';
-import 'package:saryacademy/shared/loading.dart';
-import 'package:saryacademy/shared/pageRouteAnimation.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../models/progressReportModel1.dart';
+import '../../../shared/backArrowBotton.dart';
+import '../../../shared/bottombar.dart';
+import '../../../shared/loading.dart';
+import '../../../shared/pageRouteAnimation.dart';
 import '../../const.dart';
 import 'ToddlerReportE.dart';
 import 'checkIcon.dart';

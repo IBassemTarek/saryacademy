@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
-import 'package:saryacademy/screens/adminScreens/adminToddlerReport/smallTextField.dart';
-import 'package:saryacademy/screens/adminScreens/childprofile/saveBotton.dart'; 
-import 'package:saryacademy/services/PRM3Database.dart';
+
+
+import '../../../models/childUID.dart';
+import '../../../screens/adminScreens/adminToddlerReport/smallTextField.dart';
+import '../../../screens/adminScreens/childprofile/saveBotton.dart';
+import '../../../services/PRM2Database.dart'; 
+import '../../../services/PRM3Database.dart';
+import '../../../services/toddlerPRDatabase.dart';
 
 // ignore: must_be_immutable
 class NameAlert extends StatelessWidget { 
     String nameA;
     String nameE;
+    final int reportType;
+    NameAlert({this.reportType});
   @override
   Widget build(BuildContext context) { 
     final uid = Provider.of<ChildModel>(context).uid;
@@ -51,8 +57,23 @@ class NameAlert extends StatelessWidget {
                   content: Text("please enter you data again"),
             ));
               else {
+                if (reportType ==1)
+                {
+                  print('1');
+                  ToddlerPRDataBaseServices(uid: uid).updateprNameE(name: nameE);
+                }
+                else if (reportType ==2)
+                {
+                  print('2');
+                PRM2DataBaseServices(uid: uid).updateprNameA(name:nameA );
+                PRM2DataBaseServices(uid: uid).updateprNameE(name:nameE );
+                }
+                else if (reportType ==3)
+                {
                 PRM3DataBaseServices(uid: uid).updateprNameA(name:nameA );
                 PRM3DataBaseServices(uid: uid).updateprNameE(name:nameE );
+                }
+
               }
              Navigator.of(context).pop();
             },

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
-import 'package:saryacademy/models/profileInfoModels/parentInfoModel.dart';
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/bottombar.dart';
-import 'package:saryacademy/shared/infoTable.dart';
-import 'package:saryacademy/shared/loading.dart';
-import 'package:saryacademy/shared/profilePhoto.dart';
-import 'package:saryacademy/shared/signOut.dart';
-import 'package:saryacademy/shared/statusInfo.dart';
+
+
+import '../../../models/profileInfoModels/childInfoModel.dart';
+import '../../../models/profileInfoModels/parentInfoModel.dart';
+import '../../../shared/backArrowBotton.dart';
+import '../../../shared/bottombar.dart';
+import '../../../shared/infoTable.dart';
+import '../../../shared/loading.dart';
+import '../../../shared/profilePhoto.dart';
+import '../../../shared/signOut.dart';
+import '../../../shared/statusInfo.dart';
 import '../const.dart';
 import '../shared/titleCard.dart';
 class Profile extends StatelessWidget {

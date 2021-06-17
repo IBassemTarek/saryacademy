@@ -1,17 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/galleryModel.dart';
-import 'package:saryacademy/models/isEmpty.dart';
+
+
+import '../../../models/galleryModel.dart';
+import '../../../models/isEmpty.dart';
 
 
 class GalleryDataBaseServices {
   final CollectionReference galleryCard = FirebaseFirestore.instance.collection('GalleryCard');
 
- 
+   Future deletegalleryCard() {
+    return galleryCard.doc(uid).delete();
+  } 
 
 final String uid;
   GalleryDataBaseServices({this.uid});
+
+
+    void initGalleryCard({List imagesURL, String eventName  }) async { 
+      final DocumentReference documentReference = galleryCard.doc(uid).collection("ListOfGalleryCard").doc();
+      return await documentReference.set({
+     "eventName": eventName, 
+       "imagesURL":imagesURL,
+       "id":eventName, 
+      });
+  } 
 
   Future checkIfEmpty({BuildContext context}) async {
     final isEmpty = Provider.of<IsEmptyModel>(context);

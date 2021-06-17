@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/progressReportModel2.dart';
-import 'package:saryacademy/screens/PRS1/PRS1A.dart'; 
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/bottombar.dart';
-import 'package:saryacademy/shared/loading.dart';
 
+
+import '../../../models/progressReportModel2.dart';
+import '../../../screens/PRS1/PRS1A.dart'; 
+import '../../../shared/backArrowBotton.dart';
+import '../../../shared/bottombar.dart';
+import '../../../shared/loading.dart';
 import '../../const.dart';
 import 'gradeLable.dart';
 import 'infoOfPR.dart';

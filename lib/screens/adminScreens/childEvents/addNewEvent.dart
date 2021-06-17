@@ -3,8 +3,8 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart'; 
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:saryacademy/models/EditEvent.dart'; 
 
+import '../../../models/EditEvent.dart'; 
 import '../../../models/childUID.dart';
 import '../../../models/dateProvider.dart';
 import '../../../services/eventsDatabase.dart';

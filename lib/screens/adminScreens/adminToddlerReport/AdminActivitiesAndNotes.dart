@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
-import 'package:saryacademy/services/toddlerPRDatabase.dart';
 
+import '../../../models/childUID.dart';
+import '../../../services/toddlerPRDatabase.dart';
 import '../../../const.dart';
 
 
@@ -51,10 +51,11 @@ class AdminNotesAndActivities extends StatelessWidget {
                                                 Container( 
                                                   height: 18,
                                                   width: 200,
-                                                  child: TextField(
+                                                  child: TextFormField(
+                                                    initialValue: content[i],
                                                     maxLines:1,
                                                     style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.blue[300], fontSize: 12 ),
-                                                    controller: (content[i]!=null)?(TextEditingController()..text = content[i]):(TextEditingController()..text = ""), 
+                                                    // controller: (content[i]!=null)?(TextEditingController()..text = content[i]):(TextEditingController()..text = ""), 
                                                     onChanged: (value){
                                                      print(value);
                                                      content[i]= value;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/eventModel.dart';
-import 'package:saryacademy/screens/events/eventphoto.dart';
 import 'package:intl/intl.dart';
 
+import '../../../models/eventModel.dart';
+import '../../../screens/events/eventphoto.dart';
 import '../../const.dart';
 class EventCardWidget extends StatelessWidget {
   final int index;

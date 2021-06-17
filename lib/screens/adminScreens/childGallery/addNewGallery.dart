@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/services/galleryDatabase.dart';
+
+
+import '../../../services/galleryDatabase.dart';
 import '../../../models/childUID.dart';
 import '../../../shared/adminCustomTextField.dart';
 import '../../../shared/titleTextField.dart';

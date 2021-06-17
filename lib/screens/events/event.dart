@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/eventModel.dart';
-import 'package:saryacademy/models/isEmpty.dart';
-import 'package:saryacademy/services/eventsDatabase.dart';
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/bottombar.dart';
-import 'package:saryacademy/shared/loading.dart';
+
+
+import '../../../models/eventModel.dart';
+import '../../../models/isEmpty.dart';
+import '../../../services/eventsDatabase.dart';
+import '../../../shared/backArrowBotton.dart';
+import '../../../shared/bottombar.dart';
+import '../../../shared/loading.dart';
 import '../../const.dart';
 import 'EventCard.dart';
 import 'nextEventCard.dart';

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/galleryModel.dart';
-import 'package:saryacademy/models/isEmpty.dart';
-import 'package:saryacademy/services/galleryDatabase.dart';
-import 'package:saryacademy/shared/backArrowBotton.dart';
-import 'package:saryacademy/shared/bottombar.dart';
-import 'package:saryacademy/shared/loading.dart';
 
+
+import '../../../models/galleryModel.dart';
+import '../../../models/isEmpty.dart';
+import '../../../services/galleryDatabase.dart';
+import '../../../shared/backArrowBotton.dart';
+import '../../../shared/bottombar.dart';
+import '../../../shared/loading.dart';
 import '../../const.dart';
 import 'galleryOnephoto.dart';
 import 'galleryTwophotos.dart';

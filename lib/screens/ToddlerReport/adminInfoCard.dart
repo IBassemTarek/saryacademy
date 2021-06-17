@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
-import 'package:saryacademy/services/toddlerPRDatabase.dart';
+
+
+import '../../../models/childUID.dart';
+import '../../../services/toddlerPRDatabase.dart';
 import '../../const.dart';
 import 'checkIcon.dart';
 class AdminInfoCard extends StatelessWidget {

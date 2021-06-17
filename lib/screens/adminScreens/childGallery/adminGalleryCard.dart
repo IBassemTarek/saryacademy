@@ -2,8 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:saryacademy/services/galleryDatabase.dart';
 
+
+import '../../../services/galleryDatabase.dart';
 import '../../../models/childUID.dart';
 import '../../../const.dart';
 import '../../../models/galleryModel.dart';

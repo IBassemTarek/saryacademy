@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:saryacademy/const.dart';
-import 'package:saryacademy/models/adminMode.dart';
-import 'package:saryacademy/models/user.dart';
-import 'package:saryacademy/models/modalprogrsshub.dart';
-import 'package:saryacademy/screens/adminScreens/adminHomePage/adminHomePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+
+
+import '../../../const.dart';
+import '../../../models/adminMode.dart';
+import '../../../models/user.dart';
+import '../../../models/modalprogrsshub.dart';
+import '../../../screens/adminScreens/adminHomePage/adminHomePage.dart';
 import '../../shared/pageRouteAnimation.dart';
 import '../home/home.dart';
 import 'customTextField.dart';
 import '../../services/auth.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class SignIn extends StatelessWidget {

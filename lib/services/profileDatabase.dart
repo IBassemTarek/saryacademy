@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:saryacademy/models/profileInfoModels/absenceModel.dart';
-import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
-import 'package:saryacademy/models/profileInfoModels/medicalHistoryModel.dart';
-import 'package:saryacademy/models/profileInfoModels/parentInfoModel.dart';
-import 'package:saryacademy/models/profileInfoModels/vaccinationModel.dart';
+
+
+import '../../../models/profileInfoModels/absenceModel.dart';
+import '../../../models/profileInfoModels/childInfoModel.dart';
+import '../../../models/profileInfoModels/medicalHistoryModel.dart';
+import '../../../models/profileInfoModels/parentInfoModel.dart';
+import '../../../models/profileInfoModels/vaccinationModel.dart';
 
 class ProfileDataBaseServices {
   final CollectionReference absenceCard = FirebaseFirestore.instance.collection('AbsenceCard');
@@ -11,19 +13,109 @@ class ProfileDataBaseServices {
   final CollectionReference vaccinationCard = FirebaseFirestore.instance.collection('Vaccinations');
   final CollectionReference childInfo = FirebaseFirestore.instance.collection('childInfo');
   final CollectionReference parentInfo = FirebaseFirestore.instance.collection('parentInfo');
+final String uid;
+  ProfileDataBaseServices({this.uid});
 
+  Future deleteParent() {
+    return parentInfo.doc(uid).delete();
+  }
 
- void initProfile() async {
-    await absenceCard.doc(uid).collection("ListOfAbsenceCard").get();
-    await medicalHistoryCard.doc(uid).collection("ListOfmedicalHistoryCard").get();
-    await vaccinationCard.doc(uid).collection("ListOfVaccinationCard").get();
-    await childInfo.doc(uid).get();
-    await parentInfo.doc(uid).get();
+  Future deleteChild() {
+    return childInfo.doc(uid).delete();
+  }
+  Future deletevaccinationCard() {
+    return vaccinationCard.doc(uid).delete();
+  }
+  Future deletemedicalHistoryCard() {
+    return medicalHistoryCard.doc(uid).delete();
+  }
+  Future deleteabsenceCard() {
+    return absenceCard.doc(uid).delete();
+  }
+
+ void initChildInfo({String name, String age, String photourl,String gender,String  birthday,String  email,String  nationality,int  reportType }) async { 
+    var a = await childInfo.doc(uid).get(); 
+    if (a.exists) 
+    await childInfo.doc(uid).update(
+      {"name": name,
+       "age": age,
+        "birthday":birthday,
+       "email":email,
+       "nationality":nationality,
+        "photourl":photourl,
+        "gender":gender,
+        "reportType":reportType,
+        "uid":uid
+        });
+else {
+      final DocumentReference documentReference = childInfo.doc(uid);
+      return await documentReference.set({
+     "name": name,
+       "age": age,
+        "birthday":birthday,
+       "email":email,
+       "nationality":nationality,
+        "photourl":photourl,
+        "gender":gender,
+        "reportType":reportType,
+        "uid":uid
+      });
+  }
+ 
+  }
+ 
+   void initParentInfo({String fatherOcc, String matherOcc, String address,String phone   }) async { 
+    var a = await parentInfo.doc(uid).get(); 
+    if (a.exists) 
+    await parentInfo.doc(uid).update(
+      {"father's occupation": fatherOcc,
+       "Mather's occupation": matherOcc,
+        "address":address,
+       "phone":phone,
+        });
+else {
+      final DocumentReference documentReference = parentInfo.doc(uid);
+      return await documentReference.set({
+     "father's occupation": fatherOcc,
+       "Mather's occupation": matherOcc,
+        "address":address,
+       "phone":phone,
+      });
+  }
+ 
+  } 
+   void initMedicalInfo({String note, String symptom  }) async { 
+      final DocumentReference documentReference = medicalHistoryCard.doc(uid).collection("ListOfmedicalHistoryCard").doc();
+      return await documentReference.set({
+     "note": note, 
+       "symptom":symptom,
+      });
+  
+ 
+  } 
+
+   void initVaccinationInfo({String vaccination, String date  }) async { 
+      final DocumentReference documentReference = vaccinationCard.doc(uid).collection("ListOfVaccinationCard").doc();
+      return await documentReference.set({
+     "date": date, 
+       "vaccination":vaccination,
+      });
+  
+ 
+  } 
+   void initAbsenceInfo({String month, String days  }) async { 
+ 
+      final DocumentReference documentReference = absenceCard.doc(uid).collection("ListOfAbsenceCard").doc();
+      return await documentReference.set({
+     "days": days, 
+       "month":month,
+      });
+   
+ 
   }
 
 
-final String uid;
-  ProfileDataBaseServices({this.uid});
+
 
 
     //convert snapshot to list

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
-import 'package:saryacademy/screens/adminScreens/PRS1/adminPRS1.dart';
-import 'package:saryacademy/screens/adminScreens/PRS2/adminPRS2.dart';
-import 'package:saryacademy/screens/adminScreens/adminToddlerReport/adminToddlerReport.dart';
-import 'package:saryacademy/screens/adminScreens/alertAdmin/alertAdmin.dart';
-import 'package:saryacademy/screens/adminScreens/childEvents/childEvents.dart';
-import 'package:saryacademy/screens/adminScreens/childGallery/childGallery.dart';
-import 'package:saryacademy/screens/adminScreens/childprofile/childProfile.dart';
-import 'package:saryacademy/shared/alertchecker.dart';
-import 'package:saryacademy/shared/loading.dart';
-import 'package:saryacademy/shared/pageRouteAnimation.dart';
+
+
+import '../../../models/profileInfoModels/childInfoModel.dart';
+import '../../../screens/adminScreens/PRS1/adminPRS1.dart';
+import '../../../screens/adminScreens/PRS2/adminPRS2.dart';
+import '../../../screens/adminScreens/adminToddlerReport/adminToddlerReport.dart';
+import '../../../screens/adminScreens/alertAdmin/alertAdmin.dart';
+import '../../../screens/adminScreens/childEvents/childEvents.dart';
+import '../../../screens/adminScreens/childGallery/childGallery.dart';
+import '../../../screens/adminScreens/childprofile/childProfile.dart';
+import '../../../shared/alertchecker.dart';
+import '../../../shared/loading.dart';
+import '../../../shared/pageRouteAnimation.dart';
 
 
 import '../../../const.dart';

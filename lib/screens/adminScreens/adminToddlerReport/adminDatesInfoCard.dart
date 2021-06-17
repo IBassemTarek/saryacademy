@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
-import 'package:saryacademy/services/toddlerPRDatabase.dart';
+
+import '../../../models/childUID.dart';
+import '../../../services/toddlerPRDatabase.dart';
 import '../../../const.dart';
 import '../../ToddlerReport/checkIcon.dart';
 class AdminDatesInfoCard extends StatelessWidget {
@@ -43,10 +44,11 @@ class AdminDatesInfoCard extends StatelessWidget {
                                                 Container(
                                                   height: 12,
                                                   width: 55,
-                                                  child: TextField(
+                                                  child: TextFormField(
+                                                    initialValue: description[i],
                                                     maxLines:1,
                                                     style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.blue[300], fontSize: 12 ),
-                                                    controller: (description[i]!=null)?(TextEditingController()..text = description[i]):(TextEditingController()..text = ""), 
+                                                    // controller: (description[i]!=null)?(TextEditingController()..text = description[i]):(TextEditingController()..text = ""), 
                                                     onChanged: (value){
                                                      print(value);
                                                      description[i]= value;

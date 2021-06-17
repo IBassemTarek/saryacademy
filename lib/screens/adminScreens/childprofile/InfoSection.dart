@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:saryacademy/shared/adminCustomTextField.dart';
-import 'package:saryacademy/shared/reportTitleCard.dart';
+
+
+import '../../../shared/adminCustomTextField.dart';
+import '../../../shared/reportTitleCard.dart';
 
 class InfoSection extends StatelessWidget {
   final String title;

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/profileInfoModels/absenceModel.dart';
-import 'package:saryacademy/models/profileInfoModels/medicalHistoryModel.dart';
-import 'package:saryacademy/models/profileInfoModels/vaccinationModel.dart';
-import 'package:saryacademy/shared/cardOfInfo.dart';
+
+
+import '../../../models/profileInfoModels/absenceModel.dart';
+import '../../../models/profileInfoModels/medicalHistoryModel.dart';
+import '../../../models/profileInfoModels/vaccinationModel.dart';
+import '../../../shared/cardOfInfo.dart';
 
 class StatusInfoSction extends StatelessWidget {
   final String title;

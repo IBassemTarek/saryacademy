@@ -1,17 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/eventModel.dart';
-import 'package:saryacademy/models/isEmpty.dart';
+
+
+import '../../../models/eventModel.dart';
+import '../../../models/isEmpty.dart';
 
 class EventDataBaseServices {
   final CollectionReference eventCard = FirebaseFirestore.instance.collection('EventCard');
 
-
+  Future deleteeventCard() {
+    return eventCard.doc(uid).delete();
+  } 
 final String uid;
   EventDataBaseServices({this.uid});
-
- 
+          
+    void initeventCard({String imageURL, String text , Timestamp date , String title  }) async { 
+      final DocumentReference documentReference = eventCard.doc(uid).collection("ListOfEventCard").doc();
+      return await documentReference.set({
+     "imageURL": imageURL, 
+       "text":text,
+       "date":date,
+       "title":title, 
+       'id': title,
+      });
+  } 
     //convert snapshot to list
   List<EventCard> _eventCardListSnapShot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
@@ -20,7 +33,8 @@ final String uid;
           imageURL: doc.get("imageURL"),
           text: doc.get("text"),
           date: doc.get("date"), 
-          title: doc.get("title"),); 
+          title: doc.get("title")
+          ,); 
     }).toList();
   }
 
@@ -45,12 +59,7 @@ final String uid;
     }
     
 
-  }
-
-
-  void initEvents() async {
-    await eventCard.doc(uid).collection("ListOfEventCard").get();
-  }
+  } 
 
   Future updateEventData({Timestamp date, String text, String  title,  String  imageURL,String id, BuildContext context} ) async {
     return await eventCard.doc(uid).collection("ListOfEventCard").doc(id).update(

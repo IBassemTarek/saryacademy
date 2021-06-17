@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/dateProvider.dart';
-import 'package:saryacademy/services/adminServices/adminAlertDatbase.dart'; 
+
+
+
+import '../../../models/dateProvider.dart';
+import '../../../services/adminServices/adminAlertDatbase.dart'; 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models/EditEvent.dart';
 import 'models/adminMode.dart';

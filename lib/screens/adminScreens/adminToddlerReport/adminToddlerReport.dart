@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart'; 
-import 'package:saryacademy/models/progressReportModel1.dart';
-import 'package:saryacademy/screens/adminScreens/adminToddlerReport/AdminActivitiesAndNotes.dart';
-import 'package:saryacademy/screens/adminScreens/adminToddlerReport/adminDatesInfoCard.dart';
-import 'package:saryacademy/screens/ToddlerReport/adminInfoCard.dart';
-import 'package:saryacademy/screens/ToddlerReport/checkIcon.dart';
-import 'package:saryacademy/services/toddlerPRDatabase.dart';  
-import 'package:saryacademy/shared/alertchecker.dart';
-import 'package:saryacademy/shared/backArrowBotton.dart'; 
-import 'package:saryacademy/shared/loading.dart'; 
+
+
+import '../../../models/childUID.dart'; 
+import '../../../models/progressReportModel1.dart';
+import '../../../screens/PRS1/nameAlert.dart';
+import '../../../screens/adminScreens/adminToddlerReport/AdminActivitiesAndNotes.dart';
+import '../../../screens/adminScreens/adminToddlerReport/adminDatesInfoCard.dart';
+import '../../../screens/ToddlerReport/adminInfoCard.dart';
+import '../../../screens/ToddlerReport/checkIcon.dart';
+import '../../../services/toddlerPRDatabase.dart';  
+import '../../../shared/alertchecker.dart';
+import '../../../shared/backArrowBotton.dart'; 
+import '../../../shared/loading.dart'; 
 import '../../../const.dart';
 import 'smallTextField.dart'; 
 class AdminToddlerReport extends StatelessWidget {
@@ -69,7 +72,24 @@ class AdminToddlerReport extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text("${prm1ModelData.childName}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+      Container(
+        width: 0.3771*_width,
+        child: FittedBox(
+                        child: Text("${prm1ModelData.childName}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)))),
+                      SizedBox(width: 5,),
+                      InkWell(
+                        onTap: (){
+                          showDialog(
+                          context: context,
+                          builder: (BuildContext context) => NameAlert(reportType: 1,),
+                          );
+                        },
+                        child: Icon(Icons.edit,size: 15,color: kbackgroundColor.withOpacity(1),)),
+                    ],
+                  ),
                     Spacer(),
                     Row(
                       children: [

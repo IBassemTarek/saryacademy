@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+
 
 import 'models/adminMode.dart';
 import 'models/childUID.dart';
@@ -9,7 +11,6 @@ import 'models/modalprogrsshub.dart';
 import 'services/auth.dart';
 import 'wrapper.dart';
 import 'models/user.dart';
-import 'package:flutter/services.dart';
 FlutterLocalNotificationsPlugin notification;
 Future<void> main() async {
 

@@ -1,22 +1,22 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
-import 'package:saryacademy/services/adminServices/childName.dart';
-import 'package:saryacademy/shared/alertchecker.dart'; 
 
+
+import '../../../models/childUID.dart';
+import '../../../services/adminServices/childName.dart'; 
+import '../../../shared/alertchecker.dart'; 
 import '../../../screens/adminScreens/childHome/childHome.dart';
 import '../../../shared/pageRouteAnimation.dart';
-
 import '../../../shared/signOut.dart';
 import '../../../const.dart';
+import 'email_and_password.dart';
 
 class AdminHomePage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
+    final _width = MediaQuery.of(context).size.width;  
     alertcheck(context:context);
     return Scaffold( 
       body: SafeArea(
@@ -37,23 +37,32 @@ class AdminHomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  width: 0.7198 * _width,
-                  height: 0.029 * _height,
+              InkWell(
+                onTap: () async{
+                  //TODO::signup 
+                  showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) => SignUpAlert(add: true,),
+                                          );
+                },
+                child: Align(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 0.038 * _width),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    color: kText1Color.withOpacity(1),
-                  ),
-                  child: Text(
-                    'Add New Child',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1
-                        .copyWith(color: Colors.white, fontSize: 18),
+                  child: Container(
+                    width: 0.7198 * _width,
+                    height: 0.029 * _height,
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(left: 0.038 * _width),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: kText1Color.withOpacity(1),
+                    ),
+                    child: Text(
+                      'Add New Child',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          .copyWith(color: Colors.white, fontSize: 18),
+                    ),
                   ),
                 ),
               ),
@@ -97,6 +106,13 @@ class AdminHomePage extends StatelessWidget {
                         ),
                         Spacer(),
                         InkWell(
+                          onTap: () async {
+                              // deleteUser
+                                showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) => SignUpAlert(add:false),
+                                );
+                          },
                           child: Icon(Icons.person_remove_alt_1,
                               size: 0.0486 * _width,
                               color: kGreyColor.withOpacity(1)),

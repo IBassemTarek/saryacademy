@@ -1,16 +1,72 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:saryacademy/models/progressReportModel1.dart';
+
+
+import '../../../models/progressReportModel1.dart';
 
 
 class ToddlerPRDataBaseServices {
   final CollectionReference toddlerPR = FirebaseFirestore.instance.collection('toddlerPR');
 
-
+  Future deletetoddlerPR() {
+    return toddlerPR.doc(uid).delete();
+  }
 final String uid;
   ToddlerPRDataBaseServices({this.uid});
+     String  childName;
+     String  dateE;
+     String dateA;
+     bool  presence;
+     int  mood;  // 0) :)             1) :(                    2)  :|
+     String pdf;
+     List naps; /////////////////////////////
+     List meals; //0- Breakfast 1-lunch   
+     List fluid; // 0- Liquid 1- fluidBottle 
+     List diaper;
+     List restroom; // 0- Potty  1- Toilet
+     List clothes;
+     List activities;
+     List notes;
+  void initToddlerReport({String childName,String  dateE,String dateA, bool  presence,int  mood,String pdf,List naps,List meals,
+  List fluid, List diaper, List restroom, List clothes, List activities, List notes
+  }) async {
+    var a = await toddlerPR.doc(uid).get(); 
 
-  void initProfile() async {
-    await toddlerPR.doc(uid).get(); 
+    if (a.exists) 
+    await toddlerPR.doc(uid).update(
+      {"childName": childName,
+       "dateE": dateE,
+        "dateA":dateA,
+       "presence":presence,
+       "mood":mood,
+        "pdf":pdf,
+        "naps":naps,
+        "meals":meals,
+        "fluid":fluid,
+       "diaper":diaper,
+       "restroom":restroom,
+        "clothes":clothes,
+        "activities":activities,
+        "notes":notes,
+        });
+else {
+      final DocumentReference documentReference = toddlerPR.doc(uid);
+      return await documentReference.set({
+     "childName": childName,
+       "dateE": dateE,
+        "dateA":dateA,
+       "presence":presence,
+       "mood":mood,
+        "pdf":pdf,
+        "naps":naps,
+        "meals":meals,
+        "fluid":fluid,
+       "diaper":diaper,
+       "restroom":restroom,
+        "clothes":clothes,
+        "activities":activities,
+        "notes":notes,
+      });
+  }
   }
   //convert snapshot to list
   PRM1model _toddlerPRSnapShot(DocumentSnapshot snapshot) {
@@ -41,6 +97,13 @@ final String uid;
        "dateE": dateE,
         });
   }
+
+  Future updateprNameE ({String name}) async {
+  return await toddlerPR.doc(uid).update(
+      {  "childName": name
+        });
+  }
+
   Future updatePresence({bool  presence, String uid}) async {
    
    return await toddlerPR.doc(uid).update(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/shared/alertchecker.dart';
+
+
+import '../../../shared/alertchecker.dart';
 import '../../../models/galleryModel.dart';
 import '../../../shared/backArrowBotton.dart';
 import '../../../const.dart';

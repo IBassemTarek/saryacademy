@@ -1,5 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart'; 
-import 'package:saryacademy/models/alertModel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+import '../../../models/alertModel.dart';
 
 class AdminAlertDataBaseServices {
   final CollectionReference alerts = FirebaseFirestore.instance.collection('alert');

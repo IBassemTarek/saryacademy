@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
-import 'package:saryacademy/shared/loading.dart';
-import 'package:saryacademy/shared/profilePhoto.dart';
 
+
+import '../../../models/profileInfoModels/childInfoModel.dart';
+import '../../../shared/loading.dart';
+import '../../../shared/profilePhoto.dart';
 import '../../const.dart';
 
 class ProfileCard extends StatelessWidget {

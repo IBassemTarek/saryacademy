@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:saryacademy/models/childUID.dart';
-import 'package:saryacademy/screens/adminScreens/childprofile/statusInfoSection.dart';
-import 'package:saryacademy/services/profileDatabase.dart';
-import 'package:saryacademy/shared/addImpDataSection.dart';
-import 'package:saryacademy/shared/alertchecker.dart';
-import 'package:saryacademy/shared/reportTitleCard.dart';
+
+
+import '../../../models/childUID.dart';
+import '../../../screens/adminScreens/childprofile/statusInfoSection.dart';
+import '../../../services/profileDatabase.dart';
+import '../../../shared/addImpDataSection.dart';
+import '../../../shared/alertchecker.dart';
+import '../../../shared/reportTitleCard.dart';
 import '../../../const.dart';
 import 'InfoSection.dart';
 import 'customAppBar.dart';
