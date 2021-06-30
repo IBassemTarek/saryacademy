@@ -38,8 +38,7 @@ class AdminHomePage extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () async{
-                  //TODO::signup 
+                onTap: () async{ 
                   showDialog(
                                             context: context,
                                             builder: (BuildContext context) => SignUpAlert(add: true,),

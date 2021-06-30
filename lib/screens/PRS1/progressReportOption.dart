@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:saryacademy/models/progressReportModel2.dart';
 
 
 import '../../../models/childUID.dart';
@@ -28,11 +29,20 @@ final int index;
     final prMounth1Data = Provider.of<PRM3Mounth1>(context);
     final prMounth2Data = Provider.of<PRM3Mounth2>(context);
     final prMounth3Data = Provider.of<PRM3Mounth3>(context);
+    final pr2Mounth1Data = Provider.of<PRM2Mounth1>(context);
+    final pr2Mounth2Data = Provider.of<PRM2Mounth2>(context);
+    final pr2Mounth3Data = Provider.of<PRM2Mounth3>(context);
     final uid = Provider.of<ChildModel>(context).uid;
     if ( prMounth1Data.personalDevelopment == null || prMounth1Data.socialSkills == null ||
      prMounth1Data.physicalDevelopment == null || prMounth2Data.personalDevelopment == null ||
     prMounth2Data.socialSkills == null || prMounth2Data.physicalDevelopment == null || 
-    prMounth3Data.personalDevelopment == null || prMounth3Data.socialSkills == null || prMounth3Data.physicalDevelopment == null  )
+    prMounth3Data.personalDevelopment == null || prMounth3Data.socialSkills == null || prMounth3Data.physicalDevelopment == null  ||
+
+     pr2Mounth1Data.personalDevelopment == null || pr2Mounth1Data.socialSkills == null ||
+     pr2Mounth1Data.physicalDevelopment == null || pr2Mounth2Data.personalDevelopment == null ||
+    pr2Mounth2Data.socialSkills == null || pr2Mounth2Data.physicalDevelopment == null || 
+    pr2Mounth3Data.personalDevelopment == null || pr2Mounth3Data.socialSkills == null || pr2Mounth3Data.physicalDevelopment == null  )
+
     return Container();
     else
     return new InkWell(
@@ -123,6 +133,9 @@ final int index;
     final prMounth1Data = Provider.of<PRM3Mounth1>(context,listen: false);
     final prMounth2Data = Provider.of<PRM3Mounth2>(context,listen: false);
     final prMounth3Data = Provider.of<PRM3Mounth3>(context,listen: false);
+    final pr2Mounth1Data = Provider.of<PRM2Mounth1>(context,listen: false);
+    final pr2Mounth2Data = Provider.of<PRM2Mounth2>(context,listen: false);
+    final pr2Mounth3Data = Provider.of<PRM2Mounth3>(context,listen: false);
     final reportType = Provider.of<ChildInfoModel>(context,listen: false).reportType;
     print(reportType.toString() +"hello");
 
@@ -130,10 +143,10 @@ final int index;
     {
                       if (mounthNo ==1)
                      {
-                      prMounth1Data.socialSkills[index]= lableColor;
+                      (reportType==2)?pr2Mounth1Data.socialSkills[index]= lableColor:prMounth1Data.socialSkills[index]= lableColor;
                       print(prMounth1Data.socialSkills[index]);
                       (reportType==2)? PRM2DataBaseServices(uid: uid).updateprMounth1Social(
-                        listOfData: prMounth1Data.socialSkills 
+                        listOfData: pr2Mounth1Data.socialSkills 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth1Social(
                         listOfData: prMounth1Data.socialSkills 
                       );
@@ -142,10 +155,10 @@ final int index;
                      else if (mounthNo ==2)
                      {
                        print(false);
-                      prMounth2Data.socialSkills[index]= lableColor;
+                      (reportType==2)?pr2Mounth2Data.socialSkills[index]= lableColor:prMounth2Data.socialSkills[index]= lableColor;
                       print(prMounth2Data.socialSkills[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth2Social(
-                        listOfData: prMounth2Data.socialSkills 
+                        listOfData: pr2Mounth2Data.socialSkills 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth2Social(
                         listOfData: prMounth2Data.socialSkills 
                       );
@@ -153,10 +166,10 @@ final int index;
                      else if (mounthNo ==3)
                      {
                        print(true);
-                      prMounth3Data.socialSkills[index]= lableColor;
+                      (reportType==2)?pr2Mounth3Data.socialSkills[index]= lableColor:prMounth3Data.socialSkills[index]= lableColor;
                       print(prMounth3Data.socialSkills[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth3Social(
-                        listOfData: prMounth3Data.socialSkills 
+                        listOfData: pr2Mounth3Data.socialSkills 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth2Social(
                         listOfData: prMounth3Data.socialSkills 
                       );
@@ -171,15 +184,18 @@ final int index;
     final prMounth1Data = Provider.of<PRM3Mounth1>(context,listen: false);
     final prMounth2Data = Provider.of<PRM3Mounth2>(context,listen: false);
     final prMounth3Data = Provider.of<PRM3Mounth3>(context,listen: false);
+    final pr2Mounth1Data = Provider.of<PRM2Mounth1>(context,listen: false);
+    final pr2Mounth2Data = Provider.of<PRM2Mounth2>(context,listen: false);
+    final pr2Mounth3Data = Provider.of<PRM2Mounth3>(context,listen: false);
     final reportType = Provider.of<ChildInfoModel>(context,listen: false).reportType;
     if (reportType!=null && reportType<4)
     {
                       if (mounthNo ==1)
                      {
-                      prMounth1Data.physicalDevelopment[index]= lableColor;
+                      (reportType==2)?pr2Mounth1Data.physicalDevelopment[index]= lableColor:prMounth1Data.physicalDevelopment[index]= lableColor;
                       print(prMounth1Data.physicalDevelopment[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth1Physical(
-                        listOfData: prMounth1Data.physicalDevelopment 
+                        listOfData: pr2Mounth1Data.physicalDevelopment 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth1Physical(
                         listOfData: prMounth1Data.physicalDevelopment 
                       );
@@ -187,10 +203,10 @@ final int index;
                      else if (mounthNo ==2)
                      {
                        print(false);
-                      prMounth2Data.physicalDevelopment[index]= lableColor;
+                      (reportType==2)?pr2Mounth2Data.physicalDevelopment[index]= lableColor:prMounth2Data.physicalDevelopment[index]= lableColor;
                       print(prMounth2Data.physicalDevelopment[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth2Physical(
-                        listOfData: prMounth2Data.physicalDevelopment 
+                        listOfData: pr2Mounth2Data.physicalDevelopment 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth2Physical(
                         listOfData: prMounth2Data.physicalDevelopment 
                       );
@@ -198,10 +214,10 @@ final int index;
                      else if (mounthNo ==3)
                      {
                        print(true);
-                      prMounth3Data.physicalDevelopment[index]= lableColor;
+                      (reportType==2)?pr2Mounth3Data.physicalDevelopment[index]= lableColor:prMounth3Data.physicalDevelopment[index]= lableColor;
                       print(prMounth3Data.physicalDevelopment[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth3Physical(
-                        listOfData: prMounth3Data.physicalDevelopment 
+                        listOfData: pr2Mounth3Data.physicalDevelopment 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth3Physical(
                         listOfData: prMounth3Data.physicalDevelopment 
                       );
@@ -215,15 +231,18 @@ final int index;
     final prMounth1Data = Provider.of<PRM3Mounth1>(context,listen: false);
     final prMounth2Data = Provider.of<PRM3Mounth2>(context,listen: false);
     final prMounth3Data = Provider.of<PRM3Mounth3>(context,listen: false);
+    final pr2Mounth1Data = Provider.of<PRM2Mounth1>(context,listen: false);
+    final pr2Mounth2Data = Provider.of<PRM2Mounth2>(context,listen: false);
+    final pr2Mounth3Data = Provider.of<PRM2Mounth3>(context,listen: false);
     final reportType = Provider.of<ChildInfoModel>(context,listen: false).reportType;
     if (reportType!=null && reportType<4 )
     {
                       if (mounthNo ==1)
                      {
-                      prMounth1Data.personalDevelopment[index]= lableColor;
+                      (reportType==2)?pr2Mounth1Data.personalDevelopment[index]= lableColor:prMounth1Data.personalDevelopment[index]= lableColor;
                       print(prMounth1Data.personalDevelopment[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth1Personal(
-                        listOfData: prMounth1Data.personalDevelopment 
+                        listOfData: pr2Mounth1Data.personalDevelopment 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth1Personal(
                         listOfData: prMounth1Data.personalDevelopment 
                       );
@@ -231,10 +250,10 @@ final int index;
                      else if (mounthNo ==2)
                      {
                        print(false);
-                      prMounth2Data.personalDevelopment[index]= lableColor;
+                      (reportType==2)?pr2Mounth2Data.personalDevelopment[index]= lableColor:prMounth2Data.personalDevelopment[index]= lableColor;
                       print(prMounth2Data.personalDevelopment[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth2Personal(
-                        listOfData: prMounth2Data.personalDevelopment 
+                        listOfData: pr2Mounth2Data.personalDevelopment 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth2Personal(
                         listOfData: prMounth2Data.personalDevelopment 
                       );
@@ -242,10 +261,10 @@ final int index;
                      else if (mounthNo ==3)
                      {
                        print(true);
-                      prMounth3Data.personalDevelopment[index]= lableColor;
+                      (reportType==2)?pr2Mounth3Data.personalDevelopment[index]= lableColor:prMounth3Data.personalDevelopment[index]= lableColor;
                       print(prMounth3Data.personalDevelopment[index]);
                       (reportType==2)?PRM2DataBaseServices(uid: uid).updateprMounth3Personal(
-                        listOfData: prMounth3Data.personalDevelopment 
+                        listOfData: pr2Mounth3Data.personalDevelopment 
                       ):PRM3DataBaseServices(uid: uid).updateprMounth3Personal(
                         listOfData: prMounth3Data.personalDevelopment 
                       );

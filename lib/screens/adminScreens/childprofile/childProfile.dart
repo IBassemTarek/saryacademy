@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
+import '../../../shared/driveURLTransfer.dart';
 import '../../../models/childUID.dart';
 import '../../../screens/adminScreens/childprofile/statusInfoSection.dart';
 import '../../../services/profileDatabase.dart';
@@ -57,7 +58,7 @@ class ChildProfile extends StatelessWidget {
                               width: 0.7198 * _width,
                               child: InfoSection(
                                 lable: ["Image URL"],
-                                onClick: [(value) {photoURL= value;}],
+                                onClick: [(value) {photoURL= driveURLTransfer(value);}],
                                 title: "Child Photo",
                               ),
                             ),

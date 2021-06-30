@@ -4,7 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
-
+//local
 import 'models/adminMode.dart';
 import 'models/childUID.dart';
 import 'models/modalprogrsshub.dart';
@@ -22,7 +22,7 @@ Future<void> main() async {
     const initilizationsSettings = InitializationSettings(
       android: androidInitlize,
       iOS: iOSInitlize
-    );
+    ); 
     notification = FlutterLocalNotificationsPlugin();
     notification.initialize(initilizationsSettings,
     onSelectNotification: notificationSelected
@@ -38,6 +38,10 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+   statusBarColor: Colors.white,  
+   statusBarBrightness: Brightness.dark 
+));
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,

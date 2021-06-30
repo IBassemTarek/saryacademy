@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:saryacademy/shared/driveURLTransfer.dart';
 
 
 import '../../../services/galleryDatabase.dart';
@@ -60,7 +61,7 @@ class AddNewGallery extends StatelessWidget {
               lableText: "Image URL",
               onClick: (value) {
                 print(value);
-                imageURLTemp = value;
+                imageURLTemp = driveURLTransfer(value);
               },
             ),),
              InkWell(

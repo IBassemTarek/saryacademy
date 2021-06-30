@@ -208,6 +208,13 @@ class SignIn extends StatelessWidget {
               print(user.id);
               prefs.setBool("isAdmin",true);
             }
+
+          } catch (e) {
+            modelhud.changeIsLoading(false);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(e.message),
+            ));
+          }
             Navigator.push(
               context,
               OnBoardingPageRoute(
@@ -215,12 +222,6 @@ class SignIn extends StatelessWidget {
                   widget: AdminHomePage(),
                   myAnimation: Curves.elasticInOut),
             );
-          } catch (e) {
-            modelhud.changeIsLoading(false);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(e.message),
-            ));
-          }
         } else {
           modelhud.changeIsLoading(false);
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(

@@ -3,6 +3,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart'; 
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:saryacademy/shared/driveURLTransfer.dart';
 
 import '../../../models/EditEvent.dart'; 
 import '../../../models/childUID.dart';
@@ -124,7 +125,7 @@ class AddNewEvent extends StatelessWidget {
               maxLines: 1,
               lableText: "Image URL",
               onClick: (value) {
-                editEvent.changeImageURL(value);
+                editEvent.changeImageURL(driveURLTransfer(value));
               },
             ),),
               AddBotton( 

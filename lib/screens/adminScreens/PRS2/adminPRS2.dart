@@ -79,9 +79,9 @@ class AdminPRS2  extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
       Container(
-        width: 80,
+        width: 150,
         child: FittedBox(
-                          child: Text("${prm3ModelData.studentNameE}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)))),
+                          child: Text("${prm3ModelData.studentNameE}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 10)))),
                       SizedBox(width: 5,),
                       InkWell(
                         onTap: (){
