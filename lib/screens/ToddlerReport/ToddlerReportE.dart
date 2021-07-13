@@ -4,12 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-import '../../../models/progressReportModel1.dart';
-import '../../../screens/ToddlerReport/toddlerReportA.dart';
+import '../../../models/progressReportModel1.dart'; 
 import '../../../shared/backArrowBotton.dart';
 import '../../../shared/bottombar.dart';
-import '../../../shared/loading.dart';
-import '../../../shared/pageRouteAnimation.dart';
+import '../../../shared/loading.dart'; 
 import '../../const.dart';
 import 'checkIcon.dart';
 import 'datesInfoCard.dart';
@@ -70,24 +68,6 @@ class ToddlerReportE extends StatelessWidget {
                 children: [
                   Text("${prm1ModelData.childName}`s Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 22)),
                   Spacer(),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(0.00558*_height),
-                        decoration: roundedContainer(color: Colors.white,radius: 20.0),
-                        child: InkWell(
-                          onTap: (){
-                              Navigator.pushReplacement(
-                              context,
-                              OnBoardingPageRoute(
-                              duration: 600,
-                              widget: ToddlerReportA(),
-                              myAnimation: Curves.easeInOut),
-                                  );
-                          },
-                          child: Text("Arabic",style: Theme.of(context).textTheme.headline1.copyWith( color:kText2Color.withOpacity(1),fontSize: 12))),
-                      ),
-                      SizedBox(width: 0.036232*_width,),
                         InkWell(
                           onTap: ()async{
                             String _url = prm1ModelData.pdf; 
@@ -100,8 +80,6 @@ class ToddlerReportE extends StatelessWidget {
                                               ),
                         ),
                       SizedBox(width:0.05*_width),
-                    ],
-                  )
                 ],
               ), 
               Row(

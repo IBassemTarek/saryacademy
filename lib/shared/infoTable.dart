@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import '../const.dart';
 
 class InfoTable extends StatelessWidget {
@@ -26,19 +27,19 @@ InfoTable({this.x1y1,this.x1y2,this.x2y1,this.x2y2,this.x3y1,this.x3y2,this.x4y1
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(x1y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
+                                LocaleText(x1y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
                                 SizedBox(
                                   height: 0.01897*_height,
                                 ),
-                                Text(x2y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
+                                LocaleText(x2y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
                                 SizedBox(
                                   height: 0.01897*_height,
                                 ),
-                                Text(x3y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
+                                LocaleText(x3y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
                                 SizedBox(
                                   height: 0.01897*_height,
                                 ),
-                                Text(x4y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
+                                LocaleText(x4y1,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kText1Color.withOpacity(1),fontSize: 17)),
                               ],
                             ),
                             Spacer(),

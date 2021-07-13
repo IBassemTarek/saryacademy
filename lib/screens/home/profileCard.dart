@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 
 
@@ -54,8 +55,9 @@ class ProfileCard extends StatelessWidget {
                                           Consumer<ChildInfoModel>(
                                             builder: (context,childInfo,widget)=> Text(childInfo.name,style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 34))),
                                           Row(
-                                            children: [
-                                              Text('Profile',style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText1Color.withOpacity(1),fontSize: 18)),
+                                            children: [ 
+                                              LocaleText(
+                                                'Profile',style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText1Color.withOpacity(1),fontSize: 18)),
                                               Image.asset('assets/images/home/arrow.png'),
                                             ],
                                           ),

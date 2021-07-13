@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -49,7 +50,9 @@ class EventCardWidget extends StatelessWidget {
                   child: Text(_events[index].title,style: Theme.of(context).textTheme.subtitle1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 16))),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(_events[index].text,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
+                  child: Text(_events[index].text,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
                 Align(
                 alignment: Alignment.centerRight,
                 child: Text(dateConvert(_events[index].date.millisecondsSinceEpoch),style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
@@ -64,7 +67,7 @@ class EventCardWidget extends StatelessWidget {
                     ),
                               Positioned(
                                 top: 0.00993*_height,
-                                left: 0.024155*_width,
+                                left:Locales.currentLocale(context).toString() == "ar"? 0.484155*_width: 0.024155*_width,
                                 child: EventPhoto(photourl:_events[index].imageURL,sizedRatio: 0.12955357,),
                               ),
                   ],

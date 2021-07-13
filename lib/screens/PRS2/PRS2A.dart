@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 import '../../../models/progressReportModel3.dart';
 import '../../../screens/PRS1/gradeLable.dart';
-import '../../../screens/PRS1/infoOfPR.dart';
-import '../../../screens/PRS1/langAndPdf.dart'; 
-import '../../../screens/PRS2/PRS2E.dart';
+import '../../../screens/PRS1/infoOfPR.dart'; 
 import '../../../shared/backArrowBotton.dart';
 import '../../../shared/bottombar.dart';
 import '../../../shared/loading.dart';
@@ -47,7 +47,7 @@ class PRS2A extends StatelessWidget {
         titleSpacing: 0,
         elevation:0,
         backgroundColor: Colors.transparent,
-        title: Text("Progress Report",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 30)),
+        title: Text("تقرير التطور",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 30)),
       ),
       body:Stack(
           alignment: Alignment.center,
@@ -85,32 +85,32 @@ class PRS2A extends StatelessWidget {
                 ),
               ), 
               SizedBox(height:0.0169*_width),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Container(
-                            width: 0.4*_width,
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width:0.3*_width,
-                                    child: LangAndPdf(lang: 'English',page: PRS2E(),
-                                    pdfURL: prm3ModelData.pdf,
-                                    pr1: false,
-                                    )),
-                                  SizedBox(height:0.0169*_width),
-                     Container(
-                       height: 0.02232*_height,
-                       width:0.3*_width ,
-                       decoration: roundedContainer(color: kIconColor.withOpacity(1),radius: 20.0).copyWith(boxShadow: []),
-                       child: Center(child: Text("Preschool Stage 2",style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 12))),
-                       ),
-
-                                ],
+                        Wrap(
+                          alignment: WrapAlignment.start,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: 0.2*_width,
+                          children: [
+                        
+                            Container(
+                              height: 0.02232*_height,
+                              width:0.3*_width ,
+                              decoration: roundedContainer(color: kIconColor.withOpacity(1),radius: 20.0).copyWith(boxShadow: []),
+                              child: Center(child: Text("مرحلة ما قبل المدرسة 2",style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 12))),
                               ),
-                            ),
+                          InkWell(
+                          onTap: ()async{
+                          String _url = prm3ModelData.pdf; 
+                          await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+                          },
+                            child: Container(
+                            padding: EdgeInsets.all(0.00558*_height),
+                            decoration: roundedContainer(color: Colors.white,radius: 5.0),
+                            child: SvgPicture.asset('assets/images/PR/pdf.svg',height:0.017161*_height),
+                           ),
                           ),
+                          ],
                         ),
+                        SizedBox(height:0.0169*_width),
                            Directionality(
                              textDirection: TextDirection.rtl,
                               child: Row(

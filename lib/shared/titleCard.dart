@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import '../const.dart';
 class TitleCard extends StatelessWidget {
   final String title;
@@ -28,7 +29,7 @@ class TitleCard extends StatelessWidget {
                           SizedBox(
                             width: 0.099*_width,
                           ),
-                          Text(title,style:Theme.of(context).textTheme.subtitle1.copyWith( color:kText2Color.withOpacity(1),fontSize: 18) ,),
+                          LocaleText(title,style:Theme.of(context).textTheme.subtitle1.copyWith( color:kText2Color.withOpacity(1),fontSize: 18) ,),
                       ],
                     ),
                     );

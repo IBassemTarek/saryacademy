@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 
 import '../../const.dart';
 
@@ -32,10 +33,12 @@ class EventsCard extends StatelessWidget {
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
-                                                Text("Events",style: Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 34)),
-                                                Row(
+                                          LocaleText("Events",style: Locales.currentLocale(context).toString() == "en" ? Theme.of(context).textTheme.headline1.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 34)
+                                          :  Theme.of(context).textTheme.subtitle2.copyWith( color:kbackgroundColor.withOpacity(1),fontSize: 30)
+                                          ),
+                                                 Row(
                                                   children: [
-                                                    Text('Enter',style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText1Color.withOpacity(1),fontSize: 18)),
+                                                    LocaleText('Enter',style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText1Color.withOpacity(1),fontSize: 18)),
                                                     Image.asset('assets/images/home/arrow.png'),
                                                   ],
                                                 ),
@@ -56,7 +59,7 @@ class EventsCard extends StatelessWidget {
                             Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(width: 0.6*_width,),
+                                    SizedBox(width: Locales.currentLocale(context).toString() == "en" ?  0.6*_width: 0.5*_width,),
                                     Image.asset('assets/images/home/home41.png',height:0.210*_height,),
                                   ],
                                 ),

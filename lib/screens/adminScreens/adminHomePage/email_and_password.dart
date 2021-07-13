@@ -67,7 +67,6 @@ class SignUpAlert extends StatelessWidget {
           ),
         )
       ],
- 
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 import '../models/profileInfoModels/medicalHistoryModel.dart';
 import '../const.dart';
@@ -21,7 +22,7 @@ class StatusInfo extends StatelessWidget {
                       Row(
                         children: [
                           SizedBox(width: 0.05797*_width,),
-                          Text(title,style:Theme.of(context).textTheme.headline1.copyWith( color:kHeaderColor.withOpacity(1),fontSize: 30) ,),
+                          LocaleText(title,style:Theme.of(context).textTheme.headline1.copyWith( color:kHeaderColor.withOpacity(1),fontSize: 30) ,),
                         ],
                       ),
                 SizedBox(

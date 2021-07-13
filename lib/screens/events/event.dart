@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 
 
@@ -26,7 +27,7 @@ class EventsPage extends StatelessWidget {
         titleSpacing: 0,
         elevation:0,
         backgroundColor: Colors.transparent,
-        title: Text("Upcoming events",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 30)),
+        title: LocaleText("Upcoming events",style: Theme.of(context).textTheme.headline1.copyWith( color:kIconColor.withOpacity(1),fontSize: 30)),
       ),
       body: FutureBuilder(
         future: EventDataBaseServices().checkIfEmpty(),

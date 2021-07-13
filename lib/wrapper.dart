@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 
 
@@ -163,11 +164,16 @@ StreamProvider<ParentInfoModel>.value(
        initialData: ParentInfoModel(),
        ),
       ],
-        child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-    title: 'Sary Academy',
-    theme: textData(),
-    home: HomePage())
+        child: LocaleBuilder(
+          builder:(locale)=> MaterialApp(
+            localizationsDelegates: Locales.delegates,
+            supportedLocales: Locales.supportedLocales,
+            locale: locale,
+                debugShowCheckedModeBanner: false,
+            title: 'Sary Academy',
+            theme: textData(),
+            home: HomePage()),
+        )
         );
     }
     else if (isAdmin.isAdmin){

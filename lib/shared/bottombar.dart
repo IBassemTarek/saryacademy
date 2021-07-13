@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 import 'package:saryacademy/models/profileInfoModels/childInfoModel.dart';
+import 'package:saryacademy/screens/PRS1/PRS1A.dart';
 import 'package:saryacademy/screens/PRS1/PRS1E.dart';
+import 'package:saryacademy/screens/PRS2/PRS2A.dart';
 import 'package:saryacademy/screens/PRS2/PRS2E.dart';
 import 'package:saryacademy/screens/ToddlerReport/ToddlerReportE.dart';
+import 'package:saryacademy/screens/ToddlerReport/toddlerReportA.dart';
 import 'package:saryacademy/screens/events/event.dart';
 import 'package:saryacademy/screens/gallery/gallery.dart';
 import 'package:saryacademy/screens/profile.dart';
@@ -42,31 +46,57 @@ class BottomBar extends StatelessWidget {
               ontap:(){
         if (widgetName!="PRS1E" && widgetName!="PRS1A" && widgetName!="PRS2A" && widgetName!="PRS2E" && widgetName!="ToddlerReportA" && widgetName!="ToddlerReportE")
         {
-        Navigator.of(context).pop();
-        if (childInfo.reportType == 1 )
-        Navigator.push(
-        context,
-        OnBoardingPageRoute(
-        duration: 600,
-        widget: ToddlerReportE(),
-        myAnimation: Curves.easeInOut),
-        );
-        else if (childInfo.reportType == 2)
-        Navigator.push(
-        context,
-        OnBoardingPageRoute(
-        duration: 600,
-        widget: PRS1E(),
-        myAnimation: Curves.easeInOut),
-        );
-        else if (childInfo.reportType == 3)
-        Navigator.push(
-        context,
-        OnBoardingPageRoute(
-        duration: 600,
-        widget: PRS2E(),
-        myAnimation: Curves.easeInOut),
-        );
+        Navigator.of(context).pop(); 
+                      if (childInfo.reportType == 1 && Locales.currentLocale(context).toString() == "en")
+                        Navigator.push(
+                          context,
+                          OnBoardingPageRoute(
+                              duration: 600,
+                              widget: ToddlerReportE(),
+                              myAnimation: Curves.easeInOut),
+                        );
+                      else if (childInfo.reportType == 2&& Locales.currentLocale(context).toString() == "en")
+                        Navigator.push(
+                          context,
+                          OnBoardingPageRoute(
+                              duration: 600,
+                              widget: PRS1E(),
+                              myAnimation: Curves.easeInOut),
+                        );
+                      else if (childInfo.reportType == 3&& Locales.currentLocale(context).toString() == "en")
+                        Navigator.push(
+                          context,
+                          OnBoardingPageRoute(
+                              duration: 600,
+                              widget: PRS2E(),
+                              myAnimation: Curves.easeInOut),
+                        );
+
+                      if (childInfo.reportType == 1 && Locales.currentLocale(context).toString() == "ar")
+                        Navigator.push(
+                          context,
+                          OnBoardingPageRoute(
+                              duration: 600,
+                              widget: ToddlerReportA(),
+                              myAnimation: Curves.easeInOut),
+                        );
+                      else if (childInfo.reportType == 2&& Locales.currentLocale(context).toString() == "ar")
+                        Navigator.push(
+                          context,
+                          OnBoardingPageRoute(
+                              duration: 600,
+                              widget: PRS1A(),
+                              myAnimation: Curves.easeInOut),
+                        );
+                      else if (childInfo.reportType == 3&& Locales.currentLocale(context).toString() == "ar")
+                        Navigator.push(
+                          context,
+                          OnBoardingPageRoute(
+                              duration: 600,
+                              widget: PRS2A(),
+                              myAnimation: Curves.easeInOut),
+                        );
+                    
         }
               }
               ),

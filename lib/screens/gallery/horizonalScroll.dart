@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 
 class HorizonalScroll extends StatelessWidget {
   const HorizonalScroll({
@@ -20,8 +21,8 @@ class HorizonalScroll extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(left:0.084541*_width ),
-          alignment: Alignment.centerLeft,
+          padding:  Locales.currentLocale(context).toString() == "en"?  EdgeInsets.only(left:0.084541*_width ) : EdgeInsets.only(right:0.084541*_width ),
+          alignment: Locales.currentLocale(context).toString() == "en"?Alignment.centerLeft:Alignment.centerRight,
           child: Text( eventName,style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 24),textAlign: TextAlign.left,)),
         SizedBox(
           height:0.01674*_height
@@ -29,7 +30,7 @@ class HorizonalScroll extends StatelessWidget {
         Container(
           height: 0.15625*_height,
                   child: ListView.separated(
-                    padding: EdgeInsets.only(left:0.084541*_width ),
+                    padding: Locales.currentLocale(context).toString() == "ar"?EdgeInsets.only(right:0.084541*_width ):EdgeInsets.only(left:0.084541*_width ),
               scrollDirection: Axis.horizontal,
               shrinkWrap:true,
               itemCount: imagesURL.length,

@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "217594669587",
+    "firebase_url": "https://saryacademy-35980-default-rtdb.firebaseio.com",
     "project_id": "saryacademy-35980",
     "storage_bucket": "saryacademy-35980.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217594669587:android:530a6b7356790e920b2de6",
+        "android_client_info": {
+          "package_name": "com.aqtar.saryacademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217594669587-vghqk2vn44n10t2in7ro46654bqn05nt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkwKYF70-rNPDktMUQQBE4aR4p5lMPT_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217594669587-vghqk2vn44n10t2in7ro46654bqn05nt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:217594669587:android:c6e7fec0d7601b5b0b2de6",

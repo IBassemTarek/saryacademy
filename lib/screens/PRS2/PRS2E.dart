@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 import '../../../models/progressReportModel3.dart';
 import '../../../screens/PRS1/gradeLable.dart';
-import '../../../screens/PRS1/infoOfPR.dart';
-import '../../../screens/PRS1/langAndPdf.dart'; 
+import '../../../screens/PRS1/infoOfPR.dart'; 
 import '../../../shared/backArrowBotton.dart';
 import '../../../shared/bottombar.dart';
 import '../../../shared/loading.dart';
 
-import '../../const.dart';
-import 'PRS2A.dart';
+import '../../const.dart'; 
 
 class PRS2E extends StatelessWidget {
   @override
@@ -82,32 +82,34 @@ class PRS2E extends StatelessWidget {
                 ],
               ), 
               SizedBox(height:0.0169*_width),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Container(
-                            width: 0.4*_width,
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width:0.3*_width,
-                                    child: LangAndPdf(lang: 'Arabic',page: PRS2A(),
-                                    pdfURL: prm3ModelData.pdf,
-                                    pr1: false,
-                                    )),
-                                  SizedBox(height:0.0169*_width),
-                     Container(
-                       height: 0.02232*_height,
-                       width:0.3*_width ,
-                       decoration: roundedContainer(color: kIconColor.withOpacity(1),radius: 20.0).copyWith(boxShadow: []),
-                       child: Center(child: Text("Preschool Stage 2",style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 12))),
-                       ),
 
-                                ],
+                        Wrap(
+                          alignment: WrapAlignment.start,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: 0.2*_width,
+                          children: [
+                        
+                            Container(
+                              height: 0.02232*_height,
+                              width:0.3*_width ,
+                              decoration: roundedContainer(color: kIconColor.withOpacity(1),radius: 20.0).copyWith(boxShadow: []),
+                              child: Center(child: Text("Preschool Stage 2",style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 12))),
                               ),
-                            ),
+                          InkWell(
+                          onTap: ()async{
+                          String _url = prm3ModelData.pdf; 
+                          await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+                          },
+                            child: Container(
+                            padding: EdgeInsets.all(0.00558*_height),
+                            decoration: roundedContainer(color: Colors.white,radius: 5.0),
+                            child: SvgPicture.asset('assets/images/PR/pdf.svg',height:0.017161*_height),
+                           ),
                           ),
+                          ],
                         ),
+   SizedBox(height:0.0169*_width),
+  
                            Row(
                              mainAxisAlignment: MainAxisAlignment.end,
                              children: [

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 
 class GalleryOnePhoto extends StatelessWidget {
   final dynamic imageURL;
@@ -12,9 +13,12 @@ class GalleryOnePhoto extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(left:0.084541*_width ),
-          alignment: Alignment.centerLeft,
-          child: Text( eventTitle,style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 24),textAlign: TextAlign.left,)),
+          padding: Locales.currentLocale(context).toString() == "ar"?EdgeInsets.only(right:0.084541*_width ): EdgeInsets.only(left:0.084541*_width ),
+          alignment: Locales.currentLocale(context).toString() == "ar"?Alignment.centerRight:Alignment.centerLeft,
+          child: Text( 
+            eventTitle,
+          textAlign: Locales.currentLocale(context).toString() == "ar"?TextAlign.right:TextAlign.left,
+          style: Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 24),)),
         SizedBox(
           height:0.01674*_height
         ),

@@ -227,28 +227,8 @@ const List<String> restroomA = [
   "يرمي الكرة",
   "يركل الكرة",
   "يظهر التوازن",
-  "يظهر جزئيا إلى اليسار ، اليمين",
-];
-
-
-  const List<String> adminAllStudentNames  = [
-  "Jana Tarek",
-  "Ahmed Ibrahim",
-  "Hassan Ibrahim",
-  "Mona Ahmed",
-  "Jana Tarek",
-  "Ahmed Ibrahim",
-  "Hassan Ibrahim",
-  "Mona Ahmed",
-  "Jana Tarek",
-  "Ahmed Ibrahim",
-  "Hassan Ibrahim",
-  "Mona Ahmed",
-  "Jana Tarek",
-  "Ahmed Ibrahim",
-  "Hassan Ibrahim",
-  "Mona Ahmed",
-];
+  "يظهر جزئيا إلى اليسار ، اليمني",
+]; 
 
 
   BoxDecoration roundedContainer({double radius,Color color}) {

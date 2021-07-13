@@ -25,7 +25,6 @@ class SignIn extends StatelessWidget {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      // backgroundColor: kGradColor1.withOpacity(1),
       body: ModalProgressHUD(
         inAsyncCall: Provider.of<ModelHub>(context).isLoading,
         child: Builder(builder: (context) {
@@ -46,9 +45,7 @@ class SignIn extends StatelessWidget {
                           kGradColor2.withOpacity(1),
                         ],
                         begin: const FractionalOffset(0.0, 0.0),
-                        end: const FractionalOffset(0.0, 1.0),
-                        // begin: Alignment.topRight,
-                        // end: Alignment.bottomLeft,
+                        end: const FractionalOffset(0.0, 1.0), 
                         stops: [0.3, 1.0],
                         tileMode: TileMode.clamp),
                   ),
@@ -126,20 +123,20 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 0.13800 * _height,
+                  height: 0.08800 * _height,
                 ),
                 Builder(
                   builder: (context) => Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 0.120773 * _width),
+                        EdgeInsets.symmetric(horizontal: 0.290773 * _width),
                     child: InkWell(
                       onTap: () async {
                         _validate(context);
                       },
                       child: Container(
                         alignment: Alignment.center,
-                        width: _width * 0.758454,
-                        height: 0.068080 * _height,
+                        width: _width * 0.718454,
+                        height: 0.058080 * _height,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                           color: kbackgroundColor.withOpacity(1),
@@ -154,7 +151,7 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 0.01116 * _height,
+                  height: 0.02116 * _height,
                 ),
                 Center(
                     child: Consumer<AdminMode>(
@@ -182,7 +179,7 @@ class SignIn extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1
-                                  .copyWith(color: Colors.black, fontSize: 10),
+                                  .copyWith(color: kText1Color.withOpacity(1), fontSize: 14,decoration: TextDecoration.underline,),
                             )))),
               ],
             ),

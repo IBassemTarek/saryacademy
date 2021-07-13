@@ -64,10 +64,14 @@ class NextEventCard extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(_events[index].text,style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
+                  child: Text(_events[index].text,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText3Color.withOpacity(1),fontSize: 10))),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Text(dateConvert(_events[index].date.millisecondsSinceEpoch),style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
+                  child: Text(dateConvert(_events[index].date.millisecondsSinceEpoch),
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.bodyText1.copyWith( color:kText2Color.withOpacity(1),fontSize: 14))),
               ],
             ),
           ),

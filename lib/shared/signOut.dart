@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:saryacademy/screens/signIn/signin.dart';
 import 'package:saryacademy/services/auth.dart';
 
@@ -27,7 +28,7 @@ class SignOut extends StatelessWidget {
           myAnimation: Curves.elasticInOut),
            );
         },
-        child: Text('sign out',style:Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 14))),
+        child: LocaleText('sign out',style:Theme.of(context).textTheme.bodyText1.copyWith( color:Colors.white,fontSize: 14))),
       );
   }
 }
