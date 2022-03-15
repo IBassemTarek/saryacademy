@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
 
 import '../../../models/childUID.dart';
 import '../../../services/adminServices/childName.dart';
