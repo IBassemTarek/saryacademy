@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
           );
         },
         child: Container(
+          height: _height * 0.08,
           width: _width * 0.5,
           child: Stack(
             alignment: Locales.currentLocale(context).toString() == "en"
@@ -52,9 +53,8 @@ class HomePage extends StatelessWidget {
                 height: _height / 17,
                 width: _width / 2.5,
                 margin: EdgeInsets.only(bottom: 0.0039 * _height),
-                padding: EdgeInsets.only(
-                  top: 0.0121 * _width,
-                  bottom: 0.0121 * _width,
+                padding: EdgeInsets.symmetric(
+                  vertical: 0.0121 * _width,
                 ),
                 decoration: BoxDecoration(
                   borderRadius:
@@ -76,17 +76,16 @@ class HomePage extends StatelessWidget {
                             color: kbackgroundColor.withOpacity(1),
                             fontSize: 30)),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CircleAvatar(
-                      radius: 0.03625 * _height,
-                      backgroundColor: kText1Color.withOpacity(1),
-                      child: Icon(Icons.phone_in_talk,
-                          size: 0.039 * _height, color: Colors.white)),
-                  SizedBox(width: 114),
-                ],
-              )
+              Positioned(
+                left: Locales.currentLocale(context).toString() == "en"
+                    ? _width * 0.02
+                    : _width * 0.3,
+                child: CircleAvatar(
+                    radius: 0.03625 * _height,
+                    backgroundColor: kText1Color.withOpacity(1),
+                    child: Icon(Icons.phone_in_talk,
+                        size: 0.039 * _height, color: Colors.white)),
+              ),
             ],
           ),
         ),

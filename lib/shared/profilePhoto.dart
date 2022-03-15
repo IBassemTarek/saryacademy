@@ -21,25 +21,22 @@ class ProfilePhoto extends StatelessWidget {
         shape: BoxShape.circle,
         color: Colors.black,
       ),
-      child: CircleAvatar(
-        backgroundColor: Color(0xffEEEEEE),
-        child: ClipOval(
-            child: Consumer<ChildInfoModel>(
-          builder: (_, childInfo, __) => CachedNetworkImage(
-            placeholder: (context, url) => CircularProgressIndicator(),
-            imageUrl: childInfo.photourl,
-            fit: BoxFit.cover,
-            errorWidget: (___, _, __) {
-              return Container(
-                width: _height * sizedRatio,
-                height: _height * sizedRatio,
-                child: Image.asset('assets/images/No-Image.png',
-                    fit: BoxFit.cover),
-              );
-            },
-          ),
-        )),
-      ),
+      child: ClipOval(
+          child: Consumer<ChildInfoModel>(
+        builder: (_, childInfo, __) => CachedNetworkImage(
+          placeholder: (context, url) => CircularProgressIndicator(),
+          imageUrl: childInfo.photourl,
+          fit: BoxFit.cover,
+          errorWidget: (___, _, __) {
+            return Container(
+              width: _height * sizedRatio,
+              height: _height * sizedRatio,
+              child:
+                  Image.asset('assets/images/No-Image.png', fit: BoxFit.cover),
+            );
+          },
+        ),
+      )),
     );
   }
 }

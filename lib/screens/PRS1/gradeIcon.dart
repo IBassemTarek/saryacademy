@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../models/adminMode.dart';
-import 'gradeAlert.dart';
+
 import 'gradeCircle.dart';
 
 class GradeIcon extends StatelessWidget {
@@ -21,36 +19,12 @@ class GradeIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isAdmin = Provider.of<AdminMode>(context);
     final _width = MediaQuery.of(context).size.width;
 
-    if (isAdmin.isAdmin)
-      return InkWell(
-        onTap: () {
-          if (index != -1) {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => GradeAlert(
-                neededGradeIndex: neededGradeIndex,
-                context: context,
-                index: index,
-                title: title,
-                mounthNo: mounthNo,
-              ),
-            );
-          }
-        },
-        child: GradeCircle(
-          gradeTitle: gradeTitle,
-          gradeColor: gradeColor,
-          size: 0.02 * _width,
-        ),
-      );
-    else
-      return GradeCircle(
-        gradeTitle: gradeTitle,
-        gradeColor: gradeColor,
-        size: 0.02 * _width,
-      );
+    return GradeCircle(
+      gradeTitle: gradeTitle,
+      gradeColor: gradeColor,
+      size: 0.02 * _width,
+    );
   }
 }

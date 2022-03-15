@@ -12,38 +12,33 @@ import 'models/modalprogrsshub.dart';
 import 'services/auth.dart';
 import 'wrapper.dart';
 import 'models/user.dart';
+
 FlutterLocalNotificationsPlugin notification;
 Future<void> main() async {
-
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.blue, // navigation bar color
+    statusBarColor: Colors.red, // status bar color
+  ));
   WidgetsFlutterBinding.ensureInitialized();
-  await Locales.init(['ar','en']);
-    const androidInitlize =  AndroidInitializationSettings(
-      "ic_launcher"
-    );
-    const iOSInitlize =  IOSInitializationSettings();
-    const initilizationsSettings = InitializationSettings(
-      android: androidInitlize,
-      iOS: iOSInitlize
-    ); 
-    notification = FlutterLocalNotificationsPlugin();
-    notification.initialize(initilizationsSettings,
-    onSelectNotification: notificationSelected
-    );
+  await Locales.init(['ar', 'en']);
+  const androidInitlize = AndroidInitializationSettings("ic_launcher");
+  const iOSInitlize = IOSInitializationSettings();
+  const initilizationsSettings =
+      InitializationSettings(android: androidInitlize, iOS: iOSInitlize);
+  notification = FlutterLocalNotificationsPlugin();
+  notification.initialize(initilizationsSettings,
+      onSelectNotification: notificationSelected);
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-    Future notificationSelected(String payload) async {
-
-    } 
+Future notificationSelected(String payload) async {}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-   statusBarColor: Colors.white,  
-   statusBarBrightness: Brightness.dark 
-));
+        statusBarColor: Colors.white, statusBarBrightness: Brightness.dark));
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
