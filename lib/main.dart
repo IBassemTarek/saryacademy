@@ -16,8 +16,8 @@ import 'models/user.dart';
 FlutterLocalNotificationsPlugin notification;
 Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.blue, // navigation bar color
-    statusBarColor: Colors.red, // status bar color
+    systemNavigationBarColor: Colors.white, // navigation bar color
+    statusBarColor: Colors.white, // status bar color
   ));
   WidgetsFlutterBinding.ensureInitialized();
   await Locales.init(['ar', 'en']);
