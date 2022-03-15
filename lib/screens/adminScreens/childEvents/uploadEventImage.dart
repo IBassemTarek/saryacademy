@@ -10,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../const.dart';
 import 'package:path/path.dart';
 
+import '../../../models/modalprogrsshub.dart';
+
 class PhotoEventGetLocal extends StatefulWidget {
   @override
   State<PhotoEventGetLocal> createState() => _PhotoEventGetLocalState();
@@ -26,6 +28,8 @@ class _PhotoEventGetLocalState extends State<PhotoEventGetLocal> {
     final _width = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () async {
+        final loading = Provider.of<ModelHub>(context, listen: false);
+
         final result = await FilePicker.platform.pickFiles(
           allowMultiple: false,
         );
@@ -34,6 +38,7 @@ class _PhotoEventGetLocalState extends State<PhotoEventGetLocal> {
             content: Text("Choose it again"),
           ));
         } else {
+          loading.changeIsLoading(true);
           setState(() {
             String path = result.files.single.path;
             file = File(path);
@@ -52,6 +57,7 @@ class _PhotoEventGetLocalState extends State<PhotoEventGetLocal> {
           print(urlDownload);
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString("eventImage", urlDownload);
+          loading.changeIsLoading(false);
         }
       },
       child: Container(

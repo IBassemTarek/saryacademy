@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'models/EditEvent.dart';
 import 'models/adminMode.dart';
 import 'models/alertModel.dart';
+import 'models/changeReportType.dart';
 import 'models/childUID.dart';
 import 'models/isEmpty.dart';
 import 'models/profileInfoModels/parentInfoModel.dart';
@@ -169,6 +170,9 @@ class _WrapperState extends State<Wrapper> {
         } else if (isAdmin.isAdmin) {
           return MultiProvider(
             providers: [
+              ChangeNotifierProvider<ReportType>(
+                create: (context) => ReportType(),
+              ),
               StreamProvider<List<AbsenceCard>>.value(
                 value: ProfileDataBaseServices(uid: childUser.uid)
                     .absenceCardsData,

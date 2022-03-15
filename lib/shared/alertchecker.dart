@@ -23,7 +23,7 @@ alertcheck({BuildContext context}) {
 
 Future _showNotification({String title, String subTitle}) async {
   const androidDetails = AndroidNotificationDetails(
-      "channel ID", "Sary Academy", "this is notification ",
+      "channel ID", "Sary Academy",
       importance: Importance.max);
   const iosDetails = IOSNotificationDetails();
   const generalNotificationDetails = NotificationDetails(

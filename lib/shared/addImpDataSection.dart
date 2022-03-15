@@ -9,11 +9,19 @@ import 'package:saryacademy/shared/titleTextField.dart';
 import 'adminCustomTextField.dart';
 
 // ignore: must_be_immutable
-class AddImpDataSection extends StatelessWidget {
+class AddImpDataSection extends StatefulWidget {
   final String condition;
   AddImpDataSection({this.condition});
+
+  @override
+  State<AddImpDataSection> createState() => _AddImpDataSectionState();
+}
+
+class _AddImpDataSectionState extends State<AddImpDataSection> {
   String title;
+
   String descreption;
+
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
@@ -35,7 +43,9 @@ class AddImpDataSection extends StatelessWidget {
           Container(
             height: _height * 0.043,
             child: TitleTextField(
-              lableText:  Locales.currentLocale(context).toString() == "ar" ? "العنوان":"Title",
+              lableText: Locales.currentLocale(context).toString() == "ar"
+                  ? "العنوان"
+                  : "Title",
               onClick: (value) {
                 title = value;
               },
@@ -48,7 +58,9 @@ class AddImpDataSection extends StatelessWidget {
             height: _height * 0.0904,
             child: AdminTextField(
               maxLines: 2,
-              lableText: Locales.currentLocale(context).toString() == "ar" ?"الوصف":"Description",
+              lableText: Locales.currentLocale(context).toString() == "ar"
+                  ? "الوصف"
+                  : "Description",
               onClick: (value) {
                 descreption = value;
               },
@@ -64,10 +76,10 @@ class AddImpDataSection extends StatelessWidget {
                 text: "add",
                 onTap: () {
                   if (descreption != null && title != null) {
-                    if (condition == "Medical history")
+                    if (widget.condition == "Medical history")
                       ProfileDataBaseServices(uid: uid)
                           .addNewMedicalData(note: descreption, symptom: title);
-                    else if (condition == 'Vaccinations')
+                    else if (widget.condition == 'Vaccinations')
                       ProfileDataBaseServices(uid: uid).addNewVaccinationData(
                           date: descreption, vaccination: title);
                     else

@@ -14,7 +14,9 @@ class ReportTitleCard extends StatelessWidget {
       height: 0.05357 * _height,
       width: 0.451691 * _width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
         color: Colors.white,
         boxShadow: [
           BoxShadow(

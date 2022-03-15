@@ -177,12 +177,24 @@ class ProfileDataBaseServices {
     return await absenceCard
         .doc(uid)
         .collection("ListOfAbsenceCard")
-        .add({
+        .doc(days + month)
+        .set({
           'days': days,
           'month': month,
         })
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  Future<void> deleteAbsenceData(String id, String childId) {
+    print(id);
+    return absenceCard
+        .doc(childId)
+        .collection("ListOfAbsenceCard")
+        .doc(id)
+        .delete()
+        .then((value) => print("Absence Deleted"))
+        .catchError((error) => print("Failed to delete Absence: $error"));
   }
 
   Stream<ChildInfoModel> get childData {
@@ -248,12 +260,23 @@ class ProfileDataBaseServices {
     return await vaccinationCard
         .doc(uid)
         .collection("ListOfVaccinationCard")
-        .add({
+        .doc(date + vaccination)
+        .set({
           'date': date,
           'vaccination': vaccination,
         })
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  Future<void> deleteVaccinationData(String id, String childId) {
+    return vaccinationCard
+        .doc(childId)
+        .collection("ListOfVaccinationCard")
+        .doc(id)
+        .delete()
+        .then((value) => print("Vaccination Deleted"))
+        .catchError((error) => print("Failed to delete Vaccination: $error"));
   }
 
   // convert snapshot to list
@@ -279,12 +302,24 @@ class ProfileDataBaseServices {
     return await medicalHistoryCard
         .doc(uid)
         .collection("ListOfmedicalHistoryCard")
-        .add({
+        .doc(note + symptom)
+        .set({
           'symptom': symptom,
           'note': note,
         })
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  Future<void> deleteMedicalData(String id, String childId) async {
+    return medicalHistoryCard
+        .doc(childId)
+        .collection("ListOfmedicalHistoryCard")
+        .doc(id)
+        .delete()
+        .then((value) => print("medicalHistory Deleted"))
+        .catchError(
+            (error) => print("Failed to delete medicalHistory: $error"));
   }
 
   Stream<ParentInfoModel> get parentData {

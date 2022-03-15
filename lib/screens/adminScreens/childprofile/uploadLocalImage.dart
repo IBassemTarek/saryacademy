@@ -9,6 +9,7 @@ import 'package:saryacademy/models/childUID.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../const.dart';
 import 'package:path/path.dart';
+import '../../../models/modalprogrsshub.dart';
 import '../../../shared/reportTitleCard.dart';
 
 class PhotoGetLocal extends StatefulWidget {
@@ -76,7 +77,9 @@ class _PhotoGetLocalState extends State<PhotoGetLocal> {
             ),
             InkWell(
               onTap: () async {
+                final loading = Provider.of<ModelHub>(context, listen: false);
                 if (file != null) {
+                  loading.changeIsLoading(true);
                   final uid =
                       Provider.of<ChildModel>(context, listen: false).uid;
                   final destination = 'photos/profile/$uid/$fileName';
@@ -93,6 +96,11 @@ class _PhotoGetLocalState extends State<PhotoGetLocal> {
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
                   prefs.setString("profileImage", urlDownload);
+                  loading.changeIsLoading(false);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("please choose image"),
+                  ));
                 }
               },
               child: Icon(

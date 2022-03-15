@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:provider/provider.dart';
 
 import '../../../screens/PRS1/skillScore.dart';
 import '../../const.dart';
+import '../../models/adminMode.dart';
 
 class PRInfo extends StatelessWidget {
   final double dividerHeight;
@@ -26,6 +28,8 @@ class PRInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final isAdmin = Provider.of<AdminMode>(context);
+
     return Column(
       children: [
         Container(
