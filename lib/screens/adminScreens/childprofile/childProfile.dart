@@ -51,7 +51,6 @@ class ChildProfile extends StatelessWidget {
     matherOcc = Provider.of<ParentInfoModel>(context).matherOccup;
 
     alertcheck(context: context);
-    print(reportType.reportType);
     return Scaffold(
       backgroundColor: kbackgroundColor.withOpacity(1),
       body: ModalProgressHUD(
@@ -179,7 +178,6 @@ class ChildProfile extends StatelessWidget {
                                 smallBotton: false,
                                 text: "save",
                                 onTap: () async {
-                                  print(reportType);
                                   print(age);
                                   print(birthday);
                                   print(email);
@@ -197,6 +195,13 @@ class ChildProfile extends StatelessWidget {
                                       childName != null &&
                                       nationality != null &&
                                       reportType != null) {
+                                    if (reportType.reportType == null) {
+                                      print(initialReportType);
+                                    } else {
+                                      print(reportTypes
+                                              .indexOf(reportType.reportType) +
+                                          1);
+                                    }
                                     try {
                                       await ProfileDataBaseServices(uid: uid)
                                           .updateUserData(
@@ -207,9 +212,13 @@ class ChildProfile extends StatelessWidget {
                                               name: childName,
                                               nationality: nationality,
                                               photourl: photoURL,
-                                              reportType: reportTypes.indexOf(
-                                                      reportType.reportType) +
-                                                  1,
+                                              reportType:
+                                                  reportType.reportType != null
+                                                      ? reportTypes.indexOf(
+                                                              reportType
+                                                                  .reportType) +
+                                                          1
+                                                      : initialReportType,
                                               uid: uid);
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
